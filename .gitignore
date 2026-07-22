@@ -17,3 +17,4 @@ exports/
 # SQLite WAL sidecars — never commit
 *.db-wal
 *.db-shm
+.next-test/
