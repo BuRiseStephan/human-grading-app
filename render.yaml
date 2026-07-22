@@ -1,0 +1,21 @@
+# Render Blueprint — pre-configures the service so you don't fill fields by hand.
+# On Render: New +  →  Blueprint  →  connect this repo  →  Apply.
+# The only things it can't set for you (do these in the dashboard after Apply):
+#   - the confidential key, added as a Secret File named human_grading_sample_key.csv
+#   - your payment method (the Starter plan + disk are paid)
+services:
+  - type: web
+    name: human-grading-app
+    runtime: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: GRADING_DB_PATH
+        value: /var/data/grading.db
+      - key: SAMPLE_KEY_PATH
+        value: /etc/secrets/human_grading_sample_key.csv
+    disk:
+      name: grading-data
+      mountPath: /var/data
+      sizeGB: 1

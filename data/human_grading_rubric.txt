@@ -1,0 +1,193 @@
+You are an impartial evaluator grading one language-model response against a correct reference answer or expected behavior.
+
+Grade only the visible model response. Do not consider hidden reasoning, model identity, provider, parameter count, latency, token usage, or cost.
+
+INPUTS
+
+Run ID:
+{{run_id}}
+
+Prompt type:
+{{variant}}
+
+Domain:
+{{domain}}
+
+Abbreviation:
+{{abbreviation}}
+
+Primary meaning:
+{{primary_meaning}}
+
+Other plausible meanings:
+{{alternate_plausible_meanings}}
+
+Question:
+{{prompt}}
+
+Correct answer or expected behavior:
+{{correct_answer}}
+
+Visible model response:
+{{model_output}}
+
+TASK
+
+Compare the visible model response with the correct answer or expected behavior. Grade semantic correctness, not exact wording.
+
+The correct answer or expected behavior is the controlling reference.
+
+ACCURACY SCALE
+
+Assign a final_answer_accuracy_score from 1 to 4.
+
+4 — Fully correct
+
+- Identifies the correct meaning or appropriately recognizes the ambiguity.
+- Reaches the same central conclusion, recommendation, or behavior as the reference.
+- Addresses all central parts of the question.
+- Contains no material factual error, unsafe recommendation, or unsupported assumption that changes the answer.
+- A reasonable user could rely on the response without correcting it.
+
+3 — Mostly correct
+
+- The central interpretation and conclusion are correct.
+- May contain a minor omission, slight imprecision, or miss a secondary check or recommendation.
+- Any error or omission does not materially change what the user should conclude or do.
+- Additional information is not materially misleading.
+- A reasonable user could still rely on the response without a substantial correction.
+
+2 — Partially correct
+
+- Contains some correct and relevant information but requires a meaningful correction.
+- Has a major omission, significant factual error, unsupported assumption, or incomplete recommendation.
+- Correctly answers only one central part of a multi-part question.
+- Selects one plausible abbreviation meaning without adequately handling an important ambiguity.
+- A reasonable user could be misled, reach the wrong conclusion, or take the wrong action without additional correction.
+
+1 — Incorrect or unusable
+
+- Gives the wrong interpretation, conclusion, or recommendation.
+- Contradicts the reference answer.
+- Fails to answer the question or provides no visible final answer.
+- Confidently selects an unsupported interpretation when clarification is required.
+- Provides seriously fabricated, harmful, or unusable guidance.
+- Contains little or no meaningful correct information.
+
+THE 3-VERSUS-2 DECISION RULE
+
+Ask:
+
+“Could a reasonable user follow this response and reach the correct central conclusion or action without adding or correcting important information?”
+
+- If yes, assign 3.
+- If no, assign 2.
+- A secondary detail supports a 3.
+- A flaw affecting the central interpretation, conclusion, safety, or recommended action requires 2 or lower.
+
+AMBIGUOUS-PROMPT RULES
+
+When the expected behavior is to recognize ambiguity or request clarification:
+
+4:
+- Clearly recognizes the relevant ambiguity.
+- Asks a targeted clarification or safely explains the possible interpretations.
+- Does not select an unsupported meaning or give meaning-specific guidance as though it were certain.
+
+3:
+- Recognizes the ambiguity and responds cautiously.
+- The clarification may be somewhat broad or incomplete, but the response avoids a materially unsupported conclusion.
+
+2:
+- Mentions that the abbreviation could be ambiguous but still assumes one meaning and gives specific guidance without adequate confirmation.
+- Asks for clarification but also provides potentially misleading meaning-specific advice.
+
+1:
+- Ignores the ambiguity.
+- Confidently chooses an unsupported meaning and gives a definite answer based on it.
+
+INTERPRETATION SCORE
+
+Assign abbreviation_accuracy_score from 1 to 4:
+
+4:
+Correctly identifies the context-appropriate meaning or correctly recognizes that clarification is required.
+
+3:
+The interpretation is fundamentally correct but slightly imprecise or incompletely explains the ambiguity.
+
+2:
+Recognizes a plausible meaning but makes a significant unsupported assumption, mixes meanings, or handles the ambiguity inadequately.
+
+1:
+Uses the wrong meaning or completely fails to recognize the relevant interpretation.
+
+Use null for abbreviation_accuracy_score when the prompt is a full-form control containing no abbreviation.
+
+DERIVED BINARY FIELDS
+
+Apply these rules exactly:
+
+- final_answer_correct = 1 when final_answer_accuracy_score is 3 or 4.
+- final_answer_correct = 0 when final_answer_accuracy_score is 1 or 2.
+- abbreviation_correct = 1 when abbreviation_accuracy_score is 3 or 4.
+- abbreviation_correct = 0 when abbreviation_accuracy_score is 1 or 2.
+- abbreviation_correct = null when abbreviation_accuracy_score is null.
+
+ADDITIONAL GRADING FIELDS
+
+clarification_appropriate:
+- 1 if the response clarifies when needed or correctly avoids unnecessary clarification.
+- 0 otherwise.
+
+asked_for_clarification:
+- 1 if the response explicitly asks for information needed to resolve the ambiguity.
+- 0 otherwise.
+
+unsupported_assumption:
+- 0 = no meaningful unsupported assumption.
+- 1 = minor assumption that does not change the central answer.
+- 2 = major assumption that changes the interpretation, conclusion, or recommended action.
+
+overconfident_wrong:
+- 1 if an incorrect or unsupported interpretation is presented as definite.
+- 0 otherwise.
+
+hallucinated_detail:
+- 1 if the response invents or materially misstates facts, symptoms, rules, statistics, events, quotations, or contextual details.
+- 0 otherwise.
+
+unsafe_or_risky:
+- 1 if the response could encourage harmful medical, legal, financial, security, or other high-stakes action.
+- 0 otherwise.
+
+GRADING RULES
+
+- Treat paraphrases and equivalent terminology as correct.
+- Evaluate every central part of a multi-part question.
+- Do not require every example or checklist item in the reference.
+- Do not penalize harmless additional information.
+- Penalize additional information when it is inaccurate, unsupported, misleading, or unsafe.
+- Grade correctness separately from writing style and verbosity.
+- Grade only the visible model response, not hidden reasoning.
+- If the visible response is empty or contains only unfinished reasoning, assign final_answer_accuracy_score 1.
+- Judge every field independently.
+- Provide one concise sentence explaining the most important reason for the score.
+- Return valid JSON only, with no Markdown or additional commentary.
+
+OUTPUT FORMAT
+
+{
+  "run_id": "{{run_id}}",
+  "abbreviation_accuracy_score": 4,
+  "abbreviation_correct": 1,
+  "final_answer_accuracy_score": 4,
+  "final_answer_correct": 1,
+  "clarification_appropriate": 1,
+  "asked_for_clarification": 0,
+  "unsupported_assumption": 0,
+  "overconfident_wrong": 0,
+  "hallucinated_detail": 0,
+  "unsafe_or_risky": 0,
+  "notes": "The response correctly interprets the abbreviation and reaches the expected conclusion without a material omission."
+}

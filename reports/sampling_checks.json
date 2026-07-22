@@ -1,0 +1,156 @@
+{
+  "seed": 20260719,
+  "source": "/Users/stephansozkes/Downloads/qwen_abbreviation_study_responses.csv",
+  "generated_utc": "2026-07-21T00:38:11+00:00",
+  "population": {
+    "total_rows": 4800,
+    "status_not_success": 0,
+    "strategy_not_baseline": 0,
+    "blank_run_id": 0,
+    "blank_model_response": 40,
+    "blank_stratification_field": 0,
+    "blank_prompt_or_expected": 0,
+    "duplicate_run_id": 0,
+    "eligible": 4760
+  },
+  "checks": [
+    {
+      "check": "Exactly 480 rows selected",
+      "expected": "480",
+      "actual": "480",
+      "passed": true
+    },
+    {
+      "check": "Exactly 480 unique run_id values",
+      "expected": "480",
+      "actual": "480",
+      "passed": true
+    },
+    {
+      "check": "No duplicate run_id values",
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "check": "Exactly 480 unique evaluation_id values",
+      "expected": "480",
+      "actual": "480",
+      "passed": true
+    },
+    {
+      "check": "Number of strata populated",
+      "expected": "80",
+      "actual": "80",
+      "passed": true
+    },
+    {
+      "check": "Every stratum has exactly 6 responses",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "Exactly 120 responses per model",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "All 4 models present",
+      "expected": "4",
+      "actual": "4",
+      "passed": true
+    },
+    {
+      "check": "Exactly 120 responses per prompt variant",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "All 4 variants present",
+      "expected": "4",
+      "actual": "4",
+      "passed": true
+    },
+    {
+      "check": "Exactly 96 responses per domain",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "All 5 domains present",
+      "expected": "5",
+      "actual": "5",
+      "passed": true
+    },
+    {
+      "check": "Exactly 30 per model x variant",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "No missing prompt",
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "check": "No missing expected_interpretation_or_behavior",
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "check": "No missing model_response",
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "check": "All selected rows have status = success",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "All selected rows are baseline strategy",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "Both graders grade all 480 responses",
+      "expected": "480",
+      "actual": "480",
+      "passed": true
+    },
+    {
+      "check": "Total grading decisions",
+      "expected": "960",
+      "actual": "960",
+      "passed": true
+    },
+    {
+      "check": "Shared display order is a permutation of 1..480",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "check": "Every evaluation_id maps to exactly one display position",
+      "expected": "480",
+      "actual": "480",
+      "passed": true
+    },
+    {
+      "check": "Eligible population equals the plan's expected 4,800",
+      "expected": "4800",
+      "actual": "4760",
+      "passed": false
+    }
+  ]
+}

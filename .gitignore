@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+.DS_Store
+.env*
+
+# Data directory: everything is ignored EXCEPT the blinded items file.
+# The confidential sampling key and the grading database must never be committed.
+data/*
+!data/blinded_items.json
+!data/human_grading_rubric.txt
+
+# Exported merges contain model identity joined to scores.
+exports/
+
+# SQLite WAL sidecars — never commit
+*.db-wal
+*.db-shm
