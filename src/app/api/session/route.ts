@@ -26,17 +26,20 @@ export async function GET(request: Request) {
     );
   }
 
-  markStarted(grader);
+  await markStarted(grader);
 
-  const gradings = Object.fromEntries(
-    getGradings(grader).map((g) => [g.evaluation_id, g])
-  );
+  const [gradingList, completed, status] = await Promise.all([
+    getGradings(grader),
+    countCompleted(grader),
+    getStatus(grader),
+  ]);
+  const gradings = Object.fromEntries(gradingList.map((g) => [g.evaluation_id, g]));
 
   return NextResponse.json({
     grader,
     total: countItemsForGrader(grader),
-    completed: countCompleted(grader),
-    status: getStatus(grader),
+    completed,
+    status,
     items,
     gradings,
   });

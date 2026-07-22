@@ -21,8 +21,8 @@ export async function POST(request: Request) {
   }
 
   try {
-    markComplete(grader, countItemsForGrader(grader));
-    return NextResponse.json({ status: getStatus(grader) });
+    await markComplete(grader, countItemsForGrader(grader));
+    return NextResponse.json({ status: await getStatus(grader) });
   } catch (error) {
     if (error instanceof ValidationError) {
       return NextResponse.json({ error: error.message }, { status: 400 });

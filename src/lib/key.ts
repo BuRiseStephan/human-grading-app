@@ -3,21 +3,34 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 
+import { getClient } from "./db";
+
 /**
  * CONFIDENTIAL. This module reads the sampling key, which maps evaluation_id
  * back to run_id, model, variant, and domain. It must only ever be imported by
  * the admin/results route. Nothing here may be reachable from a grading page.
  */
 
-// The confidential key never goes into git. Locally it is a file under data/.
-// In the cloud it is supplied without committing it, via either a mounted
-// "secret file" (SAMPLE_KEY_PATH) or the raw CSV in an env var (SAMPLE_KEY_CSV).
+// The confidential key never goes into git. In the cloud it is stored as a
+// single CSV blob in the Turso `key_blob` table (loaded by the migration). With
+// no Turso configured it reads the local file (or SAMPLE_KEY_CSV env).
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), "data");
 const KEY_PATH = process.env.SAMPLE_KEY_PATH || path.join(DATA_DIR, "human_grading_sample_key.csv");
+const USE_TURSO = Boolean(process.env.TURSO_DATABASE_URL);
 
 /** The key's CSV text from whichever source is configured, or null if none. */
-function readKeyCsv(): string | null {
+async function readKeyCsv(): Promise<string | null> {
   if (process.env.SAMPLE_KEY_CSV) return process.env.SAMPLE_KEY_CSV;
+  if (USE_TURSO) {
+    try {
+      const c = await getClient();
+      const r = await c.execute("SELECT csv FROM key_blob LIMIT 1");
+      const csv = r.rows[0]?.csv;
+      return csv === null || csv === undefined ? null : String(csv);
+    } catch {
+      return null; // table not present yet (key not migrated)
+    }
+  }
   if (fs.existsSync(KEY_PATH)) return fs.readFileSync(KEY_PATH, "utf-8");
   return null;
 }
@@ -82,16 +95,15 @@ function parseCsv(text: string): string[][] {
   return rows;
 }
 
-export function keyExists(): boolean {
-  return Boolean(readKeyCsv());
+export async function keyExists(): Promise<boolean> {
+  return Boolean(await readKeyCsv());
 }
 
-export function loadKey(): KeyRow[] {
-  const csv = readKeyCsv();
+export async function loadKey(): Promise<KeyRow[]> {
+  const csv = await readKeyCsv();
   if (!csv) {
     throw new Error(
-      `Confidential key not found (checked SAMPLE_KEY_CSV, SAMPLE_KEY_PATH, and ${KEY_PATH}). ` +
-        `Run: python3 scripts/build_sample.py`
+      `Confidential key not found (checked SAMPLE_KEY_CSV, Turso key_blob, and ${KEY_PATH}).`
     );
   }
 

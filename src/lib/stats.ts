@@ -118,9 +118,10 @@ export interface GraderStats {
   metrics: { label: string; note: string; values: string[] }[];
 }
 
-export function computeStats(): GraderStats[] {
-  const variantByEval = new Map(loadKey().map((r) => [r.evaluation_id, r.variant]));
-  const all = getAllGradings();
+export async function computeStats(): Promise<GraderStats[]> {
+  const key = await loadKey();
+  const variantByEval = new Map(key.map((r) => [r.evaluation_id, r.variant]));
+  const all = await getAllGradings();
 
   return GRADERS.map((grader) => {
     const mine = all.filter((g) => g.grader === grader);

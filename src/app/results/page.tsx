@@ -1,4 +1,4 @@
-import { countCompleted, getAllStatuses, getDb } from "@/lib/db";
+import { countCompleted, getAllStatuses, getLastActivity } from "@/lib/db";
 import { countItemsForGrader } from "@/lib/items";
 import { keyExists } from "@/lib/key";
 import { computeStats, type GraderStats } from "@/lib/stats";
@@ -56,32 +56,30 @@ function StatsTable({ stats }: { stats: GraderStats }) {
   );
 }
 
-export default function ResultsPage() {
-  const db = getDb();
-  const statuses = getAllStatuses();
+export default async function ResultsPage() {
+  const statuses = await getAllStatuses();
 
-  const rows = GRADERS.map((grader) => {
-    const status = statuses.find((s) => s.grader === grader)!;
-    const last = db
-      .prepare("SELECT MAX(updated_at) AS t FROM gradings WHERE grader = ?")
-      .get(grader) as { t: string | null };
-    return {
-      grader,
-      total: countItemsForGrader(grader),
-      completed: countCompleted(grader),
-      started_at: status.started_at,
-      completed_at: status.completed_at,
-      locked: Boolean(status.completed_at),
-      last_activity: last.t,
-    };
-  });
+  const rows = await Promise.all(
+    GRADERS.map(async (grader) => {
+      const status = statuses.find((s) => s.grader === grader)!;
+      return {
+        grader,
+        total: countItemsForGrader(grader),
+        completed: await countCompleted(grader),
+        started_at: status.started_at,
+        completed_at: status.completed_at,
+        locked: Boolean(status.completed_at),
+        last_activity: await getLastActivity(grader),
+      };
+    })
+  );
 
   const bothLocked = rows.every((r) => r.locked);
   const openGraders = rows.filter((r) => !r.locked).map((r) => r.grader);
 
   // Variant breakdown needs the confidential key, so only compute it once both
   // graders are locked (grading done) and the key is present.
-  const stats = bothLocked && keyExists() ? computeStats() : null;
+  const stats = bothLocked && (await keyExists()) ? await computeStats() : null;
 
   return (
     <>

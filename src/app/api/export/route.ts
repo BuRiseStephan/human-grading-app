@@ -67,7 +67,7 @@ function derivedCorrect(score: number | null | undefined): string {
 }
 
 export async function GET() {
-  const statuses = getAllStatuses();
+  const statuses = await getAllStatuses();
   const unlocked = statuses.filter((s) => !s.completed_at).map((s) => s.grader);
 
   // Independence procedure: neither grader may see model identity or the other
@@ -83,14 +83,14 @@ export async function GET() {
     );
   }
 
-  if (!keyExists()) {
+  if (!(await keyExists())) {
     return NextResponse.json(
-      { error: "Confidential key not found. Run: python3 scripts/build_sample.py" },
+      { error: "Confidential key not found." },
       { status: 500 }
     );
   }
 
-  const keyByEval = new Map(loadKey().map((row) => [row.evaluation_id, row]));
+  const keyByEval = new Map((await loadKey()).map((row) => [row.evaluation_id, row]));
 
   const abbrevByEval = new Map(
     getItemsForGrader("A").map((item) => [item.evaluation_id, item.abbreviation])
@@ -98,7 +98,7 @@ export async function GET() {
 
   // gradings are keyed (evaluation_id, grader); pivot to one row per item.
   const byEval = new Map<string, Partial<Record<Grader, Grading>>>();
-  for (const g of getAllGradings()) {
+  for (const g of await getAllGradings()) {
     const entry = byEval.get(g.evaluation_id) ?? {};
     entry[g.grader] = g;
     byEval.set(g.evaluation_id, entry);

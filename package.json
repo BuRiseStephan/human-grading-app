@@ -10,6 +10,7 @@
     "sample": "python3 scripts/build_sample.py"
   },
   "dependencies": {
+    "@libsql/client": "^0.17.4",
     "better-sqlite3": "^12.11.1",
     "next": "^15.1.6",
     "react": "^19.0.0",

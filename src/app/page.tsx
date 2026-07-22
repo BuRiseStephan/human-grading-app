@@ -6,13 +6,15 @@ import { GRADERS } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
-export default function HomePage() {
-  const cards = GRADERS.map((grader) => ({
-    grader,
-    total: countItemsForGrader(grader),
-    completed: countCompleted(grader),
-    locked: Boolean(getStatus(grader).completed_at),
-  }));
+export default async function HomePage() {
+  const cards = await Promise.all(
+    GRADERS.map(async (grader) => ({
+      grader,
+      total: countItemsForGrader(grader),
+      completed: await countCompleted(grader),
+      locked: Boolean((await getStatus(grader)).completed_at),
+    }))
+  );
 
   return (
     <>

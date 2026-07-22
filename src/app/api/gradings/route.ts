@@ -34,8 +34,8 @@ export async function POST(request: Request) {
   }
 
   try {
-    const saved = saveGrading(grader, evaluationId, body);
-    return NextResponse.json({ saved, completed: countCompleted(grader) });
+    const saved = await saveGrading(grader, evaluationId, body);
+    return NextResponse.json({ saved, completed: await countCompleted(grader) });
   } catch (error) {
     if (error instanceof ValidationError) {
       return NextResponse.json({ error: error.message }, { status: 400 });
