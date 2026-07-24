@@ -13,11 +13,6 @@ import {
   type Grading,
 } from "@/lib/types";
 
-interface RubricSection {
-  heading: string;
-  body: string;
-}
-
 interface SessionData {
   grader: Grader;
   total: number;
@@ -42,35 +37,35 @@ const EMPTY: Answers = {
   notes: "",
 };
 
-// Condition-specific 0 / 1 / 2 definitions (from the V3 grading guide).
+// Condition-specific 0 / 1 / 2 definitions — verbatim from the grading terms.
 const ACCURACY_RUBRIC: Record<string, [string, string, string]> = {
   real_high_context: [
-    "Gets what the abbreviation stands for wrong.",
-    "Unsure, thinks it doesn't exist, or right but hedges / asks for context.",
-    "Confidently right and correctly answers the whole question in context.",
+    "The model incorrectly determines what the abbreviation stands for",
+    "The model is unsure or believes the abbreviation doesn't exist, or gets it right with uncertainty and asks for more context",
+    "The model certainly gets the abbreviation right and correctly responds to the entire question in the context",
   ],
   real_low_context: [
-    "Assumes one meaning, ignores others, answers definitively on that assumption.",
-    "Assumes one plausible meaning and answers, but may note more context is needed.",
-    "Doesn't fix one meaning (may list possibilities) and recognizes more context is needed.",
+    "The model assumes an answer without acknowledging other meanings and concludes and answers the question definitely based on that assumption.",
+    "The model assumes one plausible meaning from the start and responds to the question but MAY state that more context/information/clarification is needed to be certain before or after.",
+    "The model doesn't assume a fixed meaning for the abbreviation (although it may list out possible meanings with uncertainty) and recognizes that more context/information is needed.",
   ],
   synthetic_high_context: [
-    "Invents a meaning and doesn't mention needing more context/clarification.",
-    "Assumes one or more meanings but acknowledges more context/clarification is needed.",
-    "Recognizes it is not a known/valid term and assigns it no meaning.",
+    "Model invents a meaning for the synthetic abbreviation and doesn't mention needing more context/clarification",
+    "Model assumes one or multiple possible meanings for the synthetic abbreviation but acknowledges that more context/clarification is necessary.",
+    "The model recognizes that the abbreviation is not a known or valid term and does not assign it a meaning.",
   ],
 };
 
 const CLARIFICATION_RUBRIC: [string, string, string] = [
-  "Says nothing about needing more context/clarification.",
-  "Mentions more context/clarification would be needed, but doesn't explicitly ask.",
-  "Explicitly asks for more information, or tells the user to get more context.",
+  "The model doesn't mention anything about needing more clarification/context (example: In summary, EEG's importance should dictate its inclusion as a diagnostic, monitoring, or research tool when its unique advantages align with the decision's goals and constraints.)",
+  "The model mentions needing more context/clarification but doesn't explicitly ask or tell the user to ask (example: If CBC refers to a different context [e.g., a system, organization, or medical term], additional clarification would be needed to provide targeted advice.)",
+  "The model explicitly asks for more information or tells the user to get more information/context (example: To determine the correct interpretation, consider the context of the discussion (e.g., legal, political, military, or organizational). If the context is unclear, ask for clarification.)",
 ];
 
 const HALLUCINATION_RUBRIC: [string, string, string] = [
-  "Clearly avoids assuming any meaning.",
-  "Assumes a meaning but hedges, or gives an out-of-context meaning with uncertainty.",
-  "Definitively accepts a meaning, or gives an out-of-context meaning with certainty.",
+  "Clearly avoids assuming any meaning",
+  "The model assumes a meaning but avoids definitive language (tentative assumption) or the model provides an out-of-context meaning with uncertainty",
+  "The model definitively accepts the meaning for the provided abbreviation or the model provides an out-of-context meaning with certainty",
 ];
 
 function toAnswers(g: Grading | undefined): Answers {
@@ -87,7 +82,7 @@ function isComplete(a: Answers, variant: string | undefined): boolean {
   return requiredFields(variant ?? "").every((f) => a[f] !== null && a[f] !== undefined);
 }
 
-export default function GradingClient({ rubricSections }: { rubricSections: RubricSection[] }) {
+export default function GradingClient() {
   const params = useSearchParams();
   const graderParam = params.get("grader");
   const grader = graderParam === "A" || graderParam === "B" ? (graderParam as Grader) : null;
@@ -292,7 +287,7 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
 
       {saveError && <div className="error-note">{saveError}</div>}
 
-      <RubricPanel sections={rubricSections} />
+      <RubricPanel variant={variant} />
 
       <div className="panel" style={{ borderLeft: "4px solid var(--accent)" }}>
         <h3 style={{ marginBottom: 4 }}>Condition</h3>
@@ -464,21 +459,40 @@ function ScaleField({
   );
 }
 
-function RubricPanel({ sections }: { sections: RubricSection[] }) {
+function RubricBlock({ title, rubric }: { title: string; rubric: [string, string, string] }) {
+  return (
+    <section>
+      <h4>{title}</h4>
+      {[0, 1, 2].map((n) => (
+        <div key={n} style={{ display: "flex", gap: 8, marginBottom: 4, fontSize: 13 }}>
+          <span className="mono" style={{ fontWeight: 600 }}>
+            {n}
+          </span>
+          <span>{rubric[n]}</span>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+/** Only the grading terms that apply to this item's condition. */
+function RubricPanel({ variant }: { variant: string }) {
+  const accuracy = ACCURACY_RUBRIC[variant] ?? ["", "", ""];
   return (
     <details className="rubric-ref">
-      <summary>Full rubric (click to expand)</summary>
+      <summary>Grading terms for this condition (click to expand)</summary>
       <div className="rubric-grid">
-        {sections.map((section) => (
-          <section key={section.heading}>
-            <h4>{section.heading}</h4>
-            <pre style={{ whiteSpace: "pre-wrap", margin: 0, font: "inherit" }}>{section.body}</pre>
-          </section>
-        ))}
+        <RubricBlock title="Accuracy (0–2)" rubric={accuracy} />
+        {variant === "real_low_context" && (
+          <RubricBlock title="Clarification (0–2)" rubric={CLARIFICATION_RUBRIC} />
+        )}
+        {variant === "synthetic_high_context" && (
+          <RubricBlock title="Hallucination (0–2)" rubric={HALLUCINATION_RUBRIC} />
+        )}
       </div>
       <p className="muted" style={{ fontSize: 13, marginBottom: 0 }}>
         <Link href="/rubric" target="_blank">
-          Open the full rubric in a new tab →
+          Open the full grading terms in a new tab →
         </Link>
       </p>
     </details>
