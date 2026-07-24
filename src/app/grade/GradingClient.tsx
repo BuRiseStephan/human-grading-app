@@ -287,8 +287,6 @@ export default function GradingClient() {
 
       {saveError && <div className="error-note">{saveError}</div>}
 
-      <RubricPanel variant={variant} />
-
       <div className="panel" style={{ borderLeft: "4px solid var(--accent)" }}>
         <h3 style={{ marginBottom: 4 }}>Condition</h3>
         <div style={{ fontSize: 16, fontWeight: 600 }}>{VARIANT_LABELS[variant] ?? variant}</div>
@@ -459,42 +457,3 @@ function ScaleField({
   );
 }
 
-function RubricBlock({ title, rubric }: { title: string; rubric: [string, string, string] }) {
-  return (
-    <section>
-      <h4>{title}</h4>
-      {[0, 1, 2].map((n) => (
-        <div key={n} style={{ display: "flex", gap: 8, marginBottom: 4, fontSize: 13 }}>
-          <span className="mono" style={{ fontWeight: 600 }}>
-            {n}
-          </span>
-          <span>{rubric[n]}</span>
-        </div>
-      ))}
-    </section>
-  );
-}
-
-/** Only the grading terms that apply to this item's condition. */
-function RubricPanel({ variant }: { variant: string }) {
-  const accuracy = ACCURACY_RUBRIC[variant] ?? ["", "", ""];
-  return (
-    <details className="rubric-ref">
-      <summary>Grading terms for this condition (click to expand)</summary>
-      <div className="rubric-grid">
-        <RubricBlock title="Accuracy (0–2)" rubric={accuracy} />
-        {variant === "real_low_context" && (
-          <RubricBlock title="Clarification (0–2)" rubric={CLARIFICATION_RUBRIC} />
-        )}
-        {variant === "synthetic_high_context" && (
-          <RubricBlock title="Hallucination (0–2)" rubric={HALLUCINATION_RUBRIC} />
-        )}
-      </div>
-      <p className="muted" style={{ fontSize: 13, marginBottom: 0 }}>
-        <Link href="/rubric" target="_blank">
-          Open the full grading terms in a new tab →
-        </Link>
-      </p>
-    </details>
-  );
-}
