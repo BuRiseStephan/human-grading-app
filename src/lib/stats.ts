@@ -11,14 +11,24 @@ import { GRADERS, type Grader, type Grading } from "./types";
  * once both graders have locked.
  */
 
-// Overall first, then variants in the difficulty order used elsewhere.
-const SCOPES = [
-  { key: "__all__", label: "Overall" },
-  { key: "full_form_control", label: "Full-form control" },
-  { key: "contextual_abbreviation", label: "Contextual" },
-  { key: "domain_conflict_trick", label: "Domain-conflict" },
-  { key: "abbreviation_only", label: "Abbreviation-only" },
-] as const;
+const ALL_SCOPE = "__all__";
+
+/** Turn a raw variant key like "domain_conflict_trick" into "Domain conflict trick". */
+function prettify(variant: string): string {
+  const s = variant.replace(/_/g, " ").trim();
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+/**
+ * Scopes = Overall, then one column per prompt variant present in the sample.
+ * Derived from the key so it adapts to however many variants the study uses.
+ */
+function buildScopes(variants: string[]): { key: string; label: string }[] {
+  return [
+    { key: ALL_SCOPE, label: "Overall" },
+    ...variants.map((v) => ({ key: v, label: prettify(v) })),
+  ];
+}
 
 type NumField =
   | "abbreviation_accuracy_score"
@@ -123,15 +133,22 @@ export async function computeStats(): Promise<GraderStats[]> {
   const variantByEval = new Map(key.map((r) => [r.evaluation_id, r.variant]));
   const all = await getAllGradings();
 
+  // Variants actually present in the sample, in first-seen order from the key.
+  const variants: string[] = [];
+  for (const r of key) {
+    if (r.variant && !variants.includes(r.variant)) variants.push(r.variant);
+  }
+  const scopes = buildScopes(variants);
+
   return GRADERS.map((grader) => {
     const mine = all.filter((g) => g.grader === grader);
-    const scopeRows = SCOPES.map((s) =>
-      s.key === "__all__" ? mine : mine.filter((g) => variantByEval.get(g.evaluation_id) === s.key)
+    const scopeRows = scopes.map((s) =>
+      s.key === ALL_SCOPE ? mine : mine.filter((g) => variantByEval.get(g.evaluation_id) === s.key)
     );
 
     return {
       grader,
-      scopeLabels: SCOPES.map((s) => s.label),
+      scopeLabels: scopes.map((s) => s.label),
       scopeN: scopeRows.map((r) => r.length),
       scopeAbbrevN: scopeRows.map(nWithAbbrev),
       metrics: METRICS.map((m) => ({

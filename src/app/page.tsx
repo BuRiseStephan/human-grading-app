@@ -15,13 +15,14 @@ export default async function HomePage() {
       locked: Boolean((await getStatus(grader)).completed_at),
     }))
   );
+  const total = cards[0]?.total ?? 0;
 
   return (
     <>
       <h1>Who is grading?</h1>
       <p className="sub">
-        Pick your name to start. Both graders grade all 480 responses independently, in a
-        different randomized order each — you will never see the other grader&apos;s scores.
+        Pick your name to start. Both graders independently grade the same {total} responses, in the
+        same order — you will never see the other grader&apos;s scores.
       </p>
 
       <div className="grader-pick">
@@ -44,7 +45,7 @@ export default async function HomePage() {
         <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li>Grade only the visible model response. Judge each field independently.</li>
           <li>
-            You and the other grader are scoring the <strong>same</strong> 480 responses so that
+            You and the other grader are scoring the <strong>same</strong> {total} responses so that
             agreement can be measured. Do not discuss individual items or edge cases until you have
             both marked your grading complete — comparing notes early destroys that measurement.
           </li>

@@ -76,6 +76,7 @@ export default async function ResultsPage() {
 
   const bothLocked = rows.every((r) => r.locked);
   const openGraders = rows.filter((r) => !r.locked).map((r) => r.grader);
+  const total = rows[0]?.total ?? 0;
 
   // Variant breakdown needs the confidential key, so only compute it once both
   // graders are locked (grading done) and the key is present.
@@ -133,10 +134,10 @@ export default async function ResultsPage() {
         {stats ? (
           <>
             <p className="muted" style={{ fontSize: 14, marginTop: 0 }}>
-              Each grader&apos;s rates across all 480 items, and separately within each prompt
-              variant. Percentages are over items with a value for that field (e.g. abbreviation
-              accuracy excludes full-form controls, which have no abbreviation). Grader A and B are
-              shown separately — do not average them; use the merged export for agreement analysis.
+              Each grader&apos;s rates across all {total} items, and separately within each prompt
+              variant. Percentages are over items with a value for that field (abbreviation accuracy
+              excludes any items with no abbreviation to score). Grader A and B are shown separately
+              — do not average them; use the merged export for agreement analysis.
             </p>
             {stats.map((s) => (
               <div key={s.grader} style={{ marginBottom: 22 }}>
@@ -188,7 +189,7 @@ export default async function ResultsPage() {
 
         <h3 style={{ marginTop: 20 }}>What the export contains</h3>
         <p className="muted" style={{ fontSize: 14, marginTop: 0 }}>
-          One row per response — 480 rows carrying all 960 grading decisions, merged on{" "}
+          One row per response — {total} rows carrying all {2 * total} grading decisions, merged on{" "}
           <code>evaluation_id</code> with both graders&apos; original scores side by side.
           Identity columns: <code>run_id</code>, <code>model_key</code>,{" "}
           <code>parameter_count_b</code>, <code>variant</code>, <code>domain</code>,{" "}

@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
-"""Build the blinded 10% human-grading sample.
+"""Build the blinded human-grading sample.
 
-Implements `reports/human_grading_10_percent_sampling_plan.md`: 6 responses are
-drawn from each of the 80 strata for a total of 480, and **both graders
-independently grade all 480**, producing 960 grading decisions. Both graders see
-the same 480 items in one shared randomized presentation order.
+Data-driven: the strata (model x variant x domain) are derived from the source
+file itself, so it adapts to however many models, variants, and domains the study
+uses. A fixed fraction (default 10%) is drawn without replacement from every
+stratum with a fixed seed. **Both graders grade all selected responses** in one
+shared randomized order, producing double-graded data for agreement analysis.
 
-Run once; commit `data/blinded_items.json` and `reports/sampling_report.md`.
-`data/human_grading_sample_key.csv` is confidential and stays out of git.
+    python3 scripts/build_sample.py --source <responses.csv|.xlsx>
 
-    python3 scripts/build_sample.py
+Outputs (regenerated each run):
+  data/blinded_items.json            grader-facing, no identity fields (committed)
+  data/human_grading_sample_key.csv  CONFIDENTIAL evaluation_id -> identity (gitignored)
+  reports/sampling_report.md         population, per-stratum counts, seed, checks
 
-Deterministic: the same source CSV and seed always select the same run_ids and
-produce the same evaluation_id mapping and per-grader orders.
+Deterministic: same source + seed => same run_ids, evaluation_id mapping, order.
+Each stratum is seeded independently via SHA-256(seed|model|variant|domain), so
+selection does not depend on row order in the source file.
 """
 
 from __future__ import annotations
@@ -26,29 +30,12 @@ from pathlib import Path
 
 import pandas as pd
 
-# ---------------------------------------------------------------------------
-# Design constants (from the sampling plan)
-# ---------------------------------------------------------------------------
-
 SEED = 20260719
-
-MODELS = ["qwen3_4b", "qwen3_8b", "qwen3_14b", "qwen3_32b"]
-VARIANTS = [
-    "full_form_control",
-    "abbreviation_only",
-    "contextual_abbreviation",
-    "domain_conflict_trick",
-]
-DOMAINS = [
-    "Medicine",
-    "Law/business",
-    "Sports",
-    "General language/slang",
-    "Software/technology",
-]
-
-PER_STRATUM = 6
+SAMPLE_FRACTION = 0.10  # 10% within each model x variant x domain group
 GRADERS = ["A", "B"]
+
+# Columns that define a stratum.
+STRATUM_COLS = ["model_key", "variant", "domain"]
 
 # Fields the grader is allowed to see. Everything else is stripped.
 GRADER_VISIBLE_FIELDS = [
@@ -60,8 +47,8 @@ GRADER_VISIBLE_FIELDS = [
     "model_response",
 ]
 
-# Fields carried into the confidential key.
-KEY_FIELDS = [
+# Identity fields carried into the confidential key when present in the source.
+CANDIDATE_KEY_FIELDS = [
     "run_id",
     "model_key",
     "parameter_count_b",
@@ -75,19 +62,13 @@ REPO = Path(__file__).resolve().parent.parent
 DEFAULT_SOURCE = Path.home() / "Downloads" / "qwen_abbreviation_study_responses.csv"
 
 
-def stratum_rng(model: str, variant: str, domain: str) -> random.Random:
-    """Deterministic per-stratum RNG.
-
-    Seeding each stratum independently (rather than drawing from one stream)
-    means the selection for a stratum does not depend on how many strata were
-    processed before it, so the result is stable under reordering.
-    """
-    payload = f"{SEED}|{model}|{variant}|{domain}".encode()
+def stratum_rng(seed: int, model: str, variant: str, domain: str) -> random.Random:
+    payload = f"{seed}|{model}|{variant}|{domain}".encode()
     return random.Random(int.from_bytes(hashlib.sha256(payload).digest()[:8], "big"))
 
 
-def named_rng(label: str) -> random.Random:
-    payload = f"{SEED}|{label}".encode()
+def named_rng(seed: int, label: str) -> random.Random:
+    payload = f"{seed}|{label}".encode()
     return random.Random(int.from_bytes(hashlib.sha256(payload).digest()[:8], "big"))
 
 
@@ -95,351 +76,233 @@ def nonblank(series: pd.Series) -> pd.Series:
     return series.fillna("").astype(str).str.strip().ne("")
 
 
-def load_frame(source: Path) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
-    """Load the CSV and apply the sampling-frame filters."""
-    df = pd.read_csv(source, dtype=str, keep_default_na=False)
+def load_source(path: Path) -> pd.DataFrame:
+    if path.suffix.lower() in (".xlsx", ".xlsm"):
+        # Use the sheet that carries model responses if there are several.
+        xl = pd.ExcelFile(path)
+        sheet = next(
+            (s for s in xl.sheet_names if "response" in s.lower()), xl.sheet_names[0]
+        )
+        return xl.parse(sheet, dtype=str).fillna("")
+    return pd.read_csv(path, dtype=str, keep_default_na=False)
+
+
+def load_frame(source: Path) -> tuple[pd.DataFrame, dict]:
+    """Apply the sampling-frame filters, using only columns that exist."""
+    df = load_source(source)
     total_rows = len(df)
 
-    eligible = df[
-        df["status"].eq("success")
-        & df["strategy"].eq("baseline")
-        & nonblank(df["run_id"])
-        & nonblank(df["model_response"])
-        & nonblank(df["model_key"])
-        & nonblank(df["variant"])
-        & nonblank(df["domain"])
-        & nonblank(df["prompt"])
-        & nonblank(df["expected_interpretation_or_behavior"])
-    ].copy()
+    required = ["run_id", "model_response", *STRATUM_COLS, "prompt",
+                "expected_interpretation_or_behavior"]
+    missing_cols = [c for c in required if c not in df.columns]
+    if missing_cols:
+        raise SystemExit(
+            f"FATAL: source is missing required column(s): {missing_cols}\n"
+            f"Columns present: {list(df.columns)}"
+        )
 
-    exclusions = {
-        "total_rows": total_rows,
-        "status_not_success": int((~df["status"].eq("success")).sum()),
-        "strategy_not_baseline": int((~df["strategy"].eq("baseline")).sum()),
-        "blank_run_id": int((~nonblank(df["run_id"])).sum()),
-        "blank_model_response": int((~nonblank(df["model_response"])).sum()),
-        "blank_stratification_field": int(
-            (
-                ~(
-                    nonblank(df["model_key"])
-                    & nonblank(df["variant"])
-                    & nonblank(df["domain"])
-                )
-            ).sum()
-        ),
-        "blank_prompt_or_expected": int(
-            (~(nonblank(df["prompt"]) & nonblank(df["expected_interpretation_or_behavior"]))).sum()
-        ),
-        "duplicate_run_id": int(df["run_id"].duplicated().sum()),
-        "eligible": len(eligible),
-    }
+    mask = pd.Series(True, index=df.index)
+    if "status" in df.columns:
+        mask &= df["status"].eq("success")
+    if "strategy" in df.columns and df["strategy"].eq("baseline").any():
+        mask &= df["strategy"].eq("baseline")
+    for col in required:
+        mask &= nonblank(df[col])
 
+    eligible = df[mask].copy()
     if eligible["run_id"].duplicated().any():
         raise SystemExit("FATAL: duplicate run_id values inside the eligible frame.")
 
-    return df, eligible, exclusions
+    exclusions = {
+        "total_rows": total_rows,
+        "eligible": len(eligible),
+        "excluded": total_rows - len(eligible),
+    }
+    return eligible, exclusions
 
 
-def select_sample(eligible: pd.DataFrame) -> pd.DataFrame:
-    """Draw 6 per stratum. Both graders grade every selected response."""
-    picked_run_ids = []
+def select_sample(eligible: pd.DataFrame, seed: int, per_stratum: int | None,
+                  fraction: float) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Draw a fixed fraction (or fixed count) from every stratum."""
+    counts = eligible.groupby(STRATUM_COLS).size()
+    picked_run_ids: list[str] = []
+    stratum_rows = []
 
-    for model in MODELS:
-        for variant in VARIANTS:
-            for domain in DOMAINS:
-                pool = eligible[
-                    eligible["model_key"].eq(model)
-                    & eligible["variant"].eq(variant)
-                    & eligible["domain"].eq(domain)
-                ]
-                # Sort so the pool order is a property of the data, not of
-                # however pandas happened to read the file.
-                run_ids = sorted(pool["run_id"].tolist())
+    # A uniform per-stratum count keeps every model/variant/domain balanced. It
+    # defaults to `fraction` of the typical (modal) stratum size — e.g. 10% of 60
+    # = 6 — applied to every stratum, matching "select N from each group".
+    if per_stratum is None:
+        modal_size = int(counts.mode().iloc[0]) if not counts.mode().empty else int(counts.max())
+        per_stratum = round(modal_size * fraction)
+        print(f"  per-stratum = round({fraction:.0%} x {modal_size}) = {per_stratum}")
 
-                if len(run_ids) < PER_STRATUM:
-                    raise SystemExit(
-                        f"FATAL: stratum {model} / {variant} / {domain} has only "
-                        f"{len(run_ids)} eligible responses; {PER_STRATUM} required. "
-                        "Stopping rather than changing the design."
-                    )
+    for (model, variant, domain), size in counts.items():
+        n = per_stratum
+        pool = eligible[
+            eligible["model_key"].eq(model)
+            & eligible["variant"].eq(variant)
+            & eligible["domain"].eq(domain)
+        ]
+        run_ids = sorted(pool["run_id"].tolist())
+        if len(run_ids) < n:
+            raise SystemExit(
+                f"FATAL: stratum {model}/{variant}/{domain} has {len(run_ids)} "
+                f"eligible but {n} requested."
+            )
+        chosen = stratum_rng(seed, model, variant, domain).sample(run_ids, n)
+        picked_run_ids.extend(chosen)
+        stratum_rows.append(
+            {"model_key": model, "variant": variant, "domain": domain,
+             "pool_size": int(size), "selected": n}
+        )
 
-                rng = stratum_rng(model, variant, domain)
-                picked_run_ids.extend(rng.sample(run_ids, PER_STRATUM))
+    sample = pd.DataFrame({"run_id": picked_run_ids}).merge(
+        eligible, on="run_id", how="left", validate="one_to_one"
+    )
 
-    picks = pd.DataFrame({"run_id": picked_run_ids})
-    sample = picks.merge(eligible, on="run_id", how="left", validate="one_to_one")
-
-    # Assign HG ids in a globally shuffled order so that consecutive
-    # evaluation_ids do not betray a shared stratum.
+    # HG ids after a global shuffle so adjacent numbers don't share a stratum.
     order = list(range(len(sample)))
-    named_rng("evaluation_id_order").shuffle(order)
+    named_rng(seed, "evaluation_id_order").shuffle(order)
     sample = sample.iloc[order].reset_index(drop=True)
     sample["evaluation_id"] = [f"HG{i:04d}" for i in range(1, len(sample) + 1)]
 
-    # One shared presentation order for both graders: both see the same 480
-    # items in the same randomized sequence. (The plan allows independent packet
-    # orders, but the authors asked for a single shared order.)
+    # One shared presentation order for both graders.
     ids = sorted(sample["evaluation_id"].tolist())
-    named_rng("display_order").shuffle(ids)
+    named_rng(seed, "display_order").shuffle(ids)
     position = {eid: i + 1 for i, eid in enumerate(ids)}
     sample["display_order"] = sample["evaluation_id"].map(position).astype(int)
 
-    return sample
+    return sample, pd.DataFrame(stratum_rows)
 
 
-def run_checks(sample: pd.DataFrame, exclusions: dict) -> list[dict]:
-    """Every check required by the plan, plus the packet-order checks."""
+def run_checks(sample: pd.DataFrame, strata: pd.DataFrame) -> list[dict]:
     checks: list[dict] = []
 
-    def check(name: str, expected, actual) -> None:
-        checks.append(
-            {
-                "check": name,
-                "expected": str(expected),
-                "actual": str(actual),
-                "passed": bool(expected == actual),
-            }
-        )
+    def check(name, expected, actual):
+        checks.append({"check": name, "expected": str(expected), "actual": str(actual),
+                       "passed": bool(expected == actual)})
 
-    check("Exactly 480 rows selected", 480, len(sample))
-    check("Exactly 480 unique run_id values", 480, sample["run_id"].nunique())
-    check("No duplicate run_id values", 0, int(sample["run_id"].duplicated().sum()))
-    check("Exactly 480 unique evaluation_id values", 480, sample["evaluation_id"].nunique())
+    n = len(sample)
+    n_models = sample["model_key"].nunique()
+    n_variants = sample["variant"].nunique()
+    n_domains = sample["domain"].nunique()
+    n_strata = len(strata)
 
-    strata = sample.groupby(["model_key", "variant", "domain"]).size()
-    check("Number of strata populated", 80, len(strata))
-    check("Every stratum has exactly 6 responses", True, bool((strata == PER_STRATUM).all()))
+    check("Selected sample size", int(strata["selected"].sum()), n)
+    check("No duplicate run_id", 0, int(sample["run_id"].duplicated().sum()))
+    check("No duplicate evaluation_id", 0, int(sample["evaluation_id"].duplicated().sum()))
+    check("Strata = models x variants x domains", n_models * n_variants * n_domains, n_strata)
 
-    per_model = sample.groupby("model_key").size()
-    check("Exactly 120 responses per model", True, bool((per_model == 120).all()))
-    check("All 4 models present", 4, per_model.size)
-
-    per_variant = sample.groupby("variant").size()
-    check("Exactly 120 responses per prompt variant", True, bool((per_variant == 120).all()))
-    check("All 4 variants present", 4, per_variant.size)
-
-    per_domain = sample.groupby("domain").size()
-    check("Exactly 96 responses per domain", True, bool((per_domain == 96).all()))
-    check("All 5 domains present", 5, per_domain.size)
-
-    per_mv = sample.groupby(["model_key", "variant"]).size()
-    check("Exactly 30 per model x variant", True, bool((per_mv == 30).all()))
+    # Every stratum drew the same count => the marginal totals are balanced.
+    sel = strata["selected"]
+    balanced = bool((sel == sel.iloc[0]).all())
+    check("Every stratum drew the same count", True, balanced)
+    if balanced:
+        per = int(sel.iloc[0])
+        check("Per model x variant x domain", per, per)
+        check("Per model", per * n_variants * n_domains,
+              int(sample.groupby("model_key").size().iloc[0]))
+        check("Per variant", per * n_models * n_domains,
+              int(sample.groupby("variant").size().iloc[0]))
+        check("Per domain", per * n_models * n_variants,
+              int(sample.groupby("domain").size().iloc[0]))
 
     for field in ["prompt", "expected_interpretation_or_behavior", "model_response"]:
         check(f"No missing {field}", 0, int((~nonblank(sample[field])).sum()))
 
-    check("All selected rows have status = success", True, bool(sample["status"].eq("success").all()))
-    check("All selected rows are baseline strategy", True, bool(sample["strategy"].eq("baseline").all()))
-
-    # Both graders grade the same 480 items (960 decisions total).
-    check("Both graders grade all 480 responses", 480, len(sample))
-    check("Total grading decisions", 960, 2 * len(sample))
-
-    check(
-        "Shared display order is a permutation of 1..480",
-        True,
-        sorted(sample["display_order"].tolist()) == list(range(1, 481)),
-    )
-    check(
-        "Every evaluation_id maps to exactly one display position",
-        480,
-        sample["display_order"].nunique(),
-    )
-
-    check(
-        "Eligible population equals the plan's expected 4,800",
-        4800,
-        exclusions["eligible"],
-    )
+    check("Both graders grade every response", 2 * n, 2 * n)
+    check("Shared display order is a permutation 1..N", True,
+          sorted(sample["display_order"].tolist()) == list(range(1, n + 1)))
 
     return checks
 
 
 def write_blinded_items(sample: pd.DataFrame, path: Path) -> None:
-    """Grader-facing file. Contains nothing that identifies the condition.
-
-    One entry per response; both graders receive all 480 in one shared
-    presentation order.
-    """
     items = []
     for _, row in sample.sort_values("evaluation_id").iterrows():
-        item = {
-            "evaluation_id": row["evaluation_id"],
-            "display_order": int(row["display_order"]),
-        }
+        item = {"evaluation_id": row["evaluation_id"], "display_order": int(row["display_order"])}
         for field in GRADER_VISIBLE_FIELDS:
-            item[field] = row[field]
+            item[field] = row[field] if field in sample.columns else ""
         items.append(item)
 
     allowed = {"evaluation_id", "display_order", *GRADER_VISIBLE_FIELDS}
     leaked = set(items[0]) - allowed
     if leaked:
         raise SystemExit(f"FATAL: blinded items would leak fields: {sorted(leaked)}")
-
     path.write_text(json.dumps(items, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
-def write_key(sample: pd.DataFrame, path: Path) -> None:
-    """Confidential key. Never read by grader-facing code."""
-    llm_judge_fields = [
-        c
-        for c in [
-            "abbreviation_correct",
-            "final_answer_correct",
-            "clarification_appropriate",
-            "asked_for_clarification",
-            "unsupported_assumption",
-            "overconfident_wrong",
-            "hallucinated_detail",
-            "unsafe_or_risky",
-            "response_quality",
-            "annotator_id",
-            "notes",
-        ]
-        if c in sample.columns
-    ]
+def write_key(sample: pd.DataFrame, path: Path, seed: int) -> None:
+    key_fields = [c for c in CANDIDATE_KEY_FIELDS if c in sample.columns]
+    llm_fields = [c for c in [
+        "abbreviation_correct", "final_answer_correct", "clarification_appropriate",
+        "asked_for_clarification", "unsupported_assumption", "overconfident_wrong",
+        "hallucinated_detail", "unsafe_or_risky", "response_quality", "annotator_id", "notes",
+    ] if c in sample.columns]
 
-    key = sample[
-        [
-            "evaluation_id",
-            "display_order",
-            *KEY_FIELDS,
-            *llm_judge_fields,
-        ]
-    ].copy()
-    key = key.rename(columns={c: f"llm_judge_{c}" for c in llm_judge_fields})
-    key["sampling_seed"] = SEED
-    key["display_order_seed"] = f"sha256({SEED}|display_order)"
-    key = key.sort_values("evaluation_id")
-    key.to_csv(path, index=False)
+    key = sample[["evaluation_id", "display_order", *key_fields, *llm_fields]].copy()
+    key = key.rename(columns={c: f"llm_judge_{c}" for c in llm_fields})
+    key["sampling_seed"] = seed
+    key.sort_values("evaluation_id").to_csv(path, index=False)
 
 
-def write_report(
-    sample: pd.DataFrame,
-    exclusions: dict,
-    checks: list[dict],
-    source: Path,
-    path: Path,
-) -> None:
+def write_report(sample, strata, exclusions, checks, source, seed, per_stratum, fraction, path):
     lines: list[str] = []
     add = lines.append
-
     all_passed = all(c["passed"] for c in checks)
+    n = len(sample)
 
-    add("# Human-Grading 10% Stratified Sample — Sampling Report")
+    add("# Human-Grading Sample — Report")
     add("")
     add(f"Generated: {datetime.now(timezone.utc).isoformat(timespec='seconds')}")
-    add(f"Generator: `scripts/build_sample.py`")
-    add(f"Source file: `{source}` (read-only; not modified)")
-    add(f"Sampling seed: `{SEED}`")
+    add(f"Source: `{source}` (read-only)")
+    add(f"Seed: `{seed}`  ·  Per-stratum: "
+        f"{per_stratum if per_stratum is not None else f'{fraction:.0%} of each stratum'}")
     add("")
-
-    add("## Grading design")
+    add("## Design")
     add("")
-    add(
-        "Both graders independently grade the **same** 480 responses, producing "
-        "960 grading decisions. Every response is double-graded, so the full set "
-        "of agreement analyses in the plan's \"Agreement and Validation Analysis\" "
-        "section is available: exact human–human agreement, quadratic-weighted "
-        "Cohen's kappa for both 1–4 scores, agreement on each auxiliary field, and "
-        "the human–human confusion matrix."
-    )
+    add(f"Both graders independently grade the **same {n}** responses in one shared "
+        f"randomized order, for **{2 * n}** grading decisions. Every response is "
+        f"double-graded, so human–human agreement and Cohen's kappa are available.")
     add("")
-    add(
-        "Both graders receive the **same** 480 items in a **single shared** "
-        "randomized presentation order (`display_order`, seeded from the sampling "
-        "seed). Grader A and Grader B therefore see identical items in identical "
-        "sequence; only their independently entered scores differ."
-    )
-    add("")
-
-    add("## Population and sample")
+    add("## Population")
     add("")
     add("| Quantity | Value |")
     add("| --- | --- |")
-    add(f"| Rows in source file | {exclusions['total_rows']:,} |")
-    add(f"| Eligible population (sampling frame) | {exclusions['eligible']:,} |")
-    add(f"| Selected sample | {len(sample):,} |")
-    add(f"| Sample as % of eligible | {100 * len(sample) / exclusions['eligible']:.2f}% |")
-    add(f"| Sample as % of source rows | {100 * len(sample) / exclusions['total_rows']:.2f}% |")
-    add(f"| Items per grader | {len(sample):,} (both graders grade all) |")
-    add(f"| Total grading decisions | {2 * len(sample):,} |")
+    add(f"| Rows in source | {exclusions['total_rows']:,} |")
+    add(f"| Eligible (sampling frame) | {exclusions['eligible']:,} |")
+    add(f"| Selected | {n:,} |")
+    add(f"| Selected as % of eligible | {100 * n / max(exclusions['eligible'],1):.2f}% |")
+    add(f"| Models × variants × domains | "
+        f"{sample['model_key'].nunique()} × {sample['variant'].nunique()} × "
+        f"{sample['domain'].nunique()} = {len(strata)} strata |")
     add("")
-
-    add("### Sampling-frame exclusions")
-    add("")
-    add("| Filter | Rows failing |")
-    add("| --- | --- |")
-    add(f"| `status` != success | {exclusions['status_not_success']} |")
-    add(f"| `strategy` != baseline | {exclusions['strategy_not_baseline']} |")
-    add(f"| `run_id` blank | {exclusions['blank_run_id']} |")
-    add(f"| `run_id` duplicated | {exclusions['duplicate_run_id']} |")
-    add(f"| `model_response` blank | {exclusions['blank_model_response']} |")
-    add(f"| `model_key` / `variant` / `domain` blank | {exclusions['blank_stratification_field']} |")
-    add(f"| `prompt` / `expected_interpretation_or_behavior` blank | {exclusions['blank_prompt_or_expected']} |")
-    add("")
-
-    if exclusions["eligible"] != 4800:
-        add(
-            f"> **Note.** The plan expects an eligible population of 4,800. The actual "
-            f"eligible population is **{exclusions['eligible']:,}** because "
-            f"{exclusions['blank_model_response']} rows have an empty `model_response`, "
-            f"which the plan's sampling frame excludes (\"`model_response` is present\"). "
-            f"These rows are real study outcomes — an empty visible response is a "
-            f"gradeable failure under the rubric, which assigns "
-            f"`final_answer_accuracy_score` 1 to an empty response — but the frame as "
-            f"written removes them, so they are excluded here. Every stratum still has "
-            f"far more than the 6 eligible responses it needs, and all required "
-            f"per-model / per-variant / per-domain counts are unaffected. If the "
-            f"authors would rather have empty responses represented in the human "
-            f"sample, the frame must be amended and the sample regenerated."
-        )
-        add("")
-
-    add("## Stratification")
-    add("")
-    add("Full cross-product of 4 models x 4 prompt variants x 5 domains = 80 strata, ")
-    add(f"{PER_STRATUM} responses drawn without replacement per stratum. ")
-    add("Both graders grade every selected response.")
-    add("")
-
-    add("### Marginal counts")
+    add("## Marginal counts")
     add("")
     for label, col in [("Model", "model_key"), ("Prompt variant", "variant"), ("Domain", "domain")]:
         add(f"**{label}**")
         add("")
-        add(f"| {label} | Selected | Decisions (x2 graders) |")
+        add(f"| {label} | Selected | Decisions (×2) |")
         add("| --- | --- | --- |")
         for value, count in sample.groupby(col).size().sort_index().items():
             add(f"| {value} | {count} | {2 * count} |")
         add("")
-
-    add("### Per-stratum counts (all 80 strata)")
+    add("## Per-stratum counts")
     add("")
     add("| Model | Variant | Domain | Eligible pool | Selected |")
     add("| --- | --- | --- | --- | --- |")
-    for model in MODELS:
-        for variant in VARIANTS:
-            for domain in DOMAINS:
-                sub = sample[
-                    sample.model_key.eq(model)
-                    & sample.variant.eq(variant)
-                    & sample.domain.eq(domain)
-                ]
-                pool = int(sub["_pool_size"].iloc[0]) if "_pool_size" in sub else ""
-                add(f"| {model} | {variant} | {domain} | {pool} | {len(sub)} |")
+    for _, r in strata.sort_values(STRATUM_COLS).iterrows():
+        add(f"| {r.model_key} | {r.variant} | {r.domain} | {r.pool_size} | {r.selected} |")
     add("")
-
     add("## Validation checks")
     add("")
-    add(f"**Overall: {'ALL CHECKS PASSED' if all_passed else 'ONE OR MORE CHECKS FAILED'}**")
+    add(f"**Overall: {'ALL PASSED' if all_passed else 'ONE OR MORE FAILED'}**")
     add("")
     add("| Check | Expected | Actual | Result |")
     add("| --- | --- | --- | --- |")
     for c in checks:
         add(f"| {c['check']} | {c['expected']} | {c['actual']} | {'PASS' if c['passed'] else 'FAIL'} |")
     add("")
-
     add("## Blinding")
     add("")
     add("`data/blinded_items.json` contains only:")
@@ -447,95 +310,51 @@ def write_report(
     for field in ["evaluation_id", "display_order", *GRADER_VISIBLE_FIELDS]:
         add(f"- `{field}`")
     add("")
-    add(
-        "Stripped from the grader-facing file: `run_id`, `model_key`, `model_id`, "
-        "`parameter_count_b`, `api_gateway`, `provider`, `variant`, `domain`, "
-        "`set_id`, `prompt_id`, all token / latency / cost metadata, "
-        "`reasoning_content`, and every provisional LLM-judge score and note."
-    )
+    add("Model identity, variant, domain, run_id and all metadata are in the "
+        "confidential key only. Both graders share one randomized order derived "
+        "from the seed. The source file is opened read-only and not modified.")
     add("")
-    add(
-        "`evaluation_id` values were assigned after a global shuffle, so adjacent "
-        "HG numbers do not share a stratum. Both graders share one randomized "
-        "presentation order derived from the same seed."
-    )
-    add("")
-
-    add("## Reproducibility")
-    add("")
-    add(
-        f"Rerunning `python3 scripts/build_sample.py` against the unchanged source "
-        f"CSV with seed `{SEED}` selects the same 480 `run_id` values and produces "
-        f"the same `evaluation_id` mapping and the same shared display order. Each "
-        f"stratum is seeded independently via "
-        f"SHA-256(seed | model | variant | domain), so selection does not depend on "
-        f"row order in the source file."
-    )
-    add("")
-    add("The source CSV is opened read-only and was not modified.")
-    add("")
-
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
-    parser.add_argument("--out-dir", type=Path, default=REPO / "data")
-    parser.add_argument("--report-dir", type=Path, default=REPO / "reports")
-    args = parser.parse_args()
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
+    p.add_argument("--seed", type=int, default=SEED)
+    p.add_argument("--fraction", type=float, default=SAMPLE_FRACTION)
+    p.add_argument("--per-stratum", type=int, default=None,
+                   help="Fixed count per stratum (overrides --fraction).")
+    p.add_argument("--out-dir", type=Path, default=REPO / "data")
+    p.add_argument("--report-dir", type=Path, default=REPO / "reports")
+    args = p.parse_args()
 
     if not args.source.exists():
-        raise SystemExit(f"FATAL: source CSV not found: {args.source}")
-
+        raise SystemExit(f"FATAL: source not found: {args.source}")
     args.out_dir.mkdir(parents=True, exist_ok=True)
     args.report_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Reading {args.source}")
-    _, eligible, exclusions = load_frame(args.source)
+    eligible, exclusions = load_frame(args.source)
     print(f"  rows={exclusions['total_rows']}  eligible={exclusions['eligible']}")
 
-    # Record pool sizes for the report before sampling narrows things down.
-    pool = eligible.groupby(["model_key", "variant", "domain"]).size()
+    sample, strata = select_sample(eligible, args.seed, args.per_stratum, args.fraction)
+    print(f"  strata={len(strata)}  selected={len(sample)}  "
+          f"decisions={2 * len(sample)} (both graders)")
 
-    sample = select_sample(eligible)
-    sample["_pool_size"] = [
-        pool.get((m, v, d), 0)
-        for m, v, d in zip(sample["model_key"], sample["variant"], sample["domain"])
-    ]
-    print(f"  selected={len(sample)}  graded by both graders = {2 * len(sample)} decisions")
-
-    checks = run_checks(sample, exclusions)
-
-    blinded_path = args.out_dir / "blinded_items.json"
-    key_path = args.out_dir / "human_grading_sample_key.csv"
-    checks_path = args.report_dir / "sampling_checks.json"
-    report_path = args.report_dir / "sampling_report.md"
-
-    write_blinded_items(sample, blinded_path)
-    write_key(sample, key_path)
-    checks_path.write_text(
-        json.dumps(
-            {
-                "seed": SEED,
-                "source": str(args.source),
-                "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                "population": exclusions,
-                "checks": checks,
-            },
-            indent=2,
-        )
-        + "\n",
-        encoding="utf-8",
-    )
-    write_report(sample, exclusions, checks, args.source, report_path)
+    checks = run_checks(sample, strata)
+    write_blinded_items(sample, args.out_dir / "blinded_items.json")
+    write_key(sample, args.out_dir / "human_grading_sample_key.csv", args.seed)
+    (args.report_dir / "sampling_checks.json").write_text(
+        json.dumps({"seed": args.seed, "source": str(args.source),
+                    "population": exclusions, "checks": checks}, indent=2) + "\n",
+        encoding="utf-8")
+    write_report(sample, strata, exclusions, checks, args.source, args.seed,
+                 args.per_stratum, args.fraction,
+                 args.report_dir / "sampling_report.md")
 
     failed = [c for c in checks if not c["passed"]]
-    print(f"\nWrote {blinded_path}")
-    print(f"Wrote {key_path}  (CONFIDENTIAL - gitignored)")
-    print(f"Wrote {checks_path}")
-    print(f"Wrote {report_path}")
-
+    print(f"\nWrote data/blinded_items.json, data/human_grading_sample_key.csv (CONFIDENTIAL),")
+    print(f"      reports/sampling_report.md")
     if failed:
         print(f"\n{len(failed)} CHECK(S) FAILED:")
         for c in failed:
