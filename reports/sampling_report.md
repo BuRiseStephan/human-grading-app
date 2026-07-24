@@ -1,192 +1,137 @@
-# Human-Grading 10% Stratified Sample — Sampling Report
+# Human-Grading Sample — Report
 
-Generated: 2026-07-21T00:38:11+00:00
-Generator: `scripts/build_sample.py`
-Source file: `/Users/stephansozkes/Downloads/qwen_abbreviation_study_responses.csv` (read-only; not modified)
-Sampling seed: `20260719`
+Generated: 2026-07-24T15:15:25+00:00
+Source: `/private/tmp/claude-501/-Users-stephansozkes-HumanGradingAppRISEPracticumDataScience/d87de3d7-73f5-476e-a95f-f24a4b26740b/scratchpad/v3_clean.csv` (read-only)
+Seed: `20260719`  ·  Per-stratum: 10% of each stratum
 
-## Grading design
+## Design
 
-Both graders independently grade the **same** 480 responses, producing 960 grading decisions. Every response is double-graded, so the full set of agreement analyses in the plan's "Agreement and Validation Analysis" section is available: exact human–human agreement, quadratic-weighted Cohen's kappa for both 1–4 scores, agreement on each auxiliary field, and the human–human confusion matrix.
+Both graders independently grade the **same 360** responses in one shared randomized order, for **720** grading decisions. Every response is double-graded, so human–human agreement and Cohen's kappa are available.
 
-Both graders receive the **same** 480 items in a **single shared** randomized presentation order (`display_order`, seeded from the sampling seed). Grader A and Grader B therefore see identical items in identical sequence; only their independently entered scores differ.
-
-## Population and sample
+## Population
 
 | Quantity | Value |
 | --- | --- |
-| Rows in source file | 4,800 |
-| Eligible population (sampling frame) | 4,760 |
-| Selected sample | 480 |
-| Sample as % of eligible | 10.08% |
-| Sample as % of source rows | 10.00% |
-| Items per grader | 480 (both graders grade all) |
-| Total grading decisions | 960 |
+| Rows in source | 3,545 |
+| Eligible (sampling frame) | 3,545 |
+| Selected | 360 |
+| Selected as % of eligible | 10.16% |
+| Models × variants × domains | 4 × 3 × 5 = 60 strata |
 
-### Sampling-frame exclusions
-
-| Filter | Rows failing |
-| --- | --- |
-| `status` != success | 0 |
-| `strategy` != baseline | 0 |
-| `run_id` blank | 0 |
-| `run_id` duplicated | 0 |
-| `model_response` blank | 40 |
-| `model_key` / `variant` / `domain` blank | 0 |
-| `prompt` / `expected_interpretation_or_behavior` blank | 0 |
-
-> **Note.** The plan expects an eligible population of 4,800. The actual eligible population is **4,760** because 40 rows have an empty `model_response`, which the plan's sampling frame excludes ("`model_response` is present"). These rows are real study outcomes — an empty visible response is a gradeable failure under the rubric, which assigns `final_answer_accuracy_score` 1 to an empty response — but the frame as written removes them, so they are excluded here. Every stratum still has far more than the 6 eligible responses it needs, and all required per-model / per-variant / per-domain counts are unaffected. If the authors would rather have empty responses represented in the human sample, the frame must be amended and the sample regenerated.
-
-## Stratification
-
-Full cross-product of 4 models x 4 prompt variants x 5 domains = 80 strata, 
-6 responses drawn without replacement per stratum. 
-Both graders grade every selected response.
-
-### Marginal counts
+## Marginal counts
 
 **Model**
 
-| Model | Selected | Decisions (x2 graders) |
+| Model | Selected | Decisions (×2) |
 | --- | --- | --- |
-| qwen3_14b | 120 | 240 |
-| qwen3_32b | 120 | 240 |
-| qwen3_4b | 120 | 240 |
-| qwen3_8b | 120 | 240 |
+| qwen3_14b | 90 | 180 |
+| qwen3_32b | 90 | 180 |
+| qwen3_4b | 90 | 180 |
+| qwen3_8b | 90 | 180 |
 
 **Prompt variant**
 
-| Prompt variant | Selected | Decisions (x2 graders) |
+| Prompt variant | Selected | Decisions (×2) |
 | --- | --- | --- |
-| abbreviation_only | 120 | 240 |
-| contextual_abbreviation | 120 | 240 |
-| domain_conflict_trick | 120 | 240 |
-| full_form_control | 120 | 240 |
+| real_high_context | 120 | 240 |
+| real_low_context | 120 | 240 |
+| synthetic_high_context | 120 | 240 |
 
 **Domain**
 
-| Domain | Selected | Decisions (x2 graders) |
+| Domain | Selected | Decisions (×2) |
 | --- | --- | --- |
-| General language/slang | 96 | 192 |
-| Law/business | 96 | 192 |
-| Medicine | 96 | 192 |
-| Software/technology | 96 | 192 |
-| Sports | 96 | 192 |
+| General language/slang | 72 | 144 |
+| Law/business | 72 | 144 |
+| Medicine | 72 | 144 |
+| Software/technology | 72 | 144 |
+| Sports | 72 | 144 |
 
-### Per-stratum counts (all 80 strata)
+## Per-stratum counts
 
 | Model | Variant | Domain | Eligible pool | Selected |
 | --- | --- | --- | --- | --- |
-| qwen3_4b | full_form_control | Medicine | 60 | 6 |
-| qwen3_4b | full_form_control | Law/business | 60 | 6 |
-| qwen3_4b | full_form_control | Sports | 47 | 6 |
-| qwen3_4b | full_form_control | General language/slang | 60 | 6 |
-| qwen3_4b | full_form_control | Software/technology | 60 | 6 |
-| qwen3_4b | abbreviation_only | Medicine | 60 | 6 |
-| qwen3_4b | abbreviation_only | Law/business | 60 | 6 |
-| qwen3_4b | abbreviation_only | Sports | 60 | 6 |
-| qwen3_4b | abbreviation_only | General language/slang | 60 | 6 |
-| qwen3_4b | abbreviation_only | Software/technology | 60 | 6 |
-| qwen3_4b | contextual_abbreviation | Medicine | 60 | 6 |
-| qwen3_4b | contextual_abbreviation | Law/business | 59 | 6 |
-| qwen3_4b | contextual_abbreviation | Sports | 53 | 6 |
-| qwen3_4b | contextual_abbreviation | General language/slang | 59 | 6 |
-| qwen3_4b | contextual_abbreviation | Software/technology | 59 | 6 |
-| qwen3_4b | domain_conflict_trick | Medicine | 58 | 6 |
-| qwen3_4b | domain_conflict_trick | Law/business | 58 | 6 |
-| qwen3_4b | domain_conflict_trick | Sports | 57 | 6 |
-| qwen3_4b | domain_conflict_trick | General language/slang | 56 | 6 |
-| qwen3_4b | domain_conflict_trick | Software/technology | 58 | 6 |
-| qwen3_8b | full_form_control | Medicine | 60 | 6 |
-| qwen3_8b | full_form_control | Law/business | 60 | 6 |
-| qwen3_8b | full_form_control | Sports | 60 | 6 |
-| qwen3_8b | full_form_control | General language/slang | 60 | 6 |
-| qwen3_8b | full_form_control | Software/technology | 60 | 6 |
-| qwen3_8b | abbreviation_only | Medicine | 60 | 6 |
-| qwen3_8b | abbreviation_only | Law/business | 60 | 6 |
-| qwen3_8b | abbreviation_only | Sports | 60 | 6 |
-| qwen3_8b | abbreviation_only | General language/slang | 60 | 6 |
-| qwen3_8b | abbreviation_only | Software/technology | 60 | 6 |
-| qwen3_8b | contextual_abbreviation | Medicine | 60 | 6 |
-| qwen3_8b | contextual_abbreviation | Law/business | 60 | 6 |
-| qwen3_8b | contextual_abbreviation | Sports | 60 | 6 |
-| qwen3_8b | contextual_abbreviation | General language/slang | 60 | 6 |
-| qwen3_8b | contextual_abbreviation | Software/technology | 60 | 6 |
-| qwen3_8b | domain_conflict_trick | Medicine | 60 | 6 |
-| qwen3_8b | domain_conflict_trick | Law/business | 60 | 6 |
-| qwen3_8b | domain_conflict_trick | Sports | 60 | 6 |
-| qwen3_8b | domain_conflict_trick | General language/slang | 60 | 6 |
-| qwen3_8b | domain_conflict_trick | Software/technology | 60 | 6 |
-| qwen3_14b | full_form_control | Medicine | 60 | 6 |
-| qwen3_14b | full_form_control | Law/business | 60 | 6 |
-| qwen3_14b | full_form_control | Sports | 58 | 6 |
-| qwen3_14b | full_form_control | General language/slang | 60 | 6 |
-| qwen3_14b | full_form_control | Software/technology | 60 | 6 |
-| qwen3_14b | abbreviation_only | Medicine | 60 | 6 |
-| qwen3_14b | abbreviation_only | Law/business | 60 | 6 |
-| qwen3_14b | abbreviation_only | Sports | 60 | 6 |
-| qwen3_14b | abbreviation_only | General language/slang | 60 | 6 |
-| qwen3_14b | abbreviation_only | Software/technology | 60 | 6 |
-| qwen3_14b | contextual_abbreviation | Medicine | 60 | 6 |
-| qwen3_14b | contextual_abbreviation | Law/business | 60 | 6 |
-| qwen3_14b | contextual_abbreviation | Sports | 60 | 6 |
-| qwen3_14b | contextual_abbreviation | General language/slang | 60 | 6 |
-| qwen3_14b | contextual_abbreviation | Software/technology | 60 | 6 |
-| qwen3_14b | domain_conflict_trick | Medicine | 59 | 6 |
-| qwen3_14b | domain_conflict_trick | Law/business | 60 | 6 |
-| qwen3_14b | domain_conflict_trick | Sports | 60 | 6 |
-| qwen3_14b | domain_conflict_trick | General language/slang | 60 | 6 |
-| qwen3_14b | domain_conflict_trick | Software/technology | 60 | 6 |
-| qwen3_32b | full_form_control | Medicine | 60 | 6 |
-| qwen3_32b | full_form_control | Law/business | 60 | 6 |
-| qwen3_32b | full_form_control | Sports | 60 | 6 |
-| qwen3_32b | full_form_control | General language/slang | 60 | 6 |
-| qwen3_32b | full_form_control | Software/technology | 60 | 6 |
-| qwen3_32b | abbreviation_only | Medicine | 60 | 6 |
-| qwen3_32b | abbreviation_only | Law/business | 60 | 6 |
-| qwen3_32b | abbreviation_only | Sports | 60 | 6 |
-| qwen3_32b | abbreviation_only | General language/slang | 60 | 6 |
-| qwen3_32b | abbreviation_only | Software/technology | 60 | 6 |
-| qwen3_32b | contextual_abbreviation | Medicine | 60 | 6 |
-| qwen3_32b | contextual_abbreviation | Law/business | 60 | 6 |
-| qwen3_32b | contextual_abbreviation | Sports | 59 | 6 |
-| qwen3_32b | contextual_abbreviation | General language/slang | 60 | 6 |
-| qwen3_32b | contextual_abbreviation | Software/technology | 60 | 6 |
-| qwen3_32b | domain_conflict_trick | Medicine | 60 | 6 |
-| qwen3_32b | domain_conflict_trick | Law/business | 60 | 6 |
-| qwen3_32b | domain_conflict_trick | Sports | 60 | 6 |
-| qwen3_32b | domain_conflict_trick | General language/slang | 60 | 6 |
-| qwen3_32b | domain_conflict_trick | Software/technology | 60 | 6 |
+| qwen3_14b | real_high_context | General language/slang | 59 | 6 |
+| qwen3_14b | real_high_context | Law/business | 60 | 6 |
+| qwen3_14b | real_high_context | Medicine | 60 | 6 |
+| qwen3_14b | real_high_context | Software/technology | 60 | 6 |
+| qwen3_14b | real_high_context | Sports | 60 | 6 |
+| qwen3_14b | real_low_context | General language/slang | 60 | 6 |
+| qwen3_14b | real_low_context | Law/business | 59 | 6 |
+| qwen3_14b | real_low_context | Medicine | 57 | 6 |
+| qwen3_14b | real_low_context | Software/technology | 60 | 6 |
+| qwen3_14b | real_low_context | Sports | 60 | 6 |
+| qwen3_14b | synthetic_high_context | General language/slang | 60 | 6 |
+| qwen3_14b | synthetic_high_context | Law/business | 60 | 6 |
+| qwen3_14b | synthetic_high_context | Medicine | 60 | 6 |
+| qwen3_14b | synthetic_high_context | Software/technology | 60 | 6 |
+| qwen3_14b | synthetic_high_context | Sports | 60 | 6 |
+| qwen3_32b | real_high_context | General language/slang | 60 | 6 |
+| qwen3_32b | real_high_context | Law/business | 60 | 6 |
+| qwen3_32b | real_high_context | Medicine | 60 | 6 |
+| qwen3_32b | real_high_context | Software/technology | 60 | 6 |
+| qwen3_32b | real_high_context | Sports | 60 | 6 |
+| qwen3_32b | real_low_context | General language/slang | 59 | 6 |
+| qwen3_32b | real_low_context | Law/business | 60 | 6 |
+| qwen3_32b | real_low_context | Medicine | 58 | 6 |
+| qwen3_32b | real_low_context | Software/technology | 60 | 6 |
+| qwen3_32b | real_low_context | Sports | 59 | 6 |
+| qwen3_32b | synthetic_high_context | General language/slang | 59 | 6 |
+| qwen3_32b | synthetic_high_context | Law/business | 59 | 6 |
+| qwen3_32b | synthetic_high_context | Medicine | 59 | 6 |
+| qwen3_32b | synthetic_high_context | Software/technology | 60 | 6 |
+| qwen3_32b | synthetic_high_context | Sports | 57 | 6 |
+| qwen3_4b | real_high_context | General language/slang | 59 | 6 |
+| qwen3_4b | real_high_context | Law/business | 58 | 6 |
+| qwen3_4b | real_high_context | Medicine | 60 | 6 |
+| qwen3_4b | real_high_context | Software/technology | 60 | 6 |
+| qwen3_4b | real_high_context | Sports | 59 | 6 |
+| qwen3_4b | real_low_context | General language/slang | 59 | 6 |
+| qwen3_4b | real_low_context | Law/business | 60 | 6 |
+| qwen3_4b | real_low_context | Medicine | 57 | 6 |
+| qwen3_4b | real_low_context | Software/technology | 60 | 6 |
+| qwen3_4b | real_low_context | Sports | 60 | 6 |
+| qwen3_4b | synthetic_high_context | General language/slang | 57 | 6 |
+| qwen3_4b | synthetic_high_context | Law/business | 58 | 6 |
+| qwen3_4b | synthetic_high_context | Medicine | 48 | 6 |
+| qwen3_4b | synthetic_high_context | Software/technology | 60 | 6 |
+| qwen3_4b | synthetic_high_context | Sports | 45 | 6 |
+| qwen3_8b | real_high_context | General language/slang | 60 | 6 |
+| qwen3_8b | real_high_context | Law/business | 60 | 6 |
+| qwen3_8b | real_high_context | Medicine | 60 | 6 |
+| qwen3_8b | real_high_context | Software/technology | 60 | 6 |
+| qwen3_8b | real_high_context | Sports | 60 | 6 |
+| qwen3_8b | real_low_context | General language/slang | 60 | 6 |
+| qwen3_8b | real_low_context | Law/business | 60 | 6 |
+| qwen3_8b | real_low_context | Medicine | 60 | 6 |
+| qwen3_8b | real_low_context | Software/technology | 60 | 6 |
+| qwen3_8b | real_low_context | Sports | 60 | 6 |
+| qwen3_8b | synthetic_high_context | General language/slang | 60 | 6 |
+| qwen3_8b | synthetic_high_context | Law/business | 60 | 6 |
+| qwen3_8b | synthetic_high_context | Medicine | 60 | 6 |
+| qwen3_8b | synthetic_high_context | Software/technology | 60 | 6 |
+| qwen3_8b | synthetic_high_context | Sports | 60 | 6 |
 
 ## Validation checks
 
-**Overall: ONE OR MORE CHECKS FAILED**
+**Overall: ALL PASSED**
 
 | Check | Expected | Actual | Result |
 | --- | --- | --- | --- |
-| Exactly 480 rows selected | 480 | 480 | PASS |
-| Exactly 480 unique run_id values | 480 | 480 | PASS |
-| No duplicate run_id values | 0 | 0 | PASS |
-| Exactly 480 unique evaluation_id values | 480 | 480 | PASS |
-| Number of strata populated | 80 | 80 | PASS |
-| Every stratum has exactly 6 responses | True | True | PASS |
-| Exactly 120 responses per model | True | True | PASS |
-| All 4 models present | 4 | 4 | PASS |
-| Exactly 120 responses per prompt variant | True | True | PASS |
-| All 4 variants present | 4 | 4 | PASS |
-| Exactly 96 responses per domain | True | True | PASS |
-| All 5 domains present | 5 | 5 | PASS |
-| Exactly 30 per model x variant | True | True | PASS |
+| Selected sample size | 360 | 360 | PASS |
+| No duplicate run_id | 0 | 0 | PASS |
+| No duplicate evaluation_id | 0 | 0 | PASS |
+| Strata = models x variants x domains | 60 | 60 | PASS |
+| Every stratum drew the same count | True | True | PASS |
+| Per model x variant x domain | 6 | 6 | PASS |
+| Per model | 90 | 90 | PASS |
+| Per variant | 120 | 120 | PASS |
+| Per domain | 72 | 72 | PASS |
 | No missing prompt | 0 | 0 | PASS |
 | No missing expected_interpretation_or_behavior | 0 | 0 | PASS |
 | No missing model_response | 0 | 0 | PASS |
-| All selected rows have status = success | True | True | PASS |
-| All selected rows are baseline strategy | True | True | PASS |
-| Both graders grade all 480 responses | 480 | 480 | PASS |
-| Total grading decisions | 960 | 960 | PASS |
-| Shared display order is a permutation of 1..480 | True | True | PASS |
-| Every evaluation_id maps to exactly one display position | 480 | 480 | PASS |
-| Eligible population equals the plan's expected 4,800 | 4800 | 4760 | FAIL |
+| Both graders grade every response | 720 | 720 | PASS |
+| Shared display order is a permutation 1..N | True | True | PASS |
 
 ## Blinding
 
@@ -201,12 +146,4 @@ Both graders grade every selected response.
 - `expected_interpretation_or_behavior`
 - `model_response`
 
-Stripped from the grader-facing file: `run_id`, `model_key`, `model_id`, `parameter_count_b`, `api_gateway`, `provider`, `variant`, `domain`, `set_id`, `prompt_id`, all token / latency / cost metadata, `reasoning_content`, and every provisional LLM-judge score and note.
-
-`evaluation_id` values were assigned after a global shuffle, so adjacent HG numbers do not share a stratum. Both graders share one randomized presentation order derived from the same seed.
-
-## Reproducibility
-
-Rerunning `python3 scripts/build_sample.py` against the unchanged source CSV with seed `20260719` selects the same 480 `run_id` values and produces the same `evaluation_id` mapping and the same shared display order. Each stratum is seeded independently via SHA-256(seed | model | variant | domain), so selection does not depend on row order in the source file.
-
-The source CSV is opened read-only and was not modified.
+Model identity, variant, domain, run_id and all metadata are in the confidential key only. Both graders share one randomized order derived from the seed. The source file is opened read-only and not modified.
