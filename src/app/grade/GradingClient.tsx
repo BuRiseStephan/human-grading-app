@@ -315,8 +315,6 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
           <dd>{item.alternate_plausible_meanings || "—"}</dd>
           <dt>Question</dt>
           <dd>{item.prompt}</dd>
-          <dt>Expected behavior</dt>
-          <dd>{item.expected_interpretation_or_behavior}</dd>
         </dl>
       </div>
 
@@ -358,17 +356,6 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
             disabled={locked}
           />
         )}
-
-        <div className="field-block">
-          <div className="label">notes</div>
-          <div className="hint">One concise sentence explaining the most important reason for the scores.</div>
-          <textarea
-            value={answers.notes}
-            onChange={(e) => update("notes", e.target.value)}
-            disabled={locked}
-            placeholder="e.g. Presented a context-derived meaning for the synthetic sequence as established."
-          />
-        </div>
       </div>
 
       <div className="nav-row">
