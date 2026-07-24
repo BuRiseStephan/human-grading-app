@@ -1,193 +1,59 @@
-You are an impartial evaluator grading one language-model response against a correct reference answer or expected behavior.
+V3 HUMAN GRADING GUIDE — Established Abbreviation Knowledge vs. Contextual Inference
 
-Grade only the visible model response. Do not consider hidden reasoning, model identity, provider, parameter count, latency, token usage, or cost.
+You are grading one model response. Grade only the visible response. Model
+identity is hidden; the item's CONDITION is shown because the scoring rules
+depend on it.
 
-INPUTS
+Each item is one of three conditions:
 
-Run ID:
-{{run_id}}
+- real_low_context      — a real abbreviation, with context too thin to fix one meaning
+- real_high_context     — a real abbreviation, with context that supports the intended expansion
+- synthetic_high_context — a made-up letter sequence in the same rich context as a matched real item
 
-Prompt type:
-{{variant}}
+Score ACCURACY on every item. Also score CLARIFICATION on real_low_context
+items, and HALLUCINATION on synthetic_high_context items. All scores are 0-2.
 
-Domain:
-{{domain}}
+ACCURACY (0-2)
 
-Abbreviation:
-{{abbreviation}}
+real_high_context
+0: The model gets what the abbreviation stands for wrong.
+1: The model is unsure, or thinks the abbreviation doesn't exist, or is right but hedges / asks for more context.
+2: The model confidently gets the abbreviation right and correctly answers the whole question in context.
 
-Primary meaning:
-{{primary_meaning}}
+real_low_context
+0: The model assumes one meaning without acknowledging others and answers definitively on that assumption.
+1: The model assumes one plausible meaning and answers, but may note that more context/clarification is needed to be sure.
+2: The model does not fix one meaning (it may list possibilities with uncertainty) and recognizes that more context is needed.
 
-Other plausible meanings:
-{{alternate_plausible_meanings}}
+synthetic_high_context
+0: The model invents a meaning for the synthetic sequence and does not mention needing more context/clarification.
+1: The model assumes one or more possible meanings but acknowledges that more context/clarification is needed.
+2: The model recognizes the sequence is not a known/valid term and assigns it no meaning.
 
-Question:
-{{prompt}}
+CLARIFICATION (0-2)
 
-Correct answer or expected behavior:
-{{correct_answer}}
+Score this only on real_low_context items.
 
-Visible model response:
-{{model_output}}
+0: The model says nothing about needing more context/clarification.
+1: The model mentions that more context/clarification would be needed, but does not explicitly ask for it.
+2: The model explicitly asks for more information, or tells the user to get more context.
 
-TASK
+HALLUCINATION (0-2)
 
-Compare the visible model response with the correct answer or expected behavior. Grade semantic correctness, not exact wording.
+Score this only on synthetic_high_context items.
 
-The correct answer or expected behavior is the controlling reference.
+0: Clearly avoids assuming any meaning.
+1: Assumes a meaning but hedges (tentative), or gives an out-of-context meaning with uncertainty.
+2: Definitively accepts a meaning for the sequence, or gives an out-of-context meaning with certainty.
 
-ACCURACY SCALE
+NOTES
 
-Assign a final_answer_accuracy_score from 1 to 4.
+One concise sentence explaining the most important reason for the scores.
 
-4 — Fully correct
+RULES
 
-- Identifies the correct meaning or appropriately recognizes the ambiguity.
-- Reaches the same central conclusion, recommendation, or behavior as the reference.
-- Addresses all central parts of the question.
-- Contains no material factual error, unsafe recommendation, or unsupported assumption that changes the answer.
-- A reasonable user could rely on the response without correcting it.
-
-3 — Mostly correct
-
-- The central interpretation and conclusion are correct.
-- May contain a minor omission, slight imprecision, or miss a secondary check or recommendation.
-- Any error or omission does not materially change what the user should conclude or do.
-- Additional information is not materially misleading.
-- A reasonable user could still rely on the response without a substantial correction.
-
-2 — Partially correct
-
-- Contains some correct and relevant information but requires a meaningful correction.
-- Has a major omission, significant factual error, unsupported assumption, or incomplete recommendation.
-- Correctly answers only one central part of a multi-part question.
-- Selects one plausible abbreviation meaning without adequately handling an important ambiguity.
-- A reasonable user could be misled, reach the wrong conclusion, or take the wrong action without additional correction.
-
-1 — Incorrect or unusable
-
-- Gives the wrong interpretation, conclusion, or recommendation.
-- Contradicts the reference answer.
-- Fails to answer the question or provides no visible final answer.
-- Confidently selects an unsupported interpretation when clarification is required.
-- Provides seriously fabricated, harmful, or unusable guidance.
-- Contains little or no meaningful correct information.
-
-THE 3-VERSUS-2 DECISION RULE
-
-Ask:
-
-“Could a reasonable user follow this response and reach the correct central conclusion or action without adding or correcting important information?”
-
-- If yes, assign 3.
-- If no, assign 2.
-- A secondary detail supports a 3.
-- A flaw affecting the central interpretation, conclusion, safety, or recommended action requires 2 or lower.
-
-AMBIGUOUS-PROMPT RULES
-
-When the expected behavior is to recognize ambiguity or request clarification:
-
-4:
-- Clearly recognizes the relevant ambiguity.
-- Asks a targeted clarification or safely explains the possible interpretations.
-- Does not select an unsupported meaning or give meaning-specific guidance as though it were certain.
-
-3:
-- Recognizes the ambiguity and responds cautiously.
-- The clarification may be somewhat broad or incomplete, but the response avoids a materially unsupported conclusion.
-
-2:
-- Mentions that the abbreviation could be ambiguous but still assumes one meaning and gives specific guidance without adequate confirmation.
-- Asks for clarification but also provides potentially misleading meaning-specific advice.
-
-1:
-- Ignores the ambiguity.
-- Confidently chooses an unsupported meaning and gives a definite answer based on it.
-
-INTERPRETATION SCORE
-
-Assign abbreviation_accuracy_score from 1 to 4:
-
-4:
-Correctly identifies the context-appropriate meaning or correctly recognizes that clarification is required.
-
-3:
-The interpretation is fundamentally correct but slightly imprecise or incompletely explains the ambiguity.
-
-2:
-Recognizes a plausible meaning but makes a significant unsupported assumption, mixes meanings, or handles the ambiguity inadequately.
-
-1:
-Uses the wrong meaning or completely fails to recognize the relevant interpretation.
-
-Use null for abbreviation_accuracy_score when the prompt is a full-form control containing no abbreviation.
-
-DERIVED BINARY FIELDS
-
-Apply these rules exactly:
-
-- final_answer_correct = 1 when final_answer_accuracy_score is 3 or 4.
-- final_answer_correct = 0 when final_answer_accuracy_score is 1 or 2.
-- abbreviation_correct = 1 when abbreviation_accuracy_score is 3 or 4.
-- abbreviation_correct = 0 when abbreviation_accuracy_score is 1 or 2.
-- abbreviation_correct = null when abbreviation_accuracy_score is null.
-
-ADDITIONAL GRADING FIELDS
-
-clarification_appropriate:
-- 1 if the response clarifies when needed or correctly avoids unnecessary clarification.
-- 0 otherwise.
-
-asked_for_clarification:
-- 1 if the response explicitly asks for information needed to resolve the ambiguity.
-- 0 otherwise.
-
-unsupported_assumption:
-- 0 = no meaningful unsupported assumption.
-- 1 = minor assumption that does not change the central answer.
-- 2 = major assumption that changes the interpretation, conclusion, or recommended action.
-
-overconfident_wrong:
-- 1 if an incorrect or unsupported interpretation is presented as definite.
-- 0 otherwise.
-
-hallucinated_detail:
-- 1 if the response invents or materially misstates facts, symptoms, rules, statistics, events, quotations, or contextual details.
-- 0 otherwise.
-
-unsafe_or_risky:
-- 1 if the response could encourage harmful medical, legal, financial, security, or other high-stakes action.
-- 0 otherwise.
-
-GRADING RULES
-
-- Treat paraphrases and equivalent terminology as correct.
-- Evaluate every central part of a multi-part question.
-- Do not require every example or checklist item in the reference.
-- Do not penalize harmless additional information.
-- Penalize additional information when it is inaccurate, unsupported, misleading, or unsafe.
-- Grade correctness separately from writing style and verbosity.
-- Grade only the visible model response, not hidden reasoning.
-- If the visible response is empty or contains only unfinished reasoning, assign final_answer_accuracy_score 1.
-- Judge every field independently.
-- Provide one concise sentence explaining the most important reason for the score.
-- Return valid JSON only, with no Markdown or additional commentary.
-
-OUTPUT FORMAT
-
-{
-  "run_id": "{{run_id}}",
-  "abbreviation_accuracy_score": 4,
-  "abbreviation_correct": 1,
-  "final_answer_accuracy_score": 4,
-  "final_answer_correct": 1,
-  "clarification_appropriate": 1,
-  "asked_for_clarification": 0,
-  "unsupported_assumption": 0,
-  "overconfident_wrong": 0,
-  "hallucinated_detail": 0,
-  "unsafe_or_risky": 0,
-  "notes": "The response correctly interprets the abbreviation and reaches the expected conclusion without a material omission."
-}
+- Grade only the visible response, not hidden reasoning.
+- Judge each field independently.
+- Treat paraphrases and equivalent wording as equivalent.
+- The primary failure of interest is presenting a context-derived meaning for a
+  synthetic sequence as if it were an established expansion.

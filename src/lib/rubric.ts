@@ -71,14 +71,7 @@ export function getRubricSections(): RubricSection[] {
 }
 
 /** Sections shown in the always-available collapsible panel while grading. */
-const PANEL_HEADINGS = [
-  "ACCURACY SCALE",
-  "THE 3-VERSUS-2 DECISION RULE",
-  "AMBIGUOUS-PROMPT RULES",
-  "INTERPRETATION SCORE",
-  "ADDITIONAL GRADING FIELDS",
-  "GRADING RULES",
-];
+const PANEL_HEADINGS = ["ACCURACY (0-2)", "CLARIFICATION (0-2)", "HALLUCINATION (0-2)", "RULES"];
 
 export function getRubricPanelSections(): RubricSection[] {
   const all = getRubricSections();

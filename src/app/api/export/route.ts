@@ -7,16 +7,9 @@ import { GRADERS, type Grader, type Grading } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
-/** Rubric fields exported per grader, in rubric order. */
-const SCORE_FIELDS = [
-  "abbreviation_accuracy_score",
-  "final_answer_accuracy_score",
-  "clarification_appropriate",
-  "asked_for_clarification",
-  "unsupported_assumption",
-  "overconfident_wrong",
-  "hallucinated_detail",
-] as const;
+/** V3 score fields exported per grader. Only the applicable ones are populated
+ *  per item (clarification for real_low_context, hallucination for synthetic). */
+const SCORE_FIELDS = ["accuracy_score", "clarification_score", "hallucination_score"] as const;
 
 const IDENTITY_COLUMNS = [
   "evaluation_id",
@@ -39,15 +32,9 @@ const IDENTITY_COLUMNS = [
 function graderColumns(grader: Grader): string[] {
   const p = `grader_${grader.toLowerCase()}_`;
   return [
-    `${p}abbreviation_accuracy_score`,
-    `${p}abbreviation_correct`,
-    `${p}final_answer_accuracy_score`,
-    `${p}final_answer_correct`,
-    `${p}clarification_appropriate`,
-    `${p}asked_for_clarification`,
-    `${p}unsupported_assumption`,
-    `${p}overconfident_wrong`,
-    `${p}hallucinated_detail`,
+    `${p}accuracy_score`,
+    `${p}clarification_score`,
+    `${p}hallucination_score`,
     `${p}notes`,
     `${p}graded_at`,
   ];
@@ -58,12 +45,6 @@ const COLUMNS = [...IDENTITY_COLUMNS, ...graderColumns("A"), ...graderColumns("B
 function csvEscape(value: unknown): string {
   const s = value === null || value === undefined ? "" : String(value);
   return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
-}
-
-/** Plan rule: 1 for a score of 3 or 4, 0 for 1 or 2, blank when the score is blank. */
-function derivedCorrect(score: number | null | undefined): string {
-  if (score === null || score === undefined) return "";
-  return score >= 3 ? "1" : "0";
 }
 
 export async function GET() {
@@ -126,8 +107,6 @@ export async function GET() {
       for (const field of SCORE_FIELDS) {
         row[`${p}${field}`] = g?.[field] ?? "";
       }
-      row[`${p}abbreviation_correct`] = derivedCorrect(g?.abbreviation_accuracy_score);
-      row[`${p}final_answer_correct`] = derivedCorrect(g?.final_answer_accuracy_score);
       row[`${p}notes`] = g?.notes ?? "";
       row[`${p}graded_at`] = g?.updated_at ?? "";
     }

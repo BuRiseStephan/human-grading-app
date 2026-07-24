@@ -1,6 +1,6 @@
 # Human-Grading Sample — Report
 
-Generated: 2026-07-24T15:15:25+00:00
+Generated: 2026-07-24T17:14:55+00:00
 Source: `/private/tmp/claude-501/-Users-stephansozkes-HumanGradingAppRISEPracticumDataScience/d87de3d7-73f5-476e-a95f-f24a4b26740b/scratchpad/v3_clean.csv` (read-only)
 Seed: `20260719`  ·  Per-stratum: 10% of each stratum
 
@@ -139,6 +139,7 @@ Both graders independently grade the **same 360** responses in one shared random
 
 - `evaluation_id`
 - `display_order`
+- `variant`
 - `abbreviation`
 - `primary_meaning`
 - `alternate_plausible_meanings`

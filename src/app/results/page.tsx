@@ -193,18 +193,19 @@ export default async function ResultsPage() {
           <code>evaluation_id</code> with both graders&apos; original scores side by side.
           Identity columns: <code>run_id</code>, <code>model_key</code>,{" "}
           <code>parameter_count_b</code>, <code>variant</code>, <code>domain</code>,{" "}
-          <code>set_id</code>, <code>prompt_id</code>, <code>abbreviation</code>. Then every rubric
-          field twice, prefixed <code>grader_a_</code> and <code>grader_b_</code>, plus each
-          grader&apos;s derived <code>final_answer_correct</code> and{" "}
-          <code>abbreviation_correct</code>, notes, and <code>graded_at</code>.
+          <code>set_id</code>, <code>prompt_id</code>, <code>abbreviation</code>. Then the three V3
+          score fields twice, prefixed <code>grader_a_</code> and <code>grader_b_</code> (
+          <code>accuracy_score</code>, <code>clarification_score</code>,{" "}
+          <code>hallucination_score</code>), plus notes and <code>graded_at</code>. Clarification is
+          only populated for real_low_context items and hallucination only for
+          synthetic_high_context.
         </p>
 
         <div className="ok-note" style={{ marginBottom: 0 }}>
           <strong>Every response is double-graded</strong>, so the side-by-side columns support the
-          full agreement analysis: exact human–human agreement, quadratic-weighted Cohen&apos;s
-          kappa for both 1–4 scores, per-field agreement, and the 4×4 confusion matrix. Neither
-          original score set is modified — record adjudicated scores separately. The LLM-judge
-          fields for the same items are in <code>data/human_grading_sample_key.csv</code>.
+          agreement analysis the V3 spec asks for: raw agreement and Cohen&apos;s kappa on Accuracy,
+          Clarification, and Hallucination. Neither original score set is modified — record
+          adjudicated scores separately.
         </div>
       </div>
     </>

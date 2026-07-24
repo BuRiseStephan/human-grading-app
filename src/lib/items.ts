@@ -15,6 +15,8 @@ const RUBRIC_PATH = path.join(DATA_DIR, "human_grading_rubric.txt");
  * Fields that must never appear in a grader-facing payload. Checked at load
  * time so a regenerated blinded_items.json cannot silently unblind the study.
  */
+// `variant` (condition) is intentionally NOT forbidden in V3 — graders need it.
+// Model identity and everything else stays out.
 const FORBIDDEN_FIELDS = [
   "run_id",
   "model_key",
@@ -23,7 +25,6 @@ const FORBIDDEN_FIELDS = [
   "parameter_count_b",
   "api_gateway",
   "provider",
-  "variant",
   "domain",
   "set_id",
   "prompt_id",
@@ -60,7 +61,7 @@ function loadAll(): BlindedItem[] {
 }
 
 /**
- * All 480 items in the single shared presentation order. Both graders grade the
+ * All items in the single shared presentation order. Both graders grade the
  * same items in the same sequence; the `grader` argument is kept so callers read
  * clearly and so a per-grader order could be reintroduced without touching them.
  */
@@ -70,6 +71,11 @@ export function getItemsForGrader(_grader: Grader): BlindedItem[] {
 
 export function itemExists(evaluationId: string): boolean {
   return loadAll().some((item) => item.evaluation_id === evaluationId);
+}
+
+/** evaluation_id -> condition, used to decide which score fields an item needs. */
+export function variantByEvaluation(): Map<string, string> {
+  return new Map(loadAll().map((item) => [item.evaluation_id, item.variant]));
 }
 
 export function countItemsForGrader(grader: Grader): number {

@@ -4,7 +4,8 @@ import { createClient, type Client, type Row } from "@libsql/client";
 import path from "node:path";
 import fs from "node:fs";
 
-import { FIELD_DOMAINS, REQUIRED_FIELDS, type Grader, type GraderStatus, type Grading } from "./types";
+import { FIELD_DOMAINS, requiredFields, type Grader, type GraderStatus, type Grading } from "./types";
+import { variantByEvaluation } from "./items";
 
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), "data");
 const DB_PATH = process.env.GRADING_DB_PATH || path.join(DATA_DIR, "grading.db");
@@ -28,19 +29,14 @@ export async function getClient(): Promise<Client> {
     await client.batch(
       [
         `CREATE TABLE IF NOT EXISTS gradings (
-           evaluation_id               TEXT NOT NULL,
-           grader                      TEXT NOT NULL CHECK (grader IN ('A','B')),
-           abbreviation_accuracy_score INTEGER CHECK (abbreviation_accuracy_score BETWEEN 1 AND 4),
-           final_answer_accuracy_score INTEGER CHECK (final_answer_accuracy_score BETWEEN 1 AND 4),
-           clarification_appropriate   INTEGER CHECK (clarification_appropriate IN (0,1)),
-           asked_for_clarification     INTEGER CHECK (asked_for_clarification IN (0,1)),
-           unsupported_assumption      INTEGER CHECK (unsupported_assumption IN (0,1,2)),
-           overconfident_wrong         INTEGER CHECK (overconfident_wrong IN (0,1)),
-           hallucinated_detail         INTEGER CHECK (hallucinated_detail IN (0,1)),
-           unsafe_or_risky             INTEGER CHECK (unsafe_or_risky IN (0,1)),
-           notes                       TEXT NOT NULL DEFAULT '',
-           created_at                  TEXT NOT NULL,
-           updated_at                  TEXT NOT NULL,
+           evaluation_id       TEXT NOT NULL,
+           grader              TEXT NOT NULL CHECK (grader IN ('A','B')),
+           accuracy_score      INTEGER CHECK (accuracy_score IN (0,1,2)),
+           clarification_score INTEGER CHECK (clarification_score IN (0,1,2)),
+           hallucination_score INTEGER CHECK (hallucination_score IN (0,1,2)),
+           notes               TEXT NOT NULL DEFAULT '',
+           created_at          TEXT NOT NULL,
+           updated_at          TEXT NOT NULL,
            PRIMARY KEY (evaluation_id, grader)
          )`,
         `CREATE TABLE IF NOT EXISTS grader_status (
@@ -68,16 +64,17 @@ function rowToGrading(r: Row): Grading {
   return {
     evaluation_id: String(r.evaluation_id),
     grader: String(r.grader) as Grader,
-    abbreviation_accuracy_score: toNum(r.abbreviation_accuracy_score),
-    final_answer_accuracy_score: toNum(r.final_answer_accuracy_score),
-    clarification_appropriate: toNum(r.clarification_appropriate),
-    asked_for_clarification: toNum(r.asked_for_clarification),
-    unsupported_assumption: toNum(r.unsupported_assumption),
-    overconfident_wrong: toNum(r.overconfident_wrong),
-    hallucinated_detail: toNum(r.hallucinated_detail),
+    accuracy_score: toNum(r.accuracy_score),
+    clarification_score: toNum(r.clarification_score),
+    hallucination_score: toNum(r.hallucination_score),
     notes: r.notes === null || r.notes === undefined ? "" : String(r.notes),
     updated_at: String(r.updated_at),
   };
+}
+
+/** Is this grading complete for its item's condition? */
+function isGradingComplete(g: Grading, variant: string | undefined): boolean {
+  return requiredFields(variant ?? "").every((f) => g[f] !== null && g[f] !== undefined);
 }
 
 export async function isLocked(grader: Grader): Promise<boolean> {
@@ -133,13 +130,11 @@ export async function getAllGradings(): Promise<Grading[]> {
 }
 
 export async function countCompleted(grader: Grader): Promise<number> {
-  const c = await getClient();
-  const required = REQUIRED_FIELDS.map((f) => `${f} IS NOT NULL`).join(" AND ");
-  const r = await c.execute({
-    sql: `SELECT COUNT(*) AS n FROM gradings WHERE grader = ? AND ${required}`,
-    args: [grader],
-  });
-  return Number(r.rows[0].n);
+  // Completeness depends on each item's condition, so evaluate in JS against the
+  // variant map rather than a single SQL predicate.
+  const variants = variantByEvaluation();
+  const gradings = await getGradings(grader);
+  return gradings.filter((g) => isGradingComplete(g, variants.get(g.evaluation_id))).length;
 }
 
 export async function countTouched(grader: Grader): Promise<number> {
@@ -194,13 +189,9 @@ export async function saveGrading(
   const args = [
     evaluationId,
     grader,
-    coerceScore("abbreviation_accuracy_score", payload.abbreviation_accuracy_score),
-    coerceScore("final_answer_accuracy_score", payload.final_answer_accuracy_score),
-    coerceScore("clarification_appropriate", payload.clarification_appropriate),
-    coerceScore("asked_for_clarification", payload.asked_for_clarification),
-    coerceScore("unsupported_assumption", payload.unsupported_assumption),
-    coerceScore("overconfident_wrong", payload.overconfident_wrong),
-    coerceScore("hallucinated_detail", payload.hallucinated_detail),
+    coerceScore("accuracy_score", payload.accuracy_score),
+    coerceScore("clarification_score", payload.clarification_score),
+    coerceScore("hallucination_score", payload.hallucination_score),
     typeof payload.notes === "string" ? payload.notes : "",
     new Date().toISOString(), // created_at
     new Date().toISOString(), // updated_at
@@ -210,22 +201,15 @@ export async function saveGrading(
   await c.execute({
     sql: `INSERT INTO gradings (
             evaluation_id, grader,
-            abbreviation_accuracy_score, final_answer_accuracy_score,
-            clarification_appropriate, asked_for_clarification,
-            unsupported_assumption, overconfident_wrong,
-            hallucinated_detail, notes,
-            created_at, updated_at
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            accuracy_score, clarification_score, hallucination_score,
+            notes, created_at, updated_at
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
           ON CONFLICT(evaluation_id, grader) DO UPDATE SET
-            abbreviation_accuracy_score = excluded.abbreviation_accuracy_score,
-            final_answer_accuracy_score = excluded.final_answer_accuracy_score,
-            clarification_appropriate   = excluded.clarification_appropriate,
-            asked_for_clarification     = excluded.asked_for_clarification,
-            unsupported_assumption      = excluded.unsupported_assumption,
-            overconfident_wrong         = excluded.overconfident_wrong,
-            hallucinated_detail         = excluded.hallucinated_detail,
-            notes                       = excluded.notes,
-            updated_at                  = excluded.updated_at`,
+            accuracy_score      = excluded.accuracy_score,
+            clarification_score = excluded.clarification_score,
+            hallucination_score = excluded.hallucination_score,
+            notes               = excluded.notes,
+            updated_at          = excluded.updated_at`,
     args,
   });
 

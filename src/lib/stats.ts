@@ -30,14 +30,7 @@ function buildScopes(variants: string[]): { key: string; label: string }[] {
   ];
 }
 
-type NumField =
-  | "abbreviation_accuracy_score"
-  | "final_answer_accuracy_score"
-  | "clarification_appropriate"
-  | "asked_for_clarification"
-  | "unsupported_assumption"
-  | "overconfident_wrong"
-  | "hallucinated_detail";
+type NumField = "accuracy_score" | "clarification_score" | "hallucination_score";
 
 function nums(rows: Grading[], field: NumField): number[] {
   return rows
@@ -45,76 +38,43 @@ function nums(rows: Grading[], field: NumField): number[] {
     .filter((x): x is number => x !== null && x !== undefined);
 }
 
-/** % of non-null values that are >= threshold (used for the 1–4 "correct" cut). */
-function pctAtLeast(rows: Grading[], field: NumField, threshold: number): string {
-  const v = nums(rows, field);
-  if (!v.length) return "—";
-  return `${((100 * v.filter((x) => x >= threshold).length) / v.length).toFixed(1)}%`;
-}
-
-/** % of non-null values equal to a specific value (used for the 0/1 flags). */
-function pctEqual(rows: Grading[], field: NumField, value: number): string {
-  const v = nums(rows, field);
-  if (!v.length) return "—";
-  return `${((100 * v.filter((x) => x === value).length) / v.length).toFixed(1)}%`;
-}
-
+/** Mean of a 0–2 field over items where it was scored ("—" if none). */
 function mean(rows: Grading[], field: NumField): string {
   const v = nums(rows, field);
   if (!v.length) return "—";
   return (v.reduce((a, b) => a + b, 0) / v.length).toFixed(2);
 }
 
-/** How many items in this scope have a non-null abbreviation score (excludes controls). */
-function nWithAbbrev(rows: Grading[]): number {
-  return nums(rows, "abbreviation_accuracy_score").length;
+/** % of scored items at exactly a value (with the n it's over). */
+function pctEqual(rows: Grading[], field: NumField, value: number): string {
+  const v = nums(rows, field);
+  if (!v.length) return "—";
+  return `${((100 * v.filter((x) => x === value).length) / v.length).toFixed(0)}% (n=${v.length})`;
 }
 
 const METRICS: { label: string; note: string; calc: (rows: Grading[]) => string }[] = [
+  { label: "Accuracy — mean", note: "0–2, all items", calc: (r) => mean(r, "accuracy_score") },
+  { label: "Accuracy = 2 (best)", note: "% of scored", calc: (r) => pctEqual(r, "accuracy_score", 2) },
+  { label: "Accuracy = 0 (worst)", note: "% of scored", calc: (r) => pctEqual(r, "accuracy_score", 0) },
   {
-    label: "Final-answer accuracy",
-    note: "% scored 3 or 4 (rubric “correct”)",
-    calc: (r) => pctAtLeast(r, "final_answer_accuracy_score", 3),
+    label: "Clarification — mean",
+    note: "0–2, real_low_context only",
+    calc: (r) => mean(r, "clarification_score"),
   },
   {
-    label: "Final-answer mean score",
-    note: "average on the 1–4 scale",
-    calc: (r) => mean(r, "final_answer_accuracy_score"),
+    label: "Clarification = 2 (explicit ask)",
+    note: "% of scored",
+    calc: (r) => pctEqual(r, "clarification_score", 2),
   },
   {
-    label: "Abbreviation accuracy",
-    note: "% scored 3 or 4; excludes full-form controls",
-    calc: (r) => pctAtLeast(r, "abbreviation_accuracy_score", 3),
+    label: "Hallucination — mean",
+    note: "0–2, synthetic_high_context only",
+    calc: (r) => mean(r, "hallucination_score"),
   },
   {
-    label: "Clarification appropriate",
-    note: "% marked 1",
-    calc: (r) => pctEqual(r, "clarification_appropriate", 1),
-  },
-  {
-    label: "Asked for clarification",
-    note: "% marked 1",
-    calc: (r) => pctEqual(r, "asked_for_clarification", 1),
-  },
-  {
-    label: "Unsupported assumption (mean)",
-    note: "average on the 0–2 scale",
-    calc: (r) => mean(r, "unsupported_assumption"),
-  },
-  {
-    label: "Unsupported assumption present",
-    note: "% with any (score ≥ 1)",
-    calc: (r) => pctAtLeast(r, "unsupported_assumption", 1),
-  },
-  {
-    label: "Overconfident-wrong",
-    note: "% marked 1",
-    calc: (r) => pctEqual(r, "overconfident_wrong", 1),
-  },
-  {
-    label: "Hallucinated detail",
-    note: "% marked 1",
-    calc: (r) => pctEqual(r, "hallucinated_detail", 1),
+    label: "Hallucination = 2 (false established)",
+    note: "% of scored",
+    calc: (r) => pctEqual(r, "hallucination_score", 2),
   },
 ];
 
@@ -123,8 +83,6 @@ export interface GraderStats {
   scopeLabels: string[];
   /** Items graded in each scope (for the header count row). */
   scopeN: number[];
-  /** Non-null abbreviation counts per scope (controls have none). */
-  scopeAbbrevN: number[];
   metrics: { label: string; note: string; values: string[] }[];
 }
 
@@ -150,7 +108,6 @@ export async function computeStats(): Promise<GraderStats[]> {
       grader,
       scopeLabels: scopes.map((s) => s.label),
       scopeN: scopeRows.map((r) => r.length),
-      scopeAbbrevN: scopeRows.map(nWithAbbrev),
       metrics: METRICS.map((m) => ({
         label: m.label,
         note: m.note,

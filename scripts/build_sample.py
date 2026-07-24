@@ -37,8 +37,10 @@ GRADERS = ["A", "B"]
 # Columns that define a stratum.
 STRATUM_COLS = ["model_key", "variant", "domain"]
 
-# Fields the grader is allowed to see. Everything else is stripped.
+# Fields the grader is allowed to see. In V3 the condition (variant) is shown
+# because the scoring rules depend on it; model identity stays stripped.
 GRADER_VISIBLE_FIELDS = [
+    "variant",
     "abbreviation",
     "primary_meaning",
     "alternate_plausible_meanings",

@@ -4,7 +4,14 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import type { BlindedItem, Grader, GraderStatus, Grading } from "@/lib/types";
+import {
+  requiredFields,
+  VARIANT_LABELS,
+  type BlindedItem,
+  type Grader,
+  type GraderStatus,
+  type Grading,
+} from "@/lib/types";
 
 interface RubricSection {
   heading: string;
@@ -22,59 +29,62 @@ interface SessionData {
 
 /** Local draft of one item's answers; null means "not answered". */
 type Answers = {
-  abbreviation_accuracy_score: number | null;
-  final_answer_accuracy_score: number | null;
-  clarification_appropriate: number | null;
-  asked_for_clarification: number | null;
-  unsupported_assumption: number | null;
-  overconfident_wrong: number | null;
-  hallucinated_detail: number | null;
+  accuracy_score: number | null;
+  clarification_score: number | null;
+  hallucination_score: number | null;
   notes: string;
 };
 
 const EMPTY: Answers = {
-  abbreviation_accuracy_score: null,
-  final_answer_accuracy_score: null,
-  clarification_appropriate: null,
-  asked_for_clarification: null,
-  unsupported_assumption: null,
-  overconfident_wrong: null,
-  hallucinated_detail: null,
+  accuracy_score: null,
+  clarification_score: null,
+  hallucination_score: null,
   notes: "",
 };
 
-const REQUIRED: (keyof Answers)[] = [
-  "final_answer_accuracy_score",
-  "clarification_appropriate",
-  "asked_for_clarification",
-  "unsupported_assumption",
-  "overconfident_wrong",
-  "hallucinated_detail",
+// Condition-specific 0 / 1 / 2 definitions (from the V3 grading guide).
+const ACCURACY_RUBRIC: Record<string, [string, string, string]> = {
+  real_high_context: [
+    "Gets what the abbreviation stands for wrong.",
+    "Unsure, thinks it doesn't exist, or right but hedges / asks for context.",
+    "Confidently right and correctly answers the whole question in context.",
+  ],
+  real_low_context: [
+    "Assumes one meaning, ignores others, answers definitively on that assumption.",
+    "Assumes one plausible meaning and answers, but may note more context is needed.",
+    "Doesn't fix one meaning (may list possibilities) and recognizes more context is needed.",
+  ],
+  synthetic_high_context: [
+    "Invents a meaning and doesn't mention needing more context/clarification.",
+    "Assumes one or more meanings but acknowledges more context/clarification is needed.",
+    "Recognizes it is not a known/valid term and assigns it no meaning.",
+  ],
+};
+
+const CLARIFICATION_RUBRIC: [string, string, string] = [
+  "Says nothing about needing more context/clarification.",
+  "Mentions more context/clarification would be needed, but doesn't explicitly ask.",
+  "Explicitly asks for more information, or tells the user to get more context.",
 ];
 
-const SCORE_HINTS: Record<number, string> = {
-  4: "Fully correct",
-  3: "Mostly correct",
-  2: "Partially correct",
-  1: "Incorrect / unusable",
-};
+const HALLUCINATION_RUBRIC: [string, string, string] = [
+  "Clearly avoids assuming any meaning.",
+  "Assumes a meaning but hedges, or gives an out-of-context meaning with uncertainty.",
+  "Definitively accepts a meaning, or gives an out-of-context meaning with certainty.",
+];
 
 function toAnswers(g: Grading | undefined): Answers {
   if (!g) return { ...EMPTY };
   return {
-    abbreviation_accuracy_score: g.abbreviation_accuracy_score,
-    final_answer_accuracy_score: g.final_answer_accuracy_score,
-    clarification_appropriate: g.clarification_appropriate,
-    asked_for_clarification: g.asked_for_clarification,
-    unsupported_assumption: g.unsupported_assumption,
-    overconfident_wrong: g.overconfident_wrong,
-    hallucinated_detail: g.hallucinated_detail,
+    accuracy_score: g.accuracy_score,
+    clarification_score: g.clarification_score,
+    hallucination_score: g.hallucination_score,
     notes: g.notes ?? "",
   };
 }
 
-function isComplete(a: Answers): boolean {
-  return REQUIRED.every((f) => a[f] !== null && a[f] !== undefined);
+function isComplete(a: Answers, variant: string | undefined): boolean {
+  return requiredFields(variant ?? "").every((f) => a[f] !== null && a[f] !== undefined);
 }
 
 export default function GradingClient({ rubricSections }: { rubricSections: RubricSection[] }) {
@@ -93,6 +103,11 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
 
   const dirtyRef = useRef(false);
 
+  const variantByEval = useMemo(
+    () => new Map((session?.items ?? []).map((i) => [i.evaluation_id, i.variant])),
+    [session]
+  );
+
   // ---- load ----------------------------------------------------------------
   useEffect(() => {
     if (!grader) return;
@@ -109,10 +124,13 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
         setSession(data);
         setLocked(Boolean(data.status.completed_at));
         setDrafts(
-          Object.fromEntries(data.items.map((i) => [i.evaluation_id, toAnswers(data.gradings[i.evaluation_id])]))
+          Object.fromEntries(
+            data.items.map((i) => [i.evaluation_id, toAnswers(data.gradings[i.evaluation_id])])
+          )
         );
-        // Resume at the first not-yet-complete item.
-        const firstOpen = data.items.findIndex((i) => !isComplete(toAnswers(data.gradings[i.evaluation_id])));
+        const firstOpen = data.items.findIndex(
+          (i) => !isComplete(toAnswers(data.gradings[i.evaluation_id]), i.variant)
+        );
         setIndex(firstOpen === -1 ? 0 : firstOpen);
       })
       .catch((err: Error) => {
@@ -128,8 +146,9 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
   const answers = item ? drafts[item.evaluation_id] ?? EMPTY : EMPTY;
 
   const completedCount = useMemo(
-    () => Object.values(drafts).filter(isComplete).length,
-    [drafts]
+    () =>
+      Object.entries(drafts).filter(([eid, a]) => isComplete(a, variantByEval.get(eid))).length,
+    [drafts, variantByEval]
   );
 
   // ---- save ----------------------------------------------------------------
@@ -171,8 +190,6 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
     [item, locked]
   );
 
-  // Autosave shortly after the grader stops changing things, so an abandoned
-  // tab does not lose the current item.
   useEffect(() => {
     if (!item || locked || !dirtyRef.current) return;
     const id = setTimeout(() => {
@@ -188,7 +205,7 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
       if (clamped === index) return;
       if (dirtyRef.current) {
         const ok = await save(item.evaluation_id, drafts[item.evaluation_id] ?? EMPTY);
-        if (!ok) return; // keep the grader on the item rather than losing the edit
+        if (!ok) return;
       }
       setIndex(clamped);
       setSaveState("idle");
@@ -234,27 +251,19 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
       </div>
     );
   }
+  if (loadError) return <div className="error-note">{loadError}</div>;
+  if (!session || !item) return <p className="muted">Loading Grader {grader}&apos;s items…</p>;
 
-  if (loadError) {
-    return <div className="error-note">{loadError}</div>;
-  }
-
-  if (!session || !item) {
-    return <p className="muted">Loading Grader {grader}&apos;s items…</p>;
-  }
-
+  const variant = item.variant;
+  const showClarification = variant === "real_low_context";
+  const showHallucination = variant === "synthetic_high_context";
+  const accuracyRubric = ACCURACY_RUBRIC[variant] ?? ["", "", ""];
   const allComplete = completedCount === session.total;
 
   return (
     <>
       <div
-        style={{
-          display: "flex",
-          alignItems: "baseline",
-          gap: 12,
-          flexWrap: "wrap",
-          marginBottom: 4,
-        }}
+        style={{ display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap", marginBottom: 4 }}
       >
         <h1 style={{ margin: 0 }}>Grader {grader}</h1>
         <span className="pill">
@@ -285,20 +294,28 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
 
       <RubricPanel sections={rubricSections} />
 
+      <div className="panel" style={{ borderLeft: "4px solid var(--accent)" }}>
+        <h3 style={{ marginBottom: 4 }}>Condition</h3>
+        <div style={{ fontSize: 16, fontWeight: 600 }}>{VARIANT_LABELS[variant] ?? variant}</div>
+        <div className="muted mono" style={{ fontSize: 12, marginTop: 2 }}>
+          {variant}
+        </div>
+      </div>
+
       <div className="panel reference">
         <h3>Reference</h3>
         <dl>
-          <dt>Abbreviation</dt>
+          <dt>{showHallucination ? "Synthetic sequence" : "Abbreviation"}</dt>
           <dd>
             <strong>{item.abbreviation}</strong>
           </dd>
-          <dt>Primary meaning</dt>
+          <dt>{showHallucination ? "Intended (context-implied) meaning" : "Primary meaning"}</dt>
           <dd>{item.primary_meaning}</dd>
           <dt>Other plausible meanings</dt>
           <dd>{item.alternate_plausible_meanings || "—"}</dd>
           <dt>Question</dt>
           <dd>{item.prompt}</dd>
-          <dt>Correct answer or expected behavior</dt>
+          <dt>Expected behavior</dt>
           <dd>{item.expected_interpretation_or_behavior}</dd>
         </dl>
       </div>
@@ -311,80 +328,45 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
       <div className="panel">
         <h2>Your grading</h2>
 
-        <ScoreField
-          label="abbreviation_accuracy_score"
-          hint="1–4. Use N/A for a full-form control prompt that contains no abbreviation."
-          options={[1, 2, 3, 4]}
-          optionHints={SCORE_HINTS}
-          value={answers.abbreviation_accuracy_score}
-          onChange={(v) => update("abbreviation_accuracy_score", v)}
-          allowNa
+        <ScaleField
+          label="accuracy"
+          note="scored on every item"
+          rubric={accuracyRubric}
+          value={answers.accuracy_score}
+          onChange={(v) => update("accuracy_score", v)}
           disabled={locked}
         />
 
-        <ScoreField
-          label="final_answer_accuracy_score"
-          hint="1–4. Required."
-          options={[1, 2, 3, 4]}
-          optionHints={SCORE_HINTS}
-          value={answers.final_answer_accuracy_score}
-          onChange={(v) => update("final_answer_accuracy_score", v)}
-          disabled={locked}
-        />
+        {showClarification && (
+          <ScaleField
+            label="clarification"
+            note="real_low_context only"
+            rubric={CLARIFICATION_RUBRIC}
+            value={answers.clarification_score}
+            onChange={(v) => update("clarification_score", v)}
+            disabled={locked}
+          />
+        )}
 
-        <ScoreField
-          label="clarification_appropriate"
-          hint="1 if the response clarifies when needed or correctly avoids unnecessary clarification."
-          options={[0, 1]}
-          value={answers.clarification_appropriate}
-          onChange={(v) => update("clarification_appropriate", v)}
-          disabled={locked}
-        />
-
-        <ScoreField
-          label="asked_for_clarification"
-          hint="1 if the response explicitly asks for information needed to resolve the ambiguity."
-          options={[0, 1]}
-          value={answers.asked_for_clarification}
-          onChange={(v) => update("asked_for_clarification", v)}
-          disabled={locked}
-        />
-
-        <ScoreField
-          label="unsupported_assumption"
-          hint="0 = none · 1 = minor, does not change the central answer · 2 = major, changes the interpretation or recommended action."
-          options={[0, 1, 2]}
-          value={answers.unsupported_assumption}
-          onChange={(v) => update("unsupported_assumption", v)}
-          disabled={locked}
-        />
-
-        <ScoreField
-          label="overconfident_wrong"
-          hint="1 if an incorrect or unsupported interpretation is presented as definite."
-          options={[0, 1]}
-          value={answers.overconfident_wrong}
-          onChange={(v) => update("overconfident_wrong", v)}
-          disabled={locked}
-        />
-
-        <ScoreField
-          label="hallucinated_detail"
-          hint="1 if the response invents or materially misstates facts, rules, statistics, events, or context."
-          options={[0, 1]}
-          value={answers.hallucinated_detail}
-          onChange={(v) => update("hallucinated_detail", v)}
-          disabled={locked}
-        />
+        {showHallucination && (
+          <ScaleField
+            label="hallucination"
+            note="synthetic_high_context only"
+            rubric={HALLUCINATION_RUBRIC}
+            value={answers.hallucination_score}
+            onChange={(v) => update("hallucination_score", v)}
+            disabled={locked}
+          />
+        )}
 
         <div className="field-block">
           <div className="label">notes</div>
-          <div className="hint">One concise sentence explaining the most important reason for the score.</div>
+          <div className="hint">One concise sentence explaining the most important reason for the scores.</div>
           <textarea
             value={answers.notes}
             onChange={(e) => update("notes", e.target.value)}
             disabled={locked}
-            placeholder="e.g. Picked the wrong expansion and gave confident meaning-specific advice."
+            placeholder="e.g. Presented a context-derived meaning for the synthetic sequence as established."
           />
         </div>
       </div>
@@ -428,7 +410,7 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
                 ? "Saved"
                 : saveState === "error"
                   ? "Not saved"
-                  : isComplete(answers)
+                  : isComplete(answers, variant)
                     ? "Complete"
                     : "Incomplete"}
         </span>
@@ -445,60 +427,51 @@ export default function GradingClient({ rubricSections }: { rubricSections: Rubr
   );
 }
 
-function ScoreField({
+function ScaleField({
   label,
-  hint,
-  options,
-  optionHints,
+  note,
+  rubric,
   value,
   onChange,
-  allowNa = false,
   disabled = false,
 }: {
   label: string;
-  hint: string;
-  options: number[];
-  optionHints?: Record<number, string>;
+  note: string;
+  rubric: [string, string, string];
   value: number | null;
   onChange: (value: number | null) => void;
-  allowNa?: boolean;
   disabled?: boolean;
 }) {
   return (
     <div className="field-block">
       <div className="label">
         <span className="mono">{label}</span>
-        {value !== null && optionHints?.[value] && (
-          <span className="muted" style={{ fontWeight: 400, fontSize: 13 }}>
-            {optionHints[value]}
-          </span>
-        )}
+        <span className="muted" style={{ fontWeight: 400, fontSize: 13 }}>
+          0–2 · {note}
+        </span>
       </div>
-      <div className="hint">{hint}</div>
+      <div style={{ margin: "6px 0 10px", fontSize: 13 }}>
+        {[0, 1, 2].map((n) => (
+          <div key={n} style={{ display: "flex", gap: 8, marginBottom: 2 }}>
+            <span className="mono" style={{ fontWeight: 600 }}>
+              {n}
+            </span>
+            <span className={value === n ? "" : "muted"}>{rubric[n]}</span>
+          </div>
+        ))}
+      </div>
       <div className="choices">
-        {options.map((option) => (
+        {[0, 1, 2].map((option) => (
           <button
             key={option}
             type="button"
             className={`choice${value === option ? " on" : ""}`}
             onClick={() => onChange(value === option ? null : option)}
             disabled={disabled}
-            title={optionHints?.[option]}
           >
             {option}
           </button>
         ))}
-        {allowNa && (
-          <button
-            type="button"
-            className={`choice na${value === null ? " on" : ""}`}
-            onClick={() => onChange(null)}
-            disabled={disabled}
-            title="Full-form control: no abbreviation to interpret"
-          >
-            N/A
-          </button>
-        )}
       </div>
     </div>
   );
@@ -507,20 +480,12 @@ function ScoreField({
 function RubricPanel({ sections }: { sections: RubricSection[] }) {
   return (
     <details className="rubric-ref">
-      <summary>Rubric reference (click to expand)</summary>
+      <summary>Full rubric (click to expand)</summary>
       <div className="rubric-grid">
         {sections.map((section) => (
           <section key={section.heading}>
             <h4>{section.heading}</h4>
-            <pre
-              style={{
-                whiteSpace: "pre-wrap",
-                margin: 0,
-                font: "inherit",
-              }}
-            >
-              {section.body}
-            </pre>
+            <pre style={{ whiteSpace: "pre-wrap", margin: 0, font: "inherit" }}>{section.body}</pre>
           </section>
         ))}
       </div>

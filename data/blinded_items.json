@@ -2,6 +2,7 @@
   {
     "evaluation_id": "HG0001",
     "display_order": 251,
+    "variant": "real_high_context",
     "abbreviation": "IAM",
     "primary_meaning": "identity and access management",
     "alternate_plausible_meanings": "integrated assessment model",
@@ -12,6 +13,7 @@
   {
     "evaluation_id": "HG0002",
     "display_order": 164,
+    "variant": "real_low_context",
     "abbreviation": "MS",
     "primary_meaning": "multiple sclerosis",
     "alternate_plausible_meanings": "mitral stenosis; morphine sulfate; magnesium sulfate; milliseconds",
@@ -22,6 +24,7 @@
   {
     "evaluation_id": "HG0003",
     "display_order": 41,
+    "variant": "real_low_context",
     "abbreviation": "SCK",
     "primary_meaning": "sack",
     "alternate_plausible_meanings": "starter check; stock-keeping code",
@@ -32,6 +35,7 @@
   {
     "evaluation_id": "HG0004",
     "display_order": 273,
+    "variant": "real_low_context",
     "abbreviation": "CT",
     "primary_meaning": "computed tomography",
     "alternate_plausible_meanings": "Connecticut; cycle time; current transformer",
@@ -42,6 +46,7 @@
   {
     "evaluation_id": "HG0005",
     "display_order": 345,
+    "variant": "synthetic_high_context",
     "abbreviation": "WZ",
     "primary_meaning": "computed tomography",
     "alternate_plausible_meanings": "Connecticut; cycle time; current transformer",
@@ -52,6 +57,7 @@
   {
     "evaluation_id": "HG0006",
     "display_order": 185,
+    "variant": "synthetic_high_context",
     "abbreviation": "DZY",
     "primary_meaning": "corporate social responsibility",
     "alternate_plausible_meanings": "certificate signing request; customer service representative",
@@ -62,6 +68,7 @@
   {
     "evaluation_id": "HG0007",
     "display_order": 15,
+    "variant": "synthetic_high_context",
     "abbreviation": "XSU",
     "primary_meaning": "Cascading Style Sheets",
     "alternate_plausible_meanings": "clinical support service; Central Security Service",
@@ -72,6 +79,7 @@
   {
     "evaluation_id": "HG0008",
     "display_order": 183,
+    "variant": "synthetic_high_context",
     "abbreviation": "ZS",
     "primary_meaning": "power play",
     "alternate_plausible_meanings": "pages; percentage points; purchase price",
@@ -82,6 +90,7 @@
   {
     "evaluation_id": "HG0009",
     "display_order": 35,
+    "variant": "real_high_context",
     "abbreviation": "TBA",
     "primary_meaning": "to be announced",
     "alternate_plausible_meanings": "tertiary butyl alcohol; traditional birth attendant",
@@ -92,6 +101,7 @@
   {
     "evaluation_id": "HG0010",
     "display_order": 12,
+    "variant": "real_high_context",
     "abbreviation": "BFF",
     "primary_meaning": "best friends forever",
     "alternate_plausible_meanings": "binary file format; bulk feed flow",
@@ -102,6 +112,7 @@
   {
     "evaluation_id": "HG0011",
     "display_order": 297,
+    "variant": "real_low_context",
     "abbreviation": "IPO",
     "primary_meaning": "initial public offering",
     "alternate_plausible_meanings": "input-process-output; international purchase order",
@@ -112,6 +123,7 @@
   {
     "evaluation_id": "HG0012",
     "display_order": 176,
+    "variant": "real_high_context",
     "abbreviation": "PA",
     "primary_meaning": "physician assistant",
     "alternate_plausible_meanings": "Pennsylvania; public address; personal assistant",
@@ -122,6 +134,7 @@
   {
     "evaluation_id": "HG0013",
     "display_order": 308,
+    "variant": "real_high_context",
     "abbreviation": "GRWM",
     "primary_meaning": "get ready with me",
     "alternate_plausible_meanings": "gross regional water metric; group risk-weight model",
@@ -132,6 +145,7 @@
   {
     "evaluation_id": "HG0014",
     "display_order": 150,
+    "variant": "real_low_context",
     "abbreviation": "ASAP",
     "primary_meaning": "as soon as possible",
     "alternate_plausible_meanings": "Alliance of Security Analysis Professionals; accelerated stability assessment program",
@@ -142,6 +156,7 @@
   {
     "evaluation_id": "HG0015",
     "display_order": 190,
+    "variant": "real_high_context",
     "abbreviation": "DevOps",
     "primary_meaning": "development and operations",
     "alternate_plausible_meanings": "device operations; developmental options",
@@ -152,6 +167,7 @@
   {
     "evaluation_id": "HG0016",
     "display_order": 3,
+    "variant": "synthetic_high_context",
     "abbreviation": "XJ",
     "primary_meaning": "occupational therapy",
     "alternate_plausible_meanings": "overtime; Old Testament; ototoxic",
@@ -162,6 +178,7 @@
   {
     "evaluation_id": "HG0017",
     "display_order": 57,
+    "variant": "real_low_context",
     "abbreviation": "CS",
     "primary_meaning": "caught stealing",
     "alternate_plausible_meanings": "computer science; customer service; circuit switched",
@@ -172,6 +189,7 @@
   {
     "evaluation_id": "HG0018",
     "display_order": 148,
+    "variant": "real_high_context",
     "abbreviation": "TKO",
     "primary_meaning": "technical knockout",
     "alternate_plausible_meanings": "technical knowledge officer; total knee orthosis",
@@ -182,6 +200,7 @@
   {
     "evaluation_id": "HG0019",
     "display_order": 175,
+    "variant": "real_low_context",
     "abbreviation": "PEG",
     "primary_meaning": "price-to-earnings-to-growth ratio",
     "alternate_plausible_meanings": "polyethylene glycol",
@@ -192,6 +211,7 @@
   {
     "evaluation_id": "HG0020",
     "display_order": 97,
+    "variant": "real_high_context",
     "abbreviation": "SCK",
     "primary_meaning": "sack",
     "alternate_plausible_meanings": "starter check; stock-keeping code",
@@ -202,6 +222,7 @@
   {
     "evaluation_id": "HG0021",
     "display_order": 268,
+    "variant": "real_low_context",
     "abbreviation": "CEO",
     "primary_meaning": "chief executive officer",
     "alternate_plausible_meanings": "career executive officer; chief electoral officer",
@@ -212,6 +233,7 @@
   {
     "evaluation_id": "HG0022",
     "display_order": 141,
+    "variant": "real_low_context",
     "abbreviation": "TIA",
     "primary_meaning": "transient ischemic attack",
     "alternate_plausible_meanings": "Telecommunications Industry Association; thanks in advance",
@@ -222,6 +244,7 @@
   {
     "evaluation_id": "HG0023",
     "display_order": 2,
+    "variant": "real_low_context",
     "abbreviation": "GD",
     "primary_meaning": "goal difference",
     "alternate_plausible_meanings": "gestational diabetes; general discharge",
@@ -232,6 +255,7 @@
   {
     "evaluation_id": "HG0024",
     "display_order": 85,
+    "variant": "synthetic_high_context",
     "abbreviation": "VJM",
     "primary_meaning": "range of motion",
     "alternate_plausible_meanings": "read-only memory; rough order of magnitude",
@@ -242,6 +266,7 @@
   {
     "evaluation_id": "HG0025",
     "display_order": 149,
+    "variant": "synthetic_high_context",
     "abbreviation": "PZP",
     "primary_meaning": "central processing unit",
     "alternate_plausible_meanings": "cost per unit; clinical practice unit",
@@ -252,6 +277,7 @@
   {
     "evaluation_id": "HG0026",
     "display_order": 278,
+    "variant": "synthetic_high_context",
     "abbreviation": "WUHF",
     "primary_meaning": "if I recall correctly",
     "alternate_plausible_meanings": "integrated incident response center; international insurance review council",
@@ -262,6 +288,7 @@
   {
     "evaluation_id": "HG0027",
     "display_order": 152,
+    "variant": "synthetic_high_context",
     "abbreviation": "AQA",
     "primary_meaning": "pulmonary function test",
     "alternate_plausible_meanings": "physical fitness test; permanent full-time",
@@ -272,6 +299,7 @@
   {
     "evaluation_id": "HG0028",
     "display_order": 165,
+    "variant": "synthetic_high_context",
     "abbreviation": "ZR",
     "primary_meaning": "accounts payable",
     "alternate_plausible_meanings": "advanced placement; access point; Associated Press",
@@ -282,6 +310,7 @@
   {
     "evaluation_id": "HG0029",
     "display_order": 27,
+    "variant": "real_high_context",
     "abbreviation": "LOC",
     "primary_meaning": "level of consciousness",
     "alternate_plausible_meanings": "line of code; letter of credit; location",
@@ -292,6 +321,7 @@
   {
     "evaluation_id": "HG0030",
     "display_order": 93,
+    "variant": "real_high_context",
     "abbreviation": "CRP",
     "primary_meaning": "C-reactive protein",
     "alternate_plausible_meanings": "capacity requirements planning; conservation reserve program",
@@ -302,6 +332,7 @@
   {
     "evaluation_id": "HG0031",
     "display_order": 303,
+    "variant": "synthetic_high_context",
     "abbreviation": "RPU",
     "primary_meaning": "away from keyboard",
     "alternate_plausible_meanings": "airfield kit; alpha-fetoprotein kinase",
@@ -312,6 +343,7 @@
   {
     "evaluation_id": "HG0032",
     "display_order": 247,
+    "variant": "synthetic_high_context",
     "abbreviation": "AHE",
     "primary_meaning": "white blood cell count",
     "alternate_plausible_meanings": "World Boxing Council; whole-body counter",
@@ -322,6 +354,7 @@
   {
     "evaluation_id": "HG0033",
     "display_order": 221,
+    "variant": "real_high_context",
     "abbreviation": "W-L",
     "primary_meaning": "win-loss record",
     "alternate_plausible_meanings": "wavelength; water level",
@@ -332,6 +365,7 @@
   {
     "evaluation_id": "HG0034",
     "display_order": 184,
+    "variant": "synthetic_high_context",
     "abbreviation": "TZZ",
     "primary_meaning": "power of attorney",
     "alternate_plausible_meanings": "present on admission; plan of action; price on application",
@@ -342,6 +376,7 @@
   {
     "evaluation_id": "HG0035",
     "display_order": 358,
+    "variant": "real_high_context",
     "abbreviation": "DBA",
     "primary_meaning": "doing business as",
     "alternate_plausible_meanings": "database administrator; Doctor of Business Administration",
@@ -352,6 +387,7 @@
   {
     "evaluation_id": "HG0036",
     "display_order": 310,
+    "variant": "synthetic_high_context",
     "abbreviation": "LWT",
     "primary_meaning": "letter of intent",
     "alternate_plausible_meanings": "letter of indemnity; loss on ignition",
@@ -362,6 +398,7 @@
   {
     "evaluation_id": "HG0037",
     "display_order": 311,
+    "variant": "synthetic_high_context",
     "abbreviation": "LBA",
     "primary_meaning": "earned run average",
     "alternate_plausible_meanings": "Equal Rights Amendment; electronic research administration",
@@ -372,6 +409,7 @@
   {
     "evaluation_id": "HG0038",
     "display_order": 121,
+    "variant": "real_low_context",
     "abbreviation": "SD",
     "primary_meaning": "split decision",
     "alternate_plausible_meanings": "standard deviation; secure digital; South Dakota",
@@ -382,6 +420,7 @@
   {
     "evaluation_id": "HG0039",
     "display_order": 356,
+    "variant": "real_low_context",
     "abbreviation": "SSL",
     "primary_meaning": "Secure Sockets Layer",
     "alternate_plausible_meanings": "solid-state lighting; space sciences laboratory",
@@ -392,6 +431,7 @@
   {
     "evaluation_id": "HG0040",
     "display_order": 166,
+    "variant": "real_high_context",
     "abbreviation": "QoQ",
     "primary_meaning": "quarter over quarter",
     "alternate_plausible_meanings": "quality of quantification; quality-of-queue",
@@ -402,6 +442,7 @@
   {
     "evaluation_id": "HG0041",
     "display_order": 281,
+    "variant": "synthetic_high_context",
     "abbreviation": "UDOZ",
     "primary_meaning": "walks plus hits per inning pitched",
     "alternate_plausible_meanings": "Wildlife Habitat Incentives Program",
@@ -412,6 +453,7 @@
   {
     "evaluation_id": "HG0042",
     "display_order": 74,
+    "variant": "synthetic_high_context",
     "abbreviation": "KI",
     "primary_meaning": "mixed reality",
     "alternate_plausible_meanings": "magnetic resonance",
@@ -422,6 +464,7 @@
   {
     "evaluation_id": "HG0043",
     "display_order": 38,
+    "variant": "synthetic_high_context",
     "abbreviation": "JI",
     "primary_meaning": "TypeScript",
     "alternate_plausible_meanings": "technical specification; timestamp; Tourette syndrome",
@@ -432,6 +475,7 @@
   {
     "evaluation_id": "HG0044",
     "display_order": 259,
+    "variant": "real_low_context",
     "abbreviation": "ESR",
     "primary_meaning": "erythrocyte sedimentation rate",
     "alternate_plausible_meanings": "electron spin resonance; equivalent series resistance",
@@ -442,6 +486,7 @@
   {
     "evaluation_id": "HG0045",
     "display_order": 229,
+    "variant": "real_high_context",
     "abbreviation": "UAT",
     "primary_meaning": "user acceptance testing",
     "alternate_plausible_meanings": "uranyl acetate stain; ultrasound attenuation tomography",
@@ -452,6 +497,7 @@
   {
     "evaluation_id": "HG0046",
     "display_order": 327,
+    "variant": "synthetic_high_context",
     "abbreviation": "USW",
     "primary_meaning": "net profit margin",
     "alternate_plausible_meanings": "National Postal Museum",
@@ -462,6 +508,7 @@
   {
     "evaluation_id": "HG0047",
     "display_order": 242,
+    "variant": "synthetic_high_context",
     "abbreviation": "AHX",
     "primary_meaning": "master services agreement",
     "alternate_plausible_meanings": "metropolitan statistical area; multiple system atrophy",
@@ -472,6 +519,7 @@
   {
     "evaluation_id": "HG0048",
     "display_order": 323,
+    "variant": "real_low_context",
     "abbreviation": "IDK",
     "primary_meaning": "I don't know",
     "alternate_plausible_meanings": "integrated development kit; identity key",
@@ -482,6 +530,7 @@
   {
     "evaluation_id": "HG0049",
     "display_order": 115,
+    "variant": "synthetic_high_context",
     "abbreviation": "ZD",
     "primary_meaning": "deep learning",
     "alternate_plausible_meanings": "driver's license; download; dead load",
@@ -492,6 +541,7 @@
   {
     "evaluation_id": "HG0050",
     "display_order": 14,
+    "variant": "real_high_context",
     "abbreviation": "CVA",
     "primary_meaning": "cerebrovascular accident",
     "alternate_plausible_meanings": "coefficient of variation; certified valuation analyst",
@@ -502,6 +552,7 @@
   {
     "evaluation_id": "HG0051",
     "display_order": 248,
+    "variant": "real_low_context",
     "abbreviation": "RBC",
     "primary_meaning": "red blood cell count",
     "alternate_plausible_meanings": "Royal Bank of Canada; recycling bin code",
@@ -512,6 +563,7 @@
   {
     "evaluation_id": "HG0052",
     "display_order": 108,
+    "variant": "synthetic_high_context",
     "abbreviation": "XDUD",
     "primary_meaning": "compound annual growth rate",
     "alternate_plausible_meanings": "computer-aided graphical representation; constant annual growth ratio",
@@ -522,6 +574,7 @@
   {
     "evaluation_id": "HG0053",
     "display_order": 170,
+    "variant": "real_low_context",
     "abbreviation": "SOW",
     "primary_meaning": "statement of work",
     "alternate_plausible_meanings": "share of wallet",
@@ -532,6 +585,7 @@
   {
     "evaluation_id": "HG0054",
     "display_order": 167,
+    "variant": "real_high_context",
     "abbreviation": "PFT",
     "primary_meaning": "pulmonary function test",
     "alternate_plausible_meanings": "physical fitness test; permanent full-time",
@@ -542,6 +596,7 @@
   {
     "evaluation_id": "HG0055",
     "display_order": 1,
+    "variant": "real_high_context",
     "abbreviation": "FR",
     "primary_meaning": "for real",
     "alternate_plausible_meanings": "Federal Register; flame resistant; France",
@@ -552,6 +607,7 @@
   {
     "evaluation_id": "HG0056",
     "display_order": 26,
+    "variant": "real_high_context",
     "abbreviation": "WHIP",
     "primary_meaning": "walks plus hits per inning pitched",
     "alternate_plausible_meanings": "Wildlife Habitat Incentives Program",
@@ -562,6 +618,7 @@
   {
     "evaluation_id": "HG0057",
     "display_order": 146,
+    "variant": "real_low_context",
     "abbreviation": "ERA",
     "primary_meaning": "earned run average",
     "alternate_plausible_meanings": "Equal Rights Amendment; electronic research administration",
@@ -572,6 +629,7 @@
   {
     "evaluation_id": "HG0058",
     "display_order": 114,
+    "variant": "synthetic_high_context",
     "abbreviation": "JPI",
     "primary_meaning": "goals-against average",
     "alternate_plausible_meanings": "General Aviation Administration; gross anatomical area",
@@ -582,6 +640,7 @@
   {
     "evaluation_id": "HG0059",
     "display_order": 195,
+    "variant": "real_low_context",
     "abbreviation": "SRE",
     "primary_meaning": "site reliability engineering",
     "alternate_plausible_meanings": "surface-renewable energy; serious reportable event",
@@ -592,6 +651,7 @@
   {
     "evaluation_id": "HG0060",
     "display_order": 32,
+    "variant": "real_low_context",
     "abbreviation": "BLK",
     "primary_meaning": "blocks",
     "alternate_plausible_meanings": "bulk; black; block device",
@@ -602,6 +662,7 @@
   {
     "evaluation_id": "HG0061",
     "display_order": 209,
+    "variant": "real_low_context",
     "abbreviation": "UTI",
     "primary_meaning": "urinary tract infection",
     "alternate_plausible_meanings": "Universal Technical Institute; unit trust investment",
@@ -612,6 +673,7 @@
   {
     "evaluation_id": "HG0062",
     "display_order": 296,
+    "variant": "real_high_context",
     "abbreviation": "ETL",
     "primary_meaning": "extract, transform, and load",
     "alternate_plausible_meanings": "estimated time left; electronic toll lane",
@@ -622,6 +684,7 @@
   {
     "evaluation_id": "HG0063",
     "display_order": 232,
+    "variant": "real_high_context",
     "abbreviation": "VPN",
     "primary_meaning": "virtual private network",
     "alternate_plausible_meanings": "ventral posterior nucleus",
@@ -632,6 +695,7 @@
   {
     "evaluation_id": "HG0064",
     "display_order": 33,
+    "variant": "real_low_context",
     "abbreviation": "BTW",
     "primary_meaning": "by the way",
     "alternate_plausible_meanings": "back to work; below-the-waterline",
@@ -642,6 +706,7 @@
   {
     "evaluation_id": "HG0065",
     "display_order": 136,
+    "variant": "real_high_context",
     "abbreviation": "VM",
     "primary_meaning": "virtual machine",
     "alternate_plausible_meanings": "voicemail; visual merchandising",
@@ -652,6 +717,7 @@
   {
     "evaluation_id": "HG0066",
     "display_order": 200,
+    "variant": "real_low_context",
     "abbreviation": "KYC",
     "primary_meaning": "know your customer",
     "alternate_plausible_meanings": "know your client; key yield characteristic",
@@ -662,6 +728,7 @@
   {
     "evaluation_id": "HG0067",
     "display_order": 145,
+    "variant": "real_low_context",
     "abbreviation": "BLK",
     "primary_meaning": "blocks",
     "alternate_plausible_meanings": "bulk; black; block device",
@@ -672,6 +739,7 @@
   {
     "evaluation_id": "HG0068",
     "display_order": 316,
+    "variant": "real_low_context",
     "abbreviation": "ICYMI",
     "primary_meaning": "in case you missed it",
     "alternate_plausible_meanings": "integrated cyber-yield management interface; incident-control yearly maturity index",
@@ -682,6 +750,7 @@
   {
     "evaluation_id": "HG0069",
     "display_order": 312,
+    "variant": "synthetic_high_context",
     "abbreviation": "JGE",
     "primary_meaning": "interception",
     "alternate_plausible_meanings": "integer; international; interest",
@@ -692,6 +761,7 @@
   {
     "evaluation_id": "HG0070",
     "display_order": 154,
+    "variant": "real_high_context",
     "abbreviation": "FT",
     "primary_meaning": "free throw",
     "alternate_plausible_meanings": "full-time; feet; final time",
@@ -702,6 +772,7 @@
   {
     "evaluation_id": "HG0071",
     "display_order": 354,
+    "variant": "real_low_context",
     "abbreviation": "JS",
     "primary_meaning": "JavaScript",
     "alternate_plausible_meanings": "joint statement; job satisfaction",
@@ -712,6 +783,7 @@
   {
     "evaluation_id": "HG0072",
     "display_order": 298,
+    "variant": "real_low_context",
     "abbreviation": "MOU",
     "primary_meaning": "memorandum of understanding",
     "alternate_plausible_meanings": "mobile offshore unit; minutes of use",
@@ -722,6 +794,7 @@
   {
     "evaluation_id": "HG0073",
     "display_order": 263,
+    "variant": "synthetic_high_context",
     "abbreviation": "RYX",
     "primary_meaning": "too much information",
     "alternate_plausible_meanings": "three-mile island; total mass indicator",
@@ -732,6 +805,7 @@
   {
     "evaluation_id": "HG0074",
     "display_order": 94,
+    "variant": "synthetic_high_context",
     "abbreviation": "ASJ",
     "primary_meaning": "do-not-resuscitate order",
     "alternate_plausible_meanings": "Department of Natural Resources; did not return",
@@ -742,6 +816,7 @@
   {
     "evaluation_id": "HG0075",
     "display_order": 106,
+    "variant": "real_high_context",
     "abbreviation": "PTS",
     "primary_meaning": "points",
     "alternate_plausible_meanings": "post-traumatic stress; permission to speak",
@@ -752,6 +827,7 @@
   {
     "evaluation_id": "HG0076",
     "display_order": 205,
+    "variant": "real_low_context",
     "abbreviation": "QA",
     "primary_meaning": "quality assurance",
     "alternate_plausible_meanings": "question answering; quantitative analysis",
@@ -762,6 +838,7 @@
   {
     "evaluation_id": "HG0077",
     "display_order": 218,
+    "variant": "synthetic_high_context",
     "abbreviation": "ZM",
     "primary_meaning": "blood pressure",
     "alternate_plausible_meanings": "boiling point; business process; breakpoint",
@@ -772,6 +849,7 @@
   {
     "evaluation_id": "HG0078",
     "display_order": 39,
+    "variant": "real_high_context",
     "abbreviation": "MD",
     "primary_meaning": "medical doctor",
     "alternate_plausible_meanings": "Maryland; managing director; markdown",
@@ -782,6 +860,7 @@
   {
     "evaluation_id": "HG0079",
     "display_order": 206,
+    "variant": "real_low_context",
     "abbreviation": "TSA",
     "primary_meaning": "transition services agreement",
     "alternate_plausible_meanings": "Transportation Security Administration; total surface area",
@@ -792,6 +871,7 @@
   {
     "evaluation_id": "HG0080",
     "display_order": 101,
+    "variant": "real_high_context",
     "abbreviation": "MOU",
     "primary_meaning": "memorandum of understanding",
     "alternate_plausible_meanings": "mobile offshore unit; minutes of use",
@@ -802,6 +882,7 @@
   {
     "evaluation_id": "HG0081",
     "display_order": 52,
+    "variant": "synthetic_high_context",
     "abbreviation": "JQ",
     "primary_meaning": "intravenous",
     "alternate_plausible_meanings": "independent variable; Roman numeral four; implied volatility",
@@ -812,6 +893,7 @@
   {
     "evaluation_id": "HG0082",
     "display_order": 234,
+    "variant": "real_high_context",
     "abbreviation": "KPI",
     "primary_meaning": "key performance indicator",
     "alternate_plausible_meanings": "kilopound per square inch; key process input",
@@ -822,6 +904,7 @@
   {
     "evaluation_id": "HG0083",
     "display_order": 21,
+    "variant": "real_low_context",
     "abbreviation": "AFAIK",
     "primary_meaning": "as far as I know",
     "alternate_plausible_meanings": "automated fault-analysis integration kit; aviation fuel assessment inspection key",
@@ -832,6 +915,7 @@
   {
     "evaluation_id": "HG0084",
     "display_order": 271,
+    "variant": "real_low_context",
     "abbreviation": "IMO",
     "primary_meaning": "in my opinion",
     "alternate_plausible_meanings": "International Maritime Organization; independent medical opinion",
@@ -842,6 +926,7 @@
   {
     "evaluation_id": "HG0085",
     "display_order": 156,
+    "variant": "synthetic_high_context",
     "abbreviation": "IY",
     "primary_meaning": "nurse practitioner",
     "alternate_plausible_meanings": "nondeterministic polynomial time; net profit; noun phrase",
@@ -852,6 +937,7 @@
   {
     "evaluation_id": "HG0086",
     "display_order": 119,
+    "variant": "synthetic_high_context",
     "abbreviation": "sX",
     "primary_meaning": "expected goals",
     "alternate_plausible_meanings": "extra gain; cross-gradient",
@@ -862,6 +948,7 @@
   {
     "evaluation_id": "HG0087",
     "display_order": 88,
+    "variant": "real_low_context",
     "abbreviation": "RFQ",
     "primary_meaning": "request for quotation",
     "alternate_plausible_meanings": "radio-frequency quadrupole; request for qualifications",
@@ -872,6 +959,7 @@
   {
     "evaluation_id": "HG0088",
     "display_order": 346,
+    "variant": "real_low_context",
     "abbreviation": "API",
     "primary_meaning": "application programming interface",
     "alternate_plausible_meanings": "active pharmaceutical ingredient; academic performance index",
@@ -882,6 +970,7 @@
   {
     "evaluation_id": "HG0089",
     "display_order": 42,
+    "variant": "synthetic_high_context",
     "abbreviation": "NDV",
     "primary_meaning": "anti-money laundering",
     "alternate_plausible_meanings": "acute myeloid leukemia; automated markup language",
@@ -892,6 +981,7 @@
   {
     "evaluation_id": "HG0090",
     "display_order": 49,
+    "variant": "real_low_context",
     "abbreviation": "HTML",
     "primary_meaning": "HyperText Markup Language",
     "alternate_plausible_meanings": "high-temperature materials laboratory; human tissue matching level",
@@ -902,6 +992,7 @@
   {
     "evaluation_id": "HG0091",
     "display_order": 280,
+    "variant": "synthetic_high_context",
     "abbreviation": "XNU",
     "primary_meaning": "natural language processing",
     "alternate_plausible_meanings": "neuro-linguistic programming; no-lapse period",
@@ -912,6 +1003,7 @@
   {
     "evaluation_id": "HG0092",
     "display_order": 227,
+    "variant": "real_low_context",
     "abbreviation": "CB",
     "primary_meaning": "cornerback",
     "alternate_plausible_meanings": "citizens band; circuit breaker",
@@ -922,6 +1014,7 @@
   {
     "evaluation_id": "HG0093",
     "display_order": 92,
+    "variant": "real_high_context",
     "abbreviation": "FIFO",
     "primary_meaning": "first in, first out",
     "alternate_plausible_meanings": "fly-in, fly-out",
@@ -932,6 +1025,7 @@
   {
     "evaluation_id": "HG0094",
     "display_order": 126,
+    "variant": "real_high_context",
     "abbreviation": "UCC",
     "primary_meaning": "Uniform Commercial Code",
     "alternate_plausible_meanings": "University College Cork; user-created content",
@@ -942,6 +1036,7 @@
   {
     "evaluation_id": "HG0095",
     "display_order": 130,
+    "variant": "real_high_context",
     "abbreviation": "RA",
     "primary_meaning": "rheumatoid arthritis",
     "alternate_plausible_meanings": "room air; right atrium; renal artery",
@@ -952,6 +1047,7 @@
   {
     "evaluation_id": "HG0096",
     "display_order": 228,
+    "variant": "real_low_context",
     "abbreviation": "WR",
     "primary_meaning": "wide receiver",
     "alternate_plausible_meanings": "world record; win rate",
@@ -962,6 +1058,7 @@
   {
     "evaluation_id": "HG0097",
     "display_order": 325,
+    "variant": "real_high_context",
     "abbreviation": "BP",
     "primary_meaning": "blood pressure",
     "alternate_plausible_meanings": "boiling point; business process; breakpoint",
@@ -972,6 +1069,7 @@
   {
     "evaluation_id": "HG0098",
     "display_order": 231,
+    "variant": "real_low_context",
     "abbreviation": "PP",
     "primary_meaning": "power play",
     "alternate_plausible_meanings": "pages; percentage points; purchase price",
@@ -982,6 +1080,7 @@
   {
     "evaluation_id": "HG0099",
     "display_order": 47,
+    "variant": "synthetic_high_context",
     "abbreviation": "PWK",
     "primary_meaning": "to be determined",
     "alternate_plausible_meanings": "tick-borne disease; technical baseline document",
@@ -992,6 +1091,7 @@
   {
     "evaluation_id": "HG0100",
     "display_order": 40,
+    "variant": "real_high_context",
     "abbreviation": "FG",
     "primary_meaning": "field goal in American football",
     "alternate_plausible_meanings": "field goal in basketball; fielding",
@@ -1002,6 +1102,7 @@
   {
     "evaluation_id": "HG0101",
     "display_order": 18,
+    "variant": "synthetic_high_context",
     "abbreviation": "Ocpz",
     "primary_meaning": "incorporated",
     "alternate_plausible_meanings": "including; incomplete",
@@ -1012,6 +1113,7 @@
   {
     "evaluation_id": "HG0102",
     "display_order": 350,
+    "variant": "synthetic_high_context",
     "abbreviation": "TZZ",
     "primary_meaning": "power of attorney",
     "alternate_plausible_meanings": "present on admission; plan of action; price on application",
@@ -1022,6 +1124,7 @@
   {
     "evaluation_id": "HG0103",
     "display_order": 144,
+    "variant": "real_high_context",
     "abbreviation": "ESG",
     "primary_meaning": "environmental, social, and governance",
     "alternate_plausible_meanings": "electrostatic generator; enterprise security group",
@@ -1032,6 +1135,7 @@
   {
     "evaluation_id": "HG0104",
     "display_order": 46,
+    "variant": "real_high_context",
     "abbreviation": "FG",
     "primary_meaning": "field goal in American football",
     "alternate_plausible_meanings": "field goal in basketball; fielding",
@@ -1042,6 +1146,7 @@
   {
     "evaluation_id": "HG0105",
     "display_order": 61,
+    "variant": "real_high_context",
     "abbreviation": "AST",
     "primary_meaning": "assist",
     "alternate_plausible_meanings": "aspartate aminotransferase; Atlantic Standard Time",
@@ -1052,6 +1157,7 @@
   {
     "evaluation_id": "HG0106",
     "display_order": 90,
+    "variant": "real_low_context",
     "abbreviation": "CSV",
     "primary_meaning": "comma-separated values",
     "alternate_plausible_meanings": "computerized system validation; cerebrospinal venous",
@@ -1062,6 +1168,7 @@
   {
     "evaluation_id": "HG0107",
     "display_order": 43,
+    "variant": "synthetic_high_context",
     "abbreviation": "NYKH",
     "primary_meaning": "representational state transfer",
     "alternate_plausible_meanings": "restricted environmental stimulation therapy",
@@ -1072,6 +1179,7 @@
   {
     "evaluation_id": "HG0108",
     "display_order": 301,
+    "variant": "synthetic_high_context",
     "abbreviation": "OUM",
     "primary_meaning": "Secure Sockets Layer",
     "alternate_plausible_meanings": "solid-state lighting; space sciences laboratory",
@@ -1082,6 +1190,7 @@
   {
     "evaluation_id": "HG0109",
     "display_order": 226,
+    "variant": "real_high_context",
     "abbreviation": "FAQ",
     "primary_meaning": "frequently asked questions",
     "alternate_plausible_meanings": "fair average quality; final acceptance qualification",
@@ -1092,6 +1201,7 @@
   {
     "evaluation_id": "HG0110",
     "display_order": 80,
+    "variant": "real_high_context",
     "abbreviation": "Inc.",
     "primary_meaning": "incorporated",
     "alternate_plausible_meanings": "including; incomplete",
@@ -1102,6 +1212,7 @@
   {
     "evaluation_id": "HG0111",
     "display_order": 142,
+    "variant": "real_low_context",
     "abbreviation": "Rx",
     "primary_meaning": "prescription",
     "alternate_plausible_meanings": "receiver; receive; reactor",
@@ -1112,6 +1223,7 @@
   {
     "evaluation_id": "HG0112",
     "display_order": 284,
+    "variant": "real_high_context",
     "abbreviation": "CAPEX",
     "primary_meaning": "capital expenditures",
     "alternate_plausible_meanings": "capability exercise; capital-exchange program",
@@ -1122,6 +1234,7 @@
   {
     "evaluation_id": "HG0113",
     "display_order": 70,
+    "variant": "real_high_context",
     "abbreviation": "QA",
     "primary_meaning": "quality assurance",
     "alternate_plausible_meanings": "question answering; quantitative analysis",
@@ -1132,6 +1245,7 @@
   {
     "evaluation_id": "HG0114",
     "display_order": 230,
+    "variant": "real_low_context",
     "abbreviation": "SOAP",
     "primary_meaning": "Simple Object Access Protocol",
     "alternate_plausible_meanings": "subjective, objective, assessment, and plan",
@@ -1142,6 +1256,7 @@
   {
     "evaluation_id": "HG0115",
     "display_order": 213,
+    "variant": "synthetic_high_context",
     "abbreviation": "YDJ",
     "primary_meaning": "rebounds",
     "alternate_plausible_meanings": "regional examination board; rear-end bearing",
@@ -1152,6 +1267,7 @@
   {
     "evaluation_id": "HG0116",
     "display_order": 219,
+    "variant": "real_low_context",
     "abbreviation": "COO",
     "primary_meaning": "chief operating officer",
     "alternate_plausible_meanings": "country of origin; cost of ownership",
@@ -1162,6 +1278,7 @@
   {
     "evaluation_id": "HG0117",
     "display_order": 51,
+    "variant": "synthetic_high_context",
     "abbreviation": "yiuz",
     "primary_meaning": "authentication",
     "alternate_plausible_meanings": "authorization; author; authenticity",
@@ -1172,6 +1289,7 @@
   {
     "evaluation_id": "HG0118",
     "display_order": 104,
+    "variant": "real_high_context",
     "abbreviation": "SSO",
     "primary_meaning": "single sign-on",
     "alternate_plausible_meanings": "standing settlement order; school safety officer",
@@ -1182,6 +1300,7 @@
   {
     "evaluation_id": "HG0119",
     "display_order": 202,
+    "variant": "synthetic_high_context",
     "abbreviation": "PZP",
     "primary_meaning": "central processing unit",
     "alternate_plausible_meanings": "cost per unit; clinical practice unit",
@@ -1192,6 +1311,7 @@
   {
     "evaluation_id": "HG0120",
     "display_order": 55,
+    "variant": "synthetic_high_context",
     "abbreviation": "JRS",
     "primary_meaning": "urinary tract infection",
     "alternate_plausible_meanings": "Universal Technical Institute; unit trust investment",
@@ -1202,6 +1322,7 @@
   {
     "evaluation_id": "HG0121",
     "display_order": 329,
+    "variant": "real_high_context",
     "abbreviation": "AR",
     "primary_meaning": "accounts receivable",
     "alternate_plausible_meanings": "augmented reality; Arkansas; attack rate",
@@ -1212,6 +1333,7 @@
   {
     "evaluation_id": "HG0122",
     "display_order": 250,
+    "variant": "real_low_context",
     "abbreviation": "SQL",
     "primary_meaning": "Structured Query Language",
     "alternate_plausible_meanings": "service quality level; speech quality laboratory",
@@ -1222,6 +1344,7 @@
   {
     "evaluation_id": "HG0123",
     "display_order": 208,
+    "variant": "real_high_context",
     "abbreviation": "NVM",
     "primary_meaning": "never mind",
     "alternate_plausible_meanings": "nonvolatile memory; net value method",
@@ -1232,6 +1355,7 @@
   {
     "evaluation_id": "HG0124",
     "display_order": 71,
+    "variant": "real_high_context",
     "abbreviation": "IMO",
     "primary_meaning": "in my opinion",
     "alternate_plausible_meanings": "International Maritime Organization; independent medical opinion",
@@ -1242,6 +1366,7 @@
   {
     "evaluation_id": "HG0125",
     "display_order": 207,
+    "variant": "real_high_context",
     "abbreviation": "QB",
     "primary_meaning": "quarterback",
     "alternate_plausible_meanings": "quick break; Queen's Bench",
@@ -1252,6 +1377,7 @@
   {
     "evaluation_id": "HG0126",
     "display_order": 270,
+    "variant": "real_high_context",
     "abbreviation": "CLI",
     "primary_meaning": "command-line interface",
     "alternate_plausible_meanings": "caller line identification; critical limb ischemia",
@@ -1262,6 +1388,7 @@
   {
     "evaluation_id": "HG0127",
     "display_order": 6,
+    "variant": "synthetic_high_context",
     "abbreviation": "ZNX",
     "primary_meaning": "not gonna lie",
     "alternate_plausible_meanings": "natural gas liquids; next-generation library",
@@ -1272,6 +1399,7 @@
   {
     "evaluation_id": "HG0128",
     "display_order": 210,
+    "variant": "real_high_context",
     "abbreviation": "CAGR",
     "primary_meaning": "compound annual growth rate",
     "alternate_plausible_meanings": "computer-aided graphical representation; constant annual growth ratio",
@@ -1282,6 +1410,7 @@
   {
     "evaluation_id": "HG0129",
     "display_order": 320,
+    "variant": "real_low_context",
     "abbreviation": "PTS",
     "primary_meaning": "points",
     "alternate_plausible_meanings": "post-traumatic stress; permission to speak",
@@ -1292,6 +1421,7 @@
   {
     "evaluation_id": "HG0130",
     "display_order": 95,
+    "variant": "synthetic_high_context",
     "abbreviation": "GYDU",
     "primary_meaning": "for what it's worth",
     "alternate_plausible_meanings": "finished work in warehouse; field water-injection well",
@@ -1302,6 +1432,7 @@
   {
     "evaluation_id": "HG0131",
     "display_order": 355,
+    "variant": "real_high_context",
     "abbreviation": "DOM",
     "primary_meaning": "Document Object Model",
     "alternate_plausible_meanings": "date of manufacture; days on market",
@@ -1312,6 +1443,7 @@
   {
     "evaluation_id": "HG0132",
     "display_order": 252,
+    "variant": "synthetic_high_context",
     "abbreviation": "YJ",
     "primary_meaning": "business intelligence",
     "alternate_plausible_meanings": "bisexual; bodily injury; bismuth",
@@ -1322,6 +1454,7 @@
   {
     "evaluation_id": "HG0133",
     "display_order": 255,
+    "variant": "real_low_context",
     "abbreviation": "API",
     "primary_meaning": "application programming interface",
     "alternate_plausible_meanings": "active pharmaceutical ingredient; academic performance index",
@@ -1332,6 +1465,7 @@
   {
     "evaluation_id": "HG0134",
     "display_order": 122,
+    "variant": "real_low_context",
     "abbreviation": "CI",
     "primary_meaning": "continuous integration",
     "alternate_plausible_meanings": "confidence interval; cardiac index; configuration item",
@@ -1342,6 +1476,7 @@
   {
     "evaluation_id": "HG0135",
     "display_order": 44,
+    "variant": "synthetic_high_context",
     "abbreviation": "WuyJvt",
     "primary_meaning": "development and operations",
     "alternate_plausible_meanings": "device operations; developmental options",
@@ -1352,6 +1487,7 @@
   {
     "evaluation_id": "HG0136",
     "display_order": 211,
+    "variant": "real_low_context",
     "abbreviation": "KYC",
     "primary_meaning": "know your customer",
     "alternate_plausible_meanings": "know your client; key yield characteristic",
@@ -1362,6 +1498,7 @@
   {
     "evaluation_id": "HG0137",
     "display_order": 292,
+    "variant": "synthetic_high_context",
     "abbreviation": "XQ",
     "primary_meaning": "running back",
     "alternate_plausible_meanings": "right back; reserve bank",
@@ -1372,6 +1509,7 @@
   {
     "evaluation_id": "HG0138",
     "display_order": 269,
+    "variant": "real_high_context",
     "abbreviation": "KYC",
     "primary_meaning": "know your customer",
     "alternate_plausible_meanings": "know your client; key yield characteristic",
@@ -1382,6 +1520,7 @@
   {
     "evaluation_id": "HG0139",
     "display_order": 197,
+    "variant": "real_high_context",
     "abbreviation": "ANA",
     "primary_meaning": "antinuclear antibody",
     "alternate_plausible_meanings": "American Nurses Association",
@@ -1392,6 +1531,7 @@
   {
     "evaluation_id": "HG0140",
     "display_order": 322,
+    "variant": "real_high_context",
     "abbreviation": "POV",
     "primary_meaning": "point of view",
     "alternate_plausible_meanings": "persistence of vision; privately owned vehicle",
@@ -1402,6 +1542,7 @@
   {
     "evaluation_id": "HG0141",
     "display_order": 276,
+    "variant": "synthetic_high_context",
     "abbreviation": "GAW",
     "primary_meaning": "access control list",
     "alternate_plausible_meanings": "anterior cruciate ligament; Association for Computational Linguistics",
@@ -1412,6 +1553,7 @@
   {
     "evaluation_id": "HG0142",
     "display_order": 98,
+    "variant": "real_high_context",
     "abbreviation": "PA",
     "primary_meaning": "physician assistant",
     "alternate_plausible_meanings": "Pennsylvania; public address; personal assistant",
@@ -1422,6 +1564,7 @@
   {
     "evaluation_id": "HG0143",
     "display_order": 253,
+    "variant": "real_low_context",
     "abbreviation": "CSR",
     "primary_meaning": "corporate social responsibility",
     "alternate_plausible_meanings": "certificate signing request; customer service representative",
@@ -1432,6 +1575,7 @@
   {
     "evaluation_id": "HG0144",
     "display_order": 23,
+    "variant": "real_low_context",
     "abbreviation": "INT",
     "primary_meaning": "interception",
     "alternate_plausible_meanings": "integer; international; interest",
@@ -1442,6 +1586,7 @@
   {
     "evaluation_id": "HG0145",
     "display_order": 34,
+    "variant": "real_high_context",
     "abbreviation": "WIP",
     "primary_meaning": "work in progress",
     "alternate_plausible_meanings": "work-in-process inventory; wireless internet provider",
@@ -1452,6 +1597,7 @@
   {
     "evaluation_id": "HG0146",
     "display_order": 277,
+    "variant": "real_high_context",
     "abbreviation": "IRL",
     "primary_meaning": "in real life",
     "alternate_plausible_meanings": "information retrieval language; insulin receptor-like",
@@ -1462,6 +1608,7 @@
   {
     "evaluation_id": "HG0147",
     "display_order": 287,
+    "variant": "real_high_context",
     "abbreviation": "UCC",
     "primary_meaning": "Uniform Commercial Code",
     "alternate_plausible_meanings": "University College Cork; user-created content",
@@ -1472,6 +1619,7 @@
   {
     "evaluation_id": "HG0148",
     "display_order": 262,
+    "variant": "real_low_context",
     "abbreviation": "DevOps",
     "primary_meaning": "development and operations",
     "alternate_plausible_meanings": "device operations; developmental options",
@@ -1482,6 +1630,7 @@
   {
     "evaluation_id": "HG0149",
     "display_order": 235,
+    "variant": "real_low_context",
     "abbreviation": "TTYL",
     "primary_meaning": "talk to you later",
     "alternate_plausible_meanings": "time-to-yield limit; tactical training year log",
@@ -1492,6 +1641,7 @@
   {
     "evaluation_id": "HG0150",
     "display_order": 174,
+    "variant": "real_high_context",
     "abbreviation": "IM",
     "primary_meaning": "intramuscular",
     "alternate_plausible_meanings": "instant message; inventory management",
@@ -1502,6 +1652,7 @@
   {
     "evaluation_id": "HG0151",
     "display_order": 75,
+    "variant": "real_low_context",
     "abbreviation": "CSR",
     "primary_meaning": "corporate social responsibility",
     "alternate_plausible_meanings": "certificate signing request; customer service representative",
@@ -1512,6 +1663,7 @@
   {
     "evaluation_id": "HG0152",
     "display_order": 62,
+    "variant": "real_high_context",
     "abbreviation": "GPU",
     "primary_meaning": "graphics processing unit",
     "alternate_plausible_meanings": "gas-processing unit; general-purpose unit",
@@ -1522,6 +1674,7 @@
   {
     "evaluation_id": "HG0153",
     "display_order": 335,
+    "variant": "real_low_context",
     "abbreviation": "GOAT",
     "primary_meaning": "greatest of all time",
     "alternate_plausible_meanings": "Galveston Orientation and Amnesia Test",
@@ -1532,6 +1685,7 @@
   {
     "evaluation_id": "HG0154",
     "display_order": 343,
+    "variant": "synthetic_high_context",
     "abbreviation": "IPT",
     "primary_meaning": "laughing out loud",
     "alternate_plausible_meanings": "lots of love; limit of liability",
@@ -1542,6 +1696,7 @@
   {
     "evaluation_id": "HG0155",
     "display_order": 314,
+    "variant": "real_low_context",
     "abbreviation": "CSS",
     "primary_meaning": "Cascading Style Sheets",
     "alternate_plausible_meanings": "clinical support service; Central Security Service",
@@ -1552,6 +1707,7 @@
   {
     "evaluation_id": "HG0156",
     "display_order": 196,
+    "variant": "real_low_context",
     "abbreviation": "IAM",
     "primary_meaning": "identity and access management",
     "alternate_plausible_meanings": "integrated assessment model",
@@ -1562,6 +1718,7 @@
   {
     "evaluation_id": "HG0157",
     "display_order": 351,
+    "variant": "synthetic_high_context",
     "abbreviation": "FQ",
     "primary_meaning": "original poster",
     "alternate_plausible_meanings": "overpowered; original post; operating point",
@@ -1572,6 +1729,7 @@
   {
     "evaluation_id": "HG0158",
     "display_order": 246,
+    "variant": "real_high_context",
     "abbreviation": "AFAIK",
     "primary_meaning": "as far as I know",
     "alternate_plausible_meanings": "automated fault-analysis integration kit; aviation fuel assessment inspection key",
@@ -1582,6 +1740,7 @@
   {
     "evaluation_id": "HG0159",
     "display_order": 274,
+    "variant": "synthetic_high_context",
     "abbreviation": "WEK",
     "primary_meaning": "body mass index",
     "alternate_plausible_meanings": "Broadcast Music, Inc.; brain-machine interface",
@@ -1592,6 +1751,7 @@
   {
     "evaluation_id": "HG0160",
     "display_order": 347,
+    "variant": "real_high_context",
     "abbreviation": "OL",
     "primary_meaning": "offensive line",
     "alternate_plausible_meanings": "ordered list; organic load",
@@ -1602,6 +1762,7 @@
   {
     "evaluation_id": "HG0161",
     "display_order": 306,
+    "variant": "synthetic_high_context",
     "abbreviation": "RJ",
     "primary_meaning": "virtual machine",
     "alternate_plausible_meanings": "voicemail; visual merchandising",
@@ -1612,6 +1773,7 @@
   {
     "evaluation_id": "HG0162",
     "display_order": 212,
+    "variant": "synthetic_high_context",
     "abbreviation": "ZR",
     "primary_meaning": "accounts payable",
     "alternate_plausible_meanings": "advanced placement; access point; Associated Press",
@@ -1622,6 +1784,7 @@
   {
     "evaluation_id": "HG0163",
     "display_order": 82,
+    "variant": "real_low_context",
     "abbreviation": "OPS",
     "primary_meaning": "on-base plus slugging",
     "alternate_plausible_meanings": "operations; optical power sensor",
@@ -1632,6 +1795,7 @@
   {
     "evaluation_id": "HG0164",
     "display_order": 191,
+    "variant": "real_low_context",
     "abbreviation": "UI",
     "primary_meaning": "user interface",
     "alternate_plausible_meanings": "unemployment insurance; unit interval",
@@ -1642,6 +1806,7 @@
   {
     "evaluation_id": "HG0165",
     "display_order": 72,
+    "variant": "real_low_context",
     "abbreviation": "ML",
     "primary_meaning": "machine learning",
     "alternate_plausible_meanings": "milliliter, normally written mL; markup language",
@@ -1652,6 +1817,7 @@
   {
     "evaluation_id": "HG0166",
     "display_order": 112,
+    "variant": "real_high_context",
     "abbreviation": "FWIW",
     "primary_meaning": "for what it's worth",
     "alternate_plausible_meanings": "finished work in warehouse; field water-injection well",
@@ -1662,6 +1828,7 @@
   {
     "evaluation_id": "HG0167",
     "display_order": 225,
+    "variant": "real_high_context",
     "abbreviation": "NSFW",
     "primary_meaning": "not safe for work",
     "alternate_plausible_meanings": "network service framework; nonstandard field wiring",
@@ -1672,6 +1839,7 @@
   {
     "evaluation_id": "HG0168",
     "display_order": 125,
+    "variant": "synthetic_high_context",
     "abbreviation": "XWY",
     "primary_meaning": "erythrocyte sedimentation rate",
     "alternate_plausible_meanings": "electron spin resonance; equivalent series resistance",
@@ -1682,6 +1850,7 @@
   {
     "evaluation_id": "HG0169",
     "display_order": 233,
+    "variant": "real_low_context",
     "abbreviation": "DIY",
     "primary_meaning": "do it yourself",
     "alternate_plausible_meanings": "digital input yield; design implementation year",
@@ -1692,6 +1861,7 @@
   {
     "evaluation_id": "HG0170",
     "display_order": 129,
+    "variant": "real_low_context",
     "abbreviation": "DB",
     "primary_meaning": "database",
     "alternate_plausible_meanings": "defensive back; decibel; defined benefit",
@@ -1702,6 +1872,7 @@
   {
     "evaluation_id": "HG0171",
     "display_order": 293,
+    "variant": "synthetic_high_context",
     "abbreviation": "INB",
     "primary_meaning": "scratched",
     "alternate_plausible_meanings": "silicon-controlled rectifier; screen; service call record",
@@ -1712,6 +1883,7 @@
   {
     "evaluation_id": "HG0172",
     "display_order": 237,
+    "variant": "synthetic_high_context",
     "abbreviation": "LK",
     "primary_meaning": "venture capital",
     "alternate_plausible_meanings": "variable cost; virtual circuit; vice chancellor",
@@ -1722,6 +1894,7 @@
   {
     "evaluation_id": "HG0173",
     "display_order": 168,
+    "variant": "synthetic_high_context",
     "abbreviation": "OSQ",
     "primary_meaning": "points",
     "alternate_plausible_meanings": "post-traumatic stress; permission to speak",
@@ -1732,6 +1905,7 @@
   {
     "evaluation_id": "HG0174",
     "display_order": 63,
+    "variant": "real_low_context",
     "abbreviation": "FS",
     "primary_meaning": "free safety",
     "alternate_plausible_meanings": "file system; feasibility study",
@@ -1742,6 +1916,7 @@
   {
     "evaluation_id": "HG0175",
     "display_order": 186,
+    "variant": "real_low_context",
     "abbreviation": "PPE",
     "primary_meaning": "personal protective equipment",
     "alternate_plausible_meanings": "property, plant, and equipment; philosophy, politics, and economics",
@@ -1752,6 +1927,7 @@
   {
     "evaluation_id": "HG0176",
     "display_order": 295,
+    "variant": "real_high_context",
     "abbreviation": "TIA",
     "primary_meaning": "transient ischemic attack",
     "alternate_plausible_meanings": "Telecommunications Industry Association; thanks in advance",
@@ -1762,6 +1938,7 @@
   {
     "evaluation_id": "HG0177",
     "display_order": 109,
+    "variant": "real_low_context",
     "abbreviation": "SOB",
     "primary_meaning": "shortness of breath",
     "alternate_plausible_meanings": "start of business; statement of benefits",
@@ -1772,6 +1949,7 @@
   {
     "evaluation_id": "HG0178",
     "display_order": 337,
+    "variant": "real_low_context",
     "abbreviation": "OG",
     "primary_meaning": "original gangster",
     "alternate_plausible_meanings": "original; oxygen gas; operating guide",
@@ -1782,6 +1960,7 @@
   {
     "evaluation_id": "HG0179",
     "display_order": 158,
+    "variant": "real_high_context",
     "abbreviation": "PTO",
     "primary_meaning": "paid time off",
     "alternate_plausible_meanings": "power takeoff; parent-teacher organization",
@@ -1792,6 +1971,7 @@
   {
     "evaluation_id": "HG0180",
     "display_order": 331,
+    "variant": "synthetic_high_context",
     "abbreviation": "XZ",
     "primary_meaning": "base on balls",
     "alternate_plausible_meanings": "bulletin board; broadband; Bachelor of Business",
@@ -1802,6 +1982,7 @@
   {
     "evaluation_id": "HG0181",
     "display_order": 140,
+    "variant": "synthetic_high_context",
     "abbreviation": "FGT",
     "primary_meaning": "request for quotation",
     "alternate_plausible_meanings": "radio-frequency quadrupole; request for qualifications",
@@ -1812,6 +1993,7 @@
   {
     "evaluation_id": "HG0182",
     "display_order": 177,
+    "variant": "real_high_context",
     "abbreviation": "RR",
     "primary_meaning": "respiratory rate",
     "alternate_plausible_meanings": "relative risk; railroad",
@@ -1822,6 +2004,7 @@
   {
     "evaluation_id": "HG0183",
     "display_order": 4,
+    "variant": "synthetic_high_context",
     "abbreviation": "JKO",
     "primary_meaning": "paid time off",
     "alternate_plausible_meanings": "power takeoff; parent-teacher organization",
@@ -1832,6 +2015,7 @@
   {
     "evaluation_id": "HG0184",
     "display_order": 198,
+    "variant": "synthetic_high_context",
     "abbreviation": "ORW",
     "primary_meaning": "single sign-on",
     "alternate_plausible_meanings": "standing settlement order; school safety officer",
@@ -1842,6 +2026,7 @@
   {
     "evaluation_id": "HG0185",
     "display_order": 25,
+    "variant": "real_high_context",
     "abbreviation": "BLK",
     "primary_meaning": "blocks",
     "alternate_plausible_meanings": "bulk; black; block device",
@@ -1852,6 +2037,7 @@
   {
     "evaluation_id": "HG0186",
     "display_order": 193,
+    "variant": "real_low_context",
     "abbreviation": "COGS",
     "primary_meaning": "cost of goods sold",
     "alternate_plausible_meanings": "cost of government services; combined operations guidance system",
@@ -1862,6 +2048,7 @@
   {
     "evaluation_id": "HG0187",
     "display_order": 189,
+    "variant": "real_low_context",
     "abbreviation": "MSA",
     "primary_meaning": "master services agreement",
     "alternate_plausible_meanings": "metropolitan statistical area; multiple system atrophy",
@@ -1872,6 +2059,7 @@
   {
     "evaluation_id": "HG0188",
     "display_order": 318,
+    "variant": "real_high_context",
     "abbreviation": "AFAIK",
     "primary_meaning": "as far as I know",
     "alternate_plausible_meanings": "automated fault-analysis integration kit; aviation fuel assessment inspection key",
@@ -1882,6 +2070,7 @@
   {
     "evaluation_id": "HG0189",
     "display_order": 359,
+    "variant": "real_low_context",
     "abbreviation": "ROI",
     "primary_meaning": "return on investment",
     "alternate_plausible_meanings": "region of interest; release of information",
@@ -1892,6 +2081,7 @@
   {
     "evaluation_id": "HG0190",
     "display_order": 204,
+    "variant": "real_high_context",
     "abbreviation": "CB",
     "primary_meaning": "cornerback",
     "alternate_plausible_meanings": "citizens band; circuit breaker",
@@ -1902,6 +2092,7 @@
   {
     "evaluation_id": "HG0191",
     "display_order": 117,
+    "variant": "real_high_context",
     "abbreviation": "QB",
     "primary_meaning": "quarterback",
     "alternate_plausible_meanings": "quick break; Queen's Bench",
@@ -1912,6 +2103,7 @@
   {
     "evaluation_id": "HG0192",
     "display_order": 336,
+    "variant": "real_low_context",
     "abbreviation": "INR",
     "primary_meaning": "international normalized ratio",
     "alternate_plausible_meanings": "Indian rupee currency code; Institute for Nuclear Research",
@@ -1922,6 +2114,7 @@
   {
     "evaluation_id": "HG0193",
     "display_order": 360,
+    "variant": "synthetic_high_context",
     "abbreviation": "ZM",
     "primary_meaning": "blood pressure",
     "alternate_plausible_meanings": "boiling point; business process; breakpoint",
@@ -1932,6 +2125,7 @@
   {
     "evaluation_id": "HG0194",
     "display_order": 194,
+    "variant": "synthetic_high_context",
     "abbreviation": "YUD",
     "primary_meaning": "do it yourself",
     "alternate_plausible_meanings": "digital input yield; design implementation year",
@@ -1942,6 +2136,7 @@
   {
     "evaluation_id": "HG0195",
     "display_order": 299,
+    "variant": "real_high_context",
     "abbreviation": "ADR",
     "primary_meaning": "alternative dispute resolution",
     "alternate_plausible_meanings": "American depositary receipt; adverse drug reaction; average daily rate",
@@ -1952,6 +2147,7 @@
   {
     "evaluation_id": "HG0196",
     "display_order": 309,
+    "variant": "real_high_context",
     "abbreviation": "TCP",
     "primary_meaning": "Transmission Control Protocol",
     "alternate_plausible_meanings": "tricalcium phosphate; technology control plan",
@@ -1962,6 +2158,7 @@
   {
     "evaluation_id": "HG0197",
     "display_order": 66,
+    "variant": "real_high_context",
     "abbreviation": "GAA",
     "primary_meaning": "goals-against average",
     "alternate_plausible_meanings": "General Aviation Administration; gross anatomical area",
@@ -1972,6 +2169,7 @@
   {
     "evaluation_id": "HG0198",
     "display_order": 240,
+    "variant": "real_high_context",
     "abbreviation": "IRR",
     "primary_meaning": "internal rate of return",
     "alternate_plausible_meanings": "incidence rate ratio; infrared reflectance",
@@ -1982,6 +2180,7 @@
   {
     "evaluation_id": "HG0199",
     "display_order": 349,
+    "variant": "real_high_context",
     "abbreviation": "NSFW",
     "primary_meaning": "not safe for work",
     "alternate_plausible_meanings": "network service framework; nonstandard field wiring",
@@ -1992,6 +2191,7 @@
   {
     "evaluation_id": "HG0200",
     "display_order": 217,
+    "variant": "real_low_context",
     "abbreviation": "BRB",
     "primary_meaning": "be right back",
     "alternate_plausible_meanings": "bathroom renovation budget; business recovery baseline",
@@ -2002,6 +2202,7 @@
   {
     "evaluation_id": "HG0201",
     "display_order": 261,
+    "variant": "real_high_context",
     "abbreviation": "AUM",
     "primary_meaning": "assets under management",
     "alternate_plausible_meanings": "automatic utility management; air-units monitoring",
@@ -2012,6 +2213,7 @@
   {
     "evaluation_id": "HG0202",
     "display_order": 357,
+    "variant": "real_low_context",
     "abbreviation": "CPR",
     "primary_meaning": "cardiopulmonary resuscitation",
     "alternate_plausible_meanings": "Canadian Pacific Railway; cost-performance ratio",
@@ -2022,6 +2224,7 @@
   {
     "evaluation_id": "HG0203",
     "display_order": 102,
+    "variant": "synthetic_high_context",
     "abbreviation": "AZP",
     "primary_meaning": "out of office",
     "alternate_plausible_meanings": "out-of-order; object-oriented ontology",
@@ -2032,6 +2235,7 @@
   {
     "evaluation_id": "HG0204",
     "display_order": 285,
+    "variant": "real_low_context",
     "abbreviation": "OR",
     "primary_meaning": "operating room",
     "alternate_plausible_meanings": "odds ratio; Oregon; logical OR",
@@ -2042,6 +2246,7 @@
   {
     "evaluation_id": "HG0205",
     "display_order": 78,
+    "variant": "real_high_context",
     "abbreviation": "VM",
     "primary_meaning": "virtual machine",
     "alternate_plausible_meanings": "voicemail; visual merchandising",
@@ -2052,6 +2257,7 @@
   {
     "evaluation_id": "HG0206",
     "display_order": 29,
+    "variant": "real_low_context",
     "abbreviation": "BFF",
     "primary_meaning": "best friends forever",
     "alternate_plausible_meanings": "binary file format; bulk feed flow",
@@ -2062,6 +2268,7 @@
   {
     "evaluation_id": "HG0207",
     "display_order": 59,
+    "variant": "real_high_context",
     "abbreviation": "IP",
     "primary_meaning": "intellectual property",
     "alternate_plausible_meanings": "internet protocol; inpatient; ingress protection",
@@ -2072,6 +2279,7 @@
   {
     "evaluation_id": "HG0208",
     "display_order": 267,
+    "variant": "synthetic_high_context",
     "abbreviation": "LXW",
     "primary_meaning": "end of day",
     "alternate_plausible_meanings": "explosive ordnance disposal; every other day",
@@ -2082,6 +2290,7 @@
   {
     "evaluation_id": "HG0209",
     "display_order": 83,
+    "variant": "real_low_context",
     "abbreviation": "BUN",
     "primary_meaning": "blood urea nitrogen",
     "alternate_plausible_meanings": "business unit number",
@@ -2092,6 +2301,7 @@
   {
     "evaluation_id": "HG0210",
     "display_order": 264,
+    "variant": "real_low_context",
     "abbreviation": "K",
     "primary_meaning": "potassium",
     "alternate_plausible_meanings": "kelvin; thousand; strikeout",
@@ -2102,6 +2312,7 @@
   {
     "evaluation_id": "HG0211",
     "display_order": 187,
+    "variant": "synthetic_high_context",
     "abbreviation": "FGT",
     "primary_meaning": "request for quotation",
     "alternate_plausible_meanings": "radio-frequency quadrupole; request for qualifications",
@@ -2112,6 +2323,7 @@
   {
     "evaluation_id": "HG0212",
     "display_order": 243,
+    "variant": "real_high_context",
     "abbreviation": "CSR",
     "primary_meaning": "corporate social responsibility",
     "alternate_plausible_meanings": "certificate signing request; customer service representative",
@@ -2122,6 +2334,7 @@
   {
     "evaluation_id": "HG0213",
     "display_order": 9,
+    "variant": "real_high_context",
     "abbreviation": "ICU",
     "primary_meaning": "intensive care unit",
     "alternate_plausible_meanings": "International Christian University; interface control unit",
@@ -2132,6 +2345,7 @@
   {
     "evaluation_id": "HG0214",
     "display_order": 48,
+    "variant": "real_high_context",
     "abbreviation": "NPC",
     "primary_meaning": "non-player character",
     "alternate_plausible_meanings": "National Panhellenic Conference; nuclear pore complex",
@@ -2142,6 +2356,7 @@
   {
     "evaluation_id": "HG0215",
     "display_order": 79,
+    "variant": "real_high_context",
     "abbreviation": "CT",
     "primary_meaning": "computed tomography",
     "alternate_plausible_meanings": "Connecticut; cycle time; current transformer",
@@ -2152,6 +2367,7 @@
   {
     "evaluation_id": "HG0216",
     "display_order": 124,
+    "variant": "real_low_context",
     "abbreviation": "CRP",
     "primary_meaning": "C-reactive protein",
     "alternate_plausible_meanings": "capacity requirements planning; conservation reserve program",
@@ -2162,6 +2378,7 @@
   {
     "evaluation_id": "HG0217",
     "display_order": 258,
+    "variant": "synthetic_high_context",
     "abbreviation": "FMAI",
     "primary_meaning": "greatest of all time",
     "alternate_plausible_meanings": "Galveston Orientation and Amnesia Test",
@@ -2172,6 +2389,7 @@
   {
     "evaluation_id": "HG0218",
     "display_order": 76,
+    "variant": "real_high_context",
     "abbreviation": "GP",
     "primary_meaning": "games played",
     "alternate_plausible_meanings": "general practitioner; gross profit; Gaussian process",
@@ -2182,6 +2400,7 @@
   {
     "evaluation_id": "HG0219",
     "display_order": 352,
+    "variant": "real_high_context",
     "abbreviation": "YOLO",
     "primary_meaning": "you only live once",
     "alternate_plausible_meanings": "yearly operations and logistics overview; youth outdoor leadership organization",
@@ -2192,6 +2411,7 @@
   {
     "evaluation_id": "HG0220",
     "display_order": 260,
+    "variant": "real_low_context",
     "abbreviation": "RSVP",
     "primary_meaning": "Répondez s'il vous plaît (please reply)",
     "alternate_plausible_meanings": "rapid serial visual presentation",
@@ -2202,6 +2422,7 @@
   {
     "evaluation_id": "HG0221",
     "display_order": 203,
+    "variant": "real_high_context",
     "abbreviation": "GPU",
     "primary_meaning": "graphics processing unit",
     "alternate_plausible_meanings": "gas-processing unit; general-purpose unit",
@@ -2212,6 +2433,7 @@
   {
     "evaluation_id": "HG0222",
     "display_order": 22,
+    "variant": "synthetic_high_context",
     "abbreviation": "QZFH",
     "primary_meaning": "in my humble opinion",
     "alternate_plausible_meanings": "integrated medical home office; in-memory hash object",
@@ -2222,6 +2444,7 @@
   {
     "evaluation_id": "HG0223",
     "display_order": 86,
+    "variant": "synthetic_high_context",
     "abbreviation": "XDUD",
     "primary_meaning": "compound annual growth rate",
     "alternate_plausible_meanings": "computer-aided graphical representation; constant annual growth ratio",
@@ -2232,6 +2455,7 @@
   {
     "evaluation_id": "HG0224",
     "display_order": 30,
+    "variant": "synthetic_high_context",
     "abbreviation": "VDZ",
     "primary_meaning": "extract, transform, and load",
     "alternate_plausible_meanings": "estimated time left; electronic toll lane",
@@ -2242,6 +2466,7 @@
   {
     "evaluation_id": "HG0225",
     "display_order": 118,
+    "variant": "real_high_context",
     "abbreviation": "SRE",
     "primary_meaning": "site reliability engineering",
     "alternate_plausible_meanings": "surface-renewable energy; serious reportable event",
@@ -2252,6 +2477,7 @@
   {
     "evaluation_id": "HG0226",
     "display_order": 138,
+    "variant": "synthetic_high_context",
     "abbreviation": "QJS",
     "primary_meaning": "arterial blood gas",
     "alternate_plausible_meanings": "air-battle group; antibody glycoprotein",
@@ -2262,6 +2488,7 @@
   {
     "evaluation_id": "HG0227",
     "display_order": 143,
+    "variant": "real_low_context",
     "abbreviation": "Ab",
     "primary_meaning": "antibody",
     "alternate_plausible_meanings": "abortion; Alberta",
@@ -2272,6 +2499,7 @@
   {
     "evaluation_id": "HG0228",
     "display_order": 220,
+    "variant": "synthetic_high_context",
     "abbreviation": "RFN",
     "primary_meaning": "electroencephalogram",
     "alternate_plausible_meanings": "electroencephalography; European Economic Group",
@@ -2282,6 +2510,7 @@
   {
     "evaluation_id": "HG0229",
     "display_order": 245,
+    "variant": "real_low_context",
     "abbreviation": "RBC",
     "primary_meaning": "red blood cell count",
     "alternate_plausible_meanings": "Royal Bank of Canada; recycling bin code",
@@ -2292,6 +2521,7 @@
   {
     "evaluation_id": "HG0230",
     "display_order": 256,
+    "variant": "synthetic_high_context",
     "abbreviation": "HCB",
     "primary_meaning": "to be announced",
     "alternate_plausible_meanings": "tertiary butyl alcohol; traditional birth attendant",
@@ -2302,6 +2532,7 @@
   {
     "evaluation_id": "HG0231",
     "display_order": 157,
+    "variant": "synthetic_high_context",
     "abbreviation": "HRP",
     "primary_meaning": "field goal in American football",
     "alternate_plausible_meanings": "field goal in basketball; fielding",
@@ -2312,6 +2543,7 @@
   {
     "evaluation_id": "HG0232",
     "display_order": 135,
+    "variant": "synthetic_high_context",
     "abbreviation": "AHE",
     "primary_meaning": "white blood cell count",
     "alternate_plausible_meanings": "World Boxing Council; whole-body counter",
@@ -2322,6 +2554,7 @@
   {
     "evaluation_id": "HG0233",
     "display_order": 7,
+    "variant": "real_low_context",
     "abbreviation": "IRL",
     "primary_meaning": "in real life",
     "alternate_plausible_meanings": "information retrieval language; insulin receptor-like",
@@ -2332,6 +2565,7 @@
   {
     "evaluation_id": "HG0234",
     "display_order": 330,
+    "variant": "synthetic_high_context",
     "abbreviation": "KQJ",
     "primary_meaning": "central nervous system",
     "alternate_plausible_meanings": "clinical nurse specialist; content networking system",
@@ -2342,6 +2576,7 @@
   {
     "evaluation_id": "HG0235",
     "display_order": 65,
+    "variant": "real_low_context",
     "abbreviation": "RBAC",
     "primary_meaning": "role-based access control",
     "alternate_plausible_meanings": "risk-based audit and compliance; regional broadband advisory council",
@@ -2352,6 +2587,7 @@
   {
     "evaluation_id": "HG0236",
     "display_order": 238,
+    "variant": "real_low_context",
     "abbreviation": "EVA",
     "primary_meaning": "economic value added",
     "alternate_plausible_meanings": "extravehicular activity",
@@ -2362,6 +2598,7 @@
   {
     "evaluation_id": "HG0237",
     "display_order": 134,
+    "variant": "real_low_context",
     "abbreviation": "BMI",
     "primary_meaning": "body mass index",
     "alternate_plausible_meanings": "Broadcast Music, Inc.; brain-machine interface",
@@ -2372,6 +2609,7 @@
   {
     "evaluation_id": "HG0238",
     "display_order": 319,
+    "variant": "real_low_context",
     "abbreviation": "CB",
     "primary_meaning": "cornerback",
     "alternate_plausible_meanings": "citizens band; circuit breaker",
@@ -2382,6 +2620,7 @@
   {
     "evaluation_id": "HG0239",
     "display_order": 304,
+    "variant": "real_low_context",
     "abbreviation": "BTW",
     "primary_meaning": "by the way",
     "alternate_plausible_meanings": "back to work; below-the-waterline",
@@ -2392,6 +2631,7 @@
   {
     "evaluation_id": "HG0240",
     "display_order": 91,
+    "variant": "real_high_context",
     "abbreviation": "Tx",
     "primary_meaning": "treatment",
     "alternate_plausible_meanings": "transmit/transmission; transaction",
@@ -2402,6 +2642,7 @@
   {
     "evaluation_id": "HG0241",
     "display_order": 257,
+    "variant": "real_high_context",
     "abbreviation": "AST",
     "primary_meaning": "assist",
     "alternate_plausible_meanings": "aspartate aminotransferase; Atlantic Standard Time",
@@ -2412,6 +2653,7 @@
   {
     "evaluation_id": "HG0242",
     "display_order": 199,
+    "variant": "real_low_context",
     "abbreviation": "DOM",
     "primary_meaning": "Document Object Model",
     "alternate_plausible_meanings": "date of manufacture; days on market",
@@ -2422,6 +2664,7 @@
   {
     "evaluation_id": "HG0243",
     "display_order": 161,
+    "variant": "real_low_context",
     "abbreviation": "TD",
     "primary_meaning": "touchdown",
     "alternate_plausible_meanings": "technical decision; time deposit",
@@ -2432,6 +2675,7 @@
   {
     "evaluation_id": "HG0244",
     "display_order": 178,
+    "variant": "real_low_context",
     "abbreviation": "NGL",
     "primary_meaning": "not gonna lie",
     "alternate_plausible_meanings": "natural gas liquids; next-generation library",
@@ -2442,6 +2686,7 @@
   {
     "evaluation_id": "HG0245",
     "display_order": 155,
+    "variant": "synthetic_high_context",
     "abbreviation": "TPV",
     "primary_meaning": "service-level agreement",
     "alternate_plausible_meanings": "stereolithography; special leave allowance",
@@ -2452,6 +2697,7 @@
   {
     "evaluation_id": "HG0246",
     "display_order": 133,
+    "variant": "synthetic_high_context",
     "abbreviation": "BGB",
     "primary_meaning": "got to go",
     "alternate_plausible_meanings": "good to go; gas turbine generator",
@@ -2462,6 +2708,7 @@
   {
     "evaluation_id": "HG0247",
     "display_order": 16,
+    "variant": "real_high_context",
     "abbreviation": "AED",
     "primary_meaning": "automated external defibrillator",
     "alternate_plausible_meanings": "United Arab Emirates dirham; architecture engineering and design",
@@ -2472,6 +2719,7 @@
   {
     "evaluation_id": "HG0248",
     "display_order": 254,
+    "variant": "synthetic_high_context",
     "abbreviation": "AJC",
     "primary_meaning": "field-goal attempts",
     "alternate_plausible_meanings": "Federal Geographical Area; fuel-gas analyzer",
@@ -2482,6 +2730,7 @@
   {
     "evaluation_id": "HG0249",
     "display_order": 279,
+    "variant": "real_low_context",
     "abbreviation": "SQL",
     "primary_meaning": "Structured Query Language",
     "alternate_plausible_meanings": "service quality level; speech quality laboratory",
@@ -2492,6 +2741,7 @@
   {
     "evaluation_id": "HG0250",
     "display_order": 64,
+    "variant": "synthetic_high_context",
     "abbreviation": "RJJ",
     "primary_meaning": "transition services agreement",
     "alternate_plausible_meanings": "Transportation Security Administration; total surface area",
@@ -2502,6 +2752,7 @@
   {
     "evaluation_id": "HG0251",
     "display_order": 244,
+    "variant": "real_low_context",
     "abbreviation": "OS",
     "primary_meaning": "operating system",
     "alternate_plausible_meanings": "overall survival; Ordnance Survey",
@@ -2512,6 +2763,7 @@
   {
     "evaluation_id": "HG0252",
     "display_order": 50,
+    "variant": "real_high_context",
     "abbreviation": "RBI",
     "primary_meaning": "runs batted in",
     "alternate_plausible_meanings": "Reserve Bank of India; risk-based inspection",
@@ -2522,6 +2774,7 @@
   {
     "evaluation_id": "HG0253",
     "display_order": 305,
+    "variant": "real_low_context",
     "abbreviation": "HR",
     "primary_meaning": "heart rate",
     "alternate_plausible_meanings": "human resources; hazard ratio",
@@ -2532,6 +2785,7 @@
   {
     "evaluation_id": "HG0254",
     "display_order": 87,
+    "variant": "real_low_context",
     "abbreviation": "ORM",
     "primary_meaning": "object-relational mapping",
     "alternate_plausible_meanings": "operational risk management; oral rehydration mixture",
@@ -2542,6 +2796,7 @@
   {
     "evaluation_id": "HG0255",
     "display_order": 159,
+    "variant": "synthetic_high_context",
     "abbreviation": "QZFH",
     "primary_meaning": "in my humble opinion",
     "alternate_plausible_meanings": "integrated medical home office; in-memory hash object",
@@ -2552,6 +2807,7 @@
   {
     "evaluation_id": "HG0256",
     "display_order": 11,
+    "variant": "synthetic_high_context",
     "abbreviation": "sX",
     "primary_meaning": "expected goals",
     "alternate_plausible_meanings": "extra gain; cross-gradient",
@@ -2562,6 +2818,7 @@
   {
     "evaluation_id": "HG0257",
     "display_order": 103,
+    "variant": "real_high_context",
     "abbreviation": "EVA",
     "primary_meaning": "economic value added",
     "alternate_plausible_meanings": "extravehicular activity",
@@ -2572,6 +2829,7 @@
   {
     "evaluation_id": "HG0258",
     "display_order": 169,
+    "variant": "real_high_context",
     "abbreviation": "M&A",
     "primary_meaning": "mergers and acquisitions",
     "alternate_plausible_meanings": "maintenance and administration; measurement and analysis",
@@ -2582,6 +2840,7 @@
   {
     "evaluation_id": "HG0259",
     "display_order": 162,
+    "variant": "real_low_context",
     "abbreviation": "RR",
     "primary_meaning": "respiratory rate",
     "alternate_plausible_meanings": "relative risk; railroad",
@@ -2592,6 +2851,7 @@
   {
     "evaluation_id": "HG0260",
     "display_order": 181,
+    "variant": "real_low_context",
     "abbreviation": "DNF",
     "primary_meaning": "did not finish",
     "alternate_plausible_meanings": "dynamic noise filtering; designated nonfinancial factor",
@@ -2602,6 +2862,7 @@
   {
     "evaluation_id": "HG0261",
     "display_order": 300,
+    "variant": "real_low_context",
     "abbreviation": "AUM",
     "primary_meaning": "assets under management",
     "alternate_plausible_meanings": "automatic utility management; air-units monitoring",
@@ -2612,6 +2873,7 @@
   {
     "evaluation_id": "HG0262",
     "display_order": 77,
+    "variant": "synthetic_high_context",
     "abbreviation": "JHO",
     "primary_meaning": "cardiopulmonary resuscitation",
     "alternate_plausible_meanings": "Canadian Pacific Railway; cost-performance ratio",
@@ -2622,6 +2884,7 @@
   {
     "evaluation_id": "HG0263",
     "display_order": 20,
+    "variant": "synthetic_high_context",
     "abbreviation": "GJ",
     "primary_meaning": "JavaScript",
     "alternate_plausible_meanings": "joint statement; job satisfaction",
@@ -2632,6 +2895,7 @@
   {
     "evaluation_id": "HG0264",
     "display_order": 321,
+    "variant": "real_high_context",
     "abbreviation": "SSH",
     "primary_meaning": "Secure Shell",
     "alternate_plausible_meanings": "somatostatin; social sciences and humanities",
@@ -2642,6 +2906,7 @@
   {
     "evaluation_id": "HG0265",
     "display_order": 317,
+    "variant": "synthetic_high_context",
     "abbreviation": "ZC",
     "primary_meaning": "games played",
     "alternate_plausible_meanings": "general practitioner; gross profit; Gaussian process",
@@ -2652,6 +2917,7 @@
   {
     "evaluation_id": "HG0266",
     "display_order": 215,
+    "variant": "synthetic_high_context",
     "abbreviation": "TLL",
     "primary_meaning": "terms of service",
     "alternate_plausible_meanings": "thoracic outlet syndrome; top of stack",
@@ -2662,6 +2928,7 @@
   {
     "evaluation_id": "HG0267",
     "display_order": 171,
+    "variant": "real_low_context",
     "abbreviation": "PEG",
     "primary_meaning": "price-to-earnings-to-growth ratio",
     "alternate_plausible_meanings": "polyethylene glycol",
@@ -2672,6 +2939,7 @@
   {
     "evaluation_id": "HG0268",
     "display_order": 153,
+    "variant": "synthetic_high_context",
     "abbreviation": "DHN",
     "primary_meaning": "automated external defibrillator",
     "alternate_plausible_meanings": "United Arab Emirates dirham; architecture engineering and design",
@@ -2682,6 +2950,7 @@
   {
     "evaluation_id": "HG0269",
     "display_order": 290,
+    "variant": "synthetic_high_context",
     "abbreviation": "TZP",
     "primary_meaning": "to be honest",
     "alternate_plausible_meanings": "total body height; trusted business host",
@@ -2692,6 +2961,7 @@
   {
     "evaluation_id": "HG0270",
     "display_order": 348,
+    "variant": "synthetic_high_context",
     "abbreviation": "FQG",
     "primary_meaning": "JSON Web Token",
     "alternate_plausible_meanings": "joint working team; juvenile wellness tribunal",
@@ -2702,6 +2972,7 @@
   {
     "evaluation_id": "HG0271",
     "display_order": 127,
+    "variant": "real_low_context",
     "abbreviation": "GPU",
     "primary_meaning": "graphics processing unit",
     "alternate_plausible_meanings": "gas-processing unit; general-purpose unit",
@@ -2712,6 +2983,7 @@
   {
     "evaluation_id": "HG0272",
     "display_order": 214,
+    "variant": "real_high_context",
     "abbreviation": "IKR",
     "primary_meaning": "I know, right?",
     "alternate_plausible_meanings": "inhibitor constant ratio; integrated knowledge repository",
@@ -2722,6 +2994,7 @@
   {
     "evaluation_id": "HG0273",
     "display_order": 60,
+    "variant": "real_high_context",
     "abbreviation": "SOAP",
     "primary_meaning": "Simple Object Access Protocol",
     "alternate_plausible_meanings": "subjective, objective, assessment, and plan",
@@ -2732,6 +3005,7 @@
   {
     "evaluation_id": "HG0274",
     "display_order": 19,
+    "variant": "real_low_context",
     "abbreviation": "PE",
     "primary_meaning": "private equity",
     "alternate_plausible_meanings": "physical education; professional engineer; price elasticity",
@@ -2742,6 +3016,7 @@
   {
     "evaluation_id": "HG0275",
     "display_order": 24,
+    "variant": "real_low_context",
     "abbreviation": "TE",
     "primary_meaning": "tight end",
     "alternate_plausible_meanings": "transverse electric; toxic epidermal necrolysis",
@@ -2752,6 +3027,7 @@
   {
     "evaluation_id": "HG0276",
     "display_order": 353,
+    "variant": "real_high_context",
     "abbreviation": "PCP",
     "primary_meaning": "primary care provider",
     "alternate_plausible_meanings": "phencyclidine; Pneumocystis pneumonia",
@@ -2762,6 +3038,7 @@
   {
     "evaluation_id": "HG0277",
     "display_order": 288,
+    "variant": "real_high_context",
     "abbreviation": "WFO",
     "primary_meaning": "work from office",
     "alternate_plausible_meanings": "waterflood operations; wide-field observation",
@@ -2772,6 +3049,7 @@
   {
     "evaluation_id": "HG0278",
     "display_order": 241,
+    "variant": "real_high_context",
     "abbreviation": "DNR",
     "primary_meaning": "do-not-resuscitate order",
     "alternate_plausible_meanings": "Department of Natural Resources; did not return",
@@ -2782,6 +3060,7 @@
   {
     "evaluation_id": "HG0279",
     "display_order": 294,
+    "variant": "synthetic_high_context",
     "abbreviation": "HN",
     "primary_meaning": "quality assurance",
     "alternate_plausible_meanings": "question answering; quantitative analysis",
@@ -2792,6 +3071,7 @@
   {
     "evaluation_id": "HG0280",
     "display_order": 266,
+    "variant": "real_high_context",
     "abbreviation": "Bx",
     "primary_meaning": "biopsy",
     "alternate_plausible_meanings": "Branch and Exchange instruction set",
@@ -2802,6 +3082,7 @@
   {
     "evaluation_id": "HG0281",
     "display_order": 272,
+    "variant": "real_low_context",
     "abbreviation": "RSVP",
     "primary_meaning": "Répondez s'il vous plaît (please reply)",
     "alternate_plausible_meanings": "rapid serial visual presentation",
@@ -2812,6 +3093,7 @@
   {
     "evaluation_id": "HG0282",
     "display_order": 324,
+    "variant": "synthetic_high_context",
     "abbreviation": "TZAN",
     "primary_meaning": "operating expenditures",
     "alternate_plausible_meanings": "operational exercise; orbital payload experiment",
@@ -2822,6 +3104,7 @@
   {
     "evaluation_id": "HG0283",
     "display_order": 286,
+    "variant": "real_low_context",
     "abbreviation": "VAR",
     "primary_meaning": "video assistant referee",
     "alternate_plausible_meanings": "value at risk; vector autoregression; variance",
@@ -2832,6 +3115,7 @@
   {
     "evaluation_id": "HG0284",
     "display_order": 179,
+    "variant": "real_low_context",
     "abbreviation": "MoM",
     "primary_meaning": "month over month",
     "alternate_plausible_meanings": "multiples of the median; message-oriented middleware",
@@ -2842,6 +3126,7 @@
   {
     "evaluation_id": "HG0285",
     "display_order": 31,
+    "variant": "real_high_context",
     "abbreviation": "GU",
     "primary_meaning": "genitourinary",
     "alternate_plausible_meanings": "Guam; Griffith University; general use",
@@ -2852,6 +3137,7 @@
   {
     "evaluation_id": "HG0286",
     "display_order": 107,
+    "variant": "real_high_context",
     "abbreviation": "ML",
     "primary_meaning": "machine learning",
     "alternate_plausible_meanings": "milliliter, normally written mL; markup language",
@@ -2862,6 +3148,7 @@
   {
     "evaluation_id": "HG0287",
     "display_order": 334,
+    "variant": "synthetic_high_context",
     "abbreviation": "Yq",
     "primary_meaning": "prescription",
     "alternate_plausible_meanings": "receiver; receive; reactor",
@@ -2872,6 +3159,7 @@
   {
     "evaluation_id": "HG0288",
     "display_order": 56,
+    "variant": "real_low_context",
     "abbreviation": "FIFO",
     "primary_meaning": "first in, first out",
     "alternate_plausible_meanings": "fly-in, fly-out",
@@ -2882,6 +3170,7 @@
   {
     "evaluation_id": "HG0289",
     "display_order": 249,
+    "variant": "real_low_context",
     "abbreviation": "GOAT",
     "primary_meaning": "greatest of all time",
     "alternate_plausible_meanings": "Galveston Orientation and Amnesia Test",
@@ -2892,6 +3181,7 @@
   {
     "evaluation_id": "HG0290",
     "display_order": 100,
+    "variant": "real_high_context",
     "abbreviation": "3PT",
     "primary_meaning": "three-point field goal",
     "alternate_plausible_meanings": "three-part test; third-party transaction",
@@ -2902,6 +3192,7 @@
   {
     "evaluation_id": "HG0291",
     "display_order": 282,
+    "variant": "synthetic_high_context",
     "abbreviation": "QW",
     "primary_meaning": "wide receiver",
     "alternate_plausible_meanings": "world record; win rate",
@@ -2912,6 +3203,7 @@
   {
     "evaluation_id": "HG0292",
     "display_order": 151,
+    "variant": "real_low_context",
     "abbreviation": "PSA",
     "primary_meaning": "public service announcement",
     "alternate_plausible_meanings": "prostate-specific antigen; pressure swing adsorption",
@@ -2922,6 +3214,7 @@
   {
     "evaluation_id": "HG0293",
     "display_order": 17,
+    "variant": "synthetic_high_context",
     "abbreviation": "PQH",
     "primary_meaning": "on-base percentage",
     "alternate_plausible_meanings": "ocean-bottom pressure; organizational business process",
@@ -2932,6 +3225,7 @@
   {
     "evaluation_id": "HG0294",
     "display_order": 188,
+    "variant": "real_low_context",
     "abbreviation": "ACL",
     "primary_meaning": "access control list",
     "alternate_plausible_meanings": "anterior cruciate ligament; Association for Computational Linguistics",
@@ -2942,6 +3236,7 @@
   {
     "evaluation_id": "HG0295",
     "display_order": 110,
+    "variant": "synthetic_high_context",
     "abbreviation": "TZAN",
     "primary_meaning": "operating expenditures",
     "alternate_plausible_meanings": "operational exercise; orbital payload experiment",
@@ -2952,6 +3247,7 @@
   {
     "evaluation_id": "HG0296",
     "display_order": 73,
+    "variant": "real_high_context",
     "abbreviation": "SRE",
     "primary_meaning": "site reliability engineering",
     "alternate_plausible_meanings": "surface-renewable energy; serious reportable event",
@@ -2962,6 +3258,7 @@
   {
     "evaluation_id": "HG0297",
     "display_order": 163,
+    "variant": "synthetic_high_context",
     "abbreviation": "MZ",
     "primary_meaning": "knockout",
     "alternate_plausible_meanings": "keep open; knowledge object",
@@ -2972,6 +3269,7 @@
   {
     "evaluation_id": "HG0298",
     "display_order": 333,
+    "variant": "real_low_context",
     "abbreviation": "SC",
     "primary_meaning": "subcutaneous",
     "alternate_plausible_meanings": "South Carolina; supply chain; Supreme Court",
@@ -2982,6 +3280,7 @@
   {
     "evaluation_id": "HG0299",
     "display_order": 111,
+    "variant": "real_low_context",
     "abbreviation": "PTO",
     "primary_meaning": "paid time off",
     "alternate_plausible_meanings": "power takeoff; parent-teacher organization",
@@ -2992,6 +3291,7 @@
   {
     "evaluation_id": "HG0300",
     "display_order": 180,
+    "variant": "real_high_context",
     "abbreviation": "FT",
     "primary_meaning": "free throw",
     "alternate_plausible_meanings": "full-time; feet; final time",
@@ -3002,6 +3302,7 @@
   {
     "evaluation_id": "HG0301",
     "display_order": 37,
+    "variant": "synthetic_high_context",
     "abbreviation": "OYZ",
     "primary_meaning": "on-base plus slugging",
     "alternate_plausible_meanings": "operations; optical power sensor",
@@ -3012,6 +3313,7 @@
   {
     "evaluation_id": "HG0302",
     "display_order": 216,
+    "variant": "real_high_context",
     "abbreviation": "EPS",
     "primary_meaning": "earnings per share",
     "alternate_plausible_meanings": "encapsulated PostScript; emergency power supply",
@@ -3022,6 +3324,7 @@
   {
     "evaluation_id": "HG0303",
     "display_order": 344,
+    "variant": "synthetic_high_context",
     "abbreviation": "NNJT",
     "primary_meaning": "HyperText Markup Language",
     "alternate_plausible_meanings": "high-temperature materials laboratory; human tissue matching level",
@@ -3032,6 +3335,7 @@
   {
     "evaluation_id": "HG0304",
     "display_order": 8,
+    "variant": "real_high_context",
     "abbreviation": "SCK",
     "primary_meaning": "sack",
     "alternate_plausible_meanings": "starter check; stock-keeping code",
@@ -3042,6 +3346,7 @@
   {
     "evaluation_id": "HG0305",
     "display_order": 132,
+    "variant": "real_low_context",
     "abbreviation": "OPS",
     "primary_meaning": "on-base plus slugging",
     "alternate_plausible_meanings": "operations; optical power sensor",
@@ -3052,6 +3357,7 @@
   {
     "evaluation_id": "HG0306",
     "display_order": 239,
+    "variant": "synthetic_high_context",
     "abbreviation": "FJ",
     "primary_meaning": "stolen base",
     "alternate_plausible_meanings": "small business; Senate bill; storyboard",
@@ -3062,6 +3368,7 @@
   {
     "evaluation_id": "HG0307",
     "display_order": 307,
+    "variant": "real_low_context",
     "abbreviation": "NP",
     "primary_meaning": "nurse practitioner",
     "alternate_plausible_meanings": "nondeterministic polynomial time; net profit; noun phrase",
@@ -3072,6 +3379,7 @@
   {
     "evaluation_id": "HG0308",
     "display_order": 341,
+    "variant": "synthetic_high_context",
     "abbreviation": "PNX",
     "primary_meaning": "memorandum of understanding",
     "alternate_plausible_meanings": "mobile offshore unit; minutes of use",
@@ -3082,6 +3390,7 @@
   {
     "evaluation_id": "HG0309",
     "display_order": 302,
+    "variant": "real_high_context",
     "abbreviation": "PCP",
     "primary_meaning": "primary care provider",
     "alternate_plausible_meanings": "phencyclidine; Pneumocystis pneumonia",
@@ -3092,6 +3401,7 @@
   {
     "evaluation_id": "HG0310",
     "display_order": 123,
+    "variant": "real_high_context",
     "abbreviation": "ECG",
     "primary_meaning": "electrocardiogram",
     "alternate_plausible_meanings": "electrochemical grinding",
@@ -3102,6 +3412,7 @@
   {
     "evaluation_id": "HG0311",
     "display_order": 315,
+    "variant": "real_low_context",
     "abbreviation": "DM",
     "primary_meaning": "direct message",
     "alternate_plausible_meanings": "Dungeon Master; diabetes mellitus; defensive midfielder",
@@ -3112,6 +3423,7 @@
   {
     "evaluation_id": "HG0312",
     "display_order": 54,
+    "variant": "synthetic_high_context",
     "abbreviation": "ASLI",
     "primary_meaning": "talk to you later",
     "alternate_plausible_meanings": "time-to-yield limit; tactical training year log",
@@ -3122,6 +3434,7 @@
   {
     "evaluation_id": "HG0313",
     "display_order": 172,
+    "variant": "real_low_context",
     "abbreviation": "xG",
     "primary_meaning": "expected goals",
     "alternate_plausible_meanings": "extra gain; cross-gradient",
@@ -3132,6 +3445,7 @@
   {
     "evaluation_id": "HG0314",
     "display_order": 96,
+    "variant": "real_high_context",
     "abbreviation": "AUM",
     "primary_meaning": "assets under management",
     "alternate_plausible_meanings": "automatic utility management; air-units monitoring",
@@ -3142,6 +3456,7 @@
   {
     "evaluation_id": "HG0315",
     "display_order": 10,
+    "variant": "real_low_context",
     "abbreviation": "POA",
     "primary_meaning": "power of attorney",
     "alternate_plausible_meanings": "present on admission; plan of action; price on application",
@@ -3152,6 +3467,7 @@
   {
     "evaluation_id": "HG0316",
     "display_order": 36,
+    "variant": "synthetic_high_context",
     "abbreviation": "MZF",
     "primary_meaning": "Domain Name System",
     "alternate_plausible_meanings": "did not start; Director of Nursing Services",
@@ -3162,6 +3478,7 @@
   {
     "evaluation_id": "HG0317",
     "display_order": 120,
+    "variant": "synthetic_high_context",
     "abbreviation": "SY",
     "primary_meaning": "public relations",
     "alternate_plausible_meanings": "personal record; pull request; pulse rate",
@@ -3172,6 +3489,7 @@
   {
     "evaluation_id": "HG0318",
     "display_order": 339,
+    "variant": "real_high_context",
     "abbreviation": "AFK",
     "primary_meaning": "away from keyboard",
     "alternate_plausible_meanings": "airfield kit; alpha-fetoprotein kinase",
@@ -3182,6 +3500,7 @@
   {
     "evaluation_id": "HG0319",
     "display_order": 139,
+    "variant": "real_high_context",
     "abbreviation": "HBP",
     "primary_meaning": "hit by pitch",
     "alternate_plausible_meanings": "high blood pressure; heat-balance point",
@@ -3192,6 +3511,7 @@
   {
     "evaluation_id": "HG0320",
     "display_order": 67,
+    "variant": "real_low_context",
     "abbreviation": "ICU",
     "primary_meaning": "intensive care unit",
     "alternate_plausible_meanings": "International Christian University; interface control unit",
@@ -3202,6 +3522,7 @@
   {
     "evaluation_id": "HG0321",
     "display_order": 53,
+    "variant": "real_low_context",
     "abbreviation": "PF",
     "primary_meaning": "personal fouls",
     "alternate_plausible_meanings": "power factor; provident fund; pitcher fielding",
@@ -3212,6 +3533,7 @@
   {
     "evaluation_id": "HG0322",
     "display_order": 116,
+    "variant": "synthetic_high_context",
     "abbreviation": "NUW",
     "primary_meaning": "primary care provider",
     "alternate_plausible_meanings": "phencyclidine; Pneumocystis pneumonia",
@@ -3222,6 +3544,7 @@
   {
     "evaluation_id": "HG0323",
     "display_order": 222,
+    "variant": "real_low_context",
     "abbreviation": "RSVP",
     "primary_meaning": "Répondez s'il vous plaît (please reply)",
     "alternate_plausible_meanings": "rapid serial visual presentation",
@@ -3232,6 +3555,7 @@
   {
     "evaluation_id": "HG0324",
     "display_order": 340,
+    "variant": "synthetic_high_context",
     "abbreviation": "UY",
     "primary_meaning": "prothrombin time",
     "alternate_plausible_meanings": "physical therapy; patient; part-time",
@@ -3242,6 +3566,7 @@
   {
     "evaluation_id": "HG0325",
     "display_order": 342,
+    "variant": "real_high_context",
     "abbreviation": "WHIP",
     "primary_meaning": "walks plus hits per inning pitched",
     "alternate_plausible_meanings": "Wildlife Habitat Incentives Program",
@@ -3252,6 +3577,7 @@
   {
     "evaluation_id": "HG0326",
     "display_order": 223,
+    "variant": "real_high_context",
     "abbreviation": "BFF",
     "primary_meaning": "best friends forever",
     "alternate_plausible_meanings": "binary file format; bulk feed flow",
@@ -3262,6 +3588,7 @@
   {
     "evaluation_id": "HG0327",
     "display_order": 236,
+    "variant": "real_low_context",
     "abbreviation": "Inc.",
     "primary_meaning": "incorporated",
     "alternate_plausible_meanings": "including; incomplete",
@@ -3272,6 +3599,7 @@
   {
     "evaluation_id": "HG0328",
     "display_order": 28,
+    "variant": "real_low_context",
     "abbreviation": "URI",
     "primary_meaning": "upper respiratory infection",
     "alternate_plausible_meanings": "uniform resource identifier; University of Rhode Island",
@@ -3282,6 +3610,7 @@
   {
     "evaluation_id": "HG0329",
     "display_order": 283,
+    "variant": "synthetic_high_context",
     "abbreviation": "LHU",
     "primary_meaning": "alternative dispute resolution",
     "alternate_plausible_meanings": "American depositary receipt; adverse drug reaction; average daily rate",
@@ -3292,6 +3621,7 @@
   {
     "evaluation_id": "HG0330",
     "display_order": 182,
+    "variant": "real_high_context",
     "abbreviation": "OOO",
     "primary_meaning": "out of office",
     "alternate_plausible_meanings": "out-of-order; object-oriented ontology",
@@ -3302,6 +3632,7 @@
   {
     "evaluation_id": "HG0331",
     "display_order": 160,
+    "variant": "synthetic_high_context",
     "abbreviation": "LBA",
     "primary_meaning": "earned run average",
     "alternate_plausible_meanings": "Equal Rights Amendment; electronic research administration",
@@ -3312,6 +3643,7 @@
   {
     "evaluation_id": "HG0332",
     "display_order": 289,
+    "variant": "synthetic_high_context",
     "abbreviation": "DY",
     "primary_meaning": "medical doctor",
     "alternate_plausible_meanings": "Maryland; managing director; markdown",
@@ -3322,6 +3654,7 @@
   {
     "evaluation_id": "HG0333",
     "display_order": 291,
+    "variant": "synthetic_high_context",
     "abbreviation": "CEAU",
     "primary_meaning": "weighted average cost of capital",
     "alternate_plausible_meanings": "writing across the curriculum committee",
@@ -3332,6 +3665,7 @@
   {
     "evaluation_id": "HG0334",
     "display_order": 265,
+    "variant": "real_low_context",
     "abbreviation": "BB",
     "primary_meaning": "base on balls",
     "alternate_plausible_meanings": "bulletin board; broadband; Bachelor of Business",
@@ -3342,6 +3676,7 @@
   {
     "evaluation_id": "HG0335",
     "display_order": 58,
+    "variant": "real_high_context",
     "abbreviation": "EPS",
     "primary_meaning": "earnings per share",
     "alternate_plausible_meanings": "encapsulated PostScript; emergency power supply",
@@ -3352,6 +3687,7 @@
   {
     "evaluation_id": "HG0336",
     "display_order": 332,
+    "variant": "synthetic_high_context",
     "abbreviation": "ZJT",
     "primary_meaning": "fielding independent pitching",
     "alternate_plausible_meanings": "feline infectious peritonitis",
@@ -3362,6 +3698,7 @@
   {
     "evaluation_id": "HG0337",
     "display_order": 5,
+    "variant": "synthetic_high_context",
     "abbreviation": "SZP",
     "primary_meaning": "did not finish",
     "alternate_plausible_meanings": "dynamic noise filtering; designated nonfinancial factor",
@@ -3372,6 +3709,7 @@
   {
     "evaluation_id": "HG0338",
     "display_order": 84,
+    "variant": "synthetic_high_context",
     "abbreviation": "OUM",
     "primary_meaning": "Secure Sockets Layer",
     "alternate_plausible_meanings": "solid-state lighting; space sciences laboratory",
@@ -3382,6 +3720,7 @@
   {
     "evaluation_id": "HG0339",
     "display_order": 13,
+    "variant": "real_low_context",
     "abbreviation": "DNP",
     "primary_meaning": "did not play",
     "alternate_plausible_meanings": "Doctor of Nursing Practice; deoxyribonucleoprotein",
@@ -3392,6 +3731,7 @@
   {
     "evaluation_id": "HG0340",
     "display_order": 313,
+    "variant": "synthetic_high_context",
     "abbreviation": "FQ",
     "primary_meaning": "original poster",
     "alternate_plausible_meanings": "overpowered; original post; operating point",
@@ -3402,6 +3742,7 @@
   {
     "evaluation_id": "HG0341",
     "display_order": 137,
+    "variant": "real_low_context",
     "abbreviation": "Inc.",
     "primary_meaning": "incorporated",
     "alternate_plausible_meanings": "including; incomplete",
@@ -3412,6 +3753,7 @@
   {
     "evaluation_id": "HG0342",
     "display_order": 131,
+    "variant": "synthetic_high_context",
     "abbreviation": "GYDU",
     "primary_meaning": "for what it's worth",
     "alternate_plausible_meanings": "finished work in warehouse; field water-injection well",
@@ -3422,6 +3764,7 @@
   {
     "evaluation_id": "HG0343",
     "display_order": 105,
+    "variant": "real_high_context",
     "abbreviation": "FGA",
     "primary_meaning": "field-goal attempts",
     "alternate_plausible_meanings": "Federal Geographical Area; fuel-gas analyzer",
@@ -3432,6 +3775,7 @@
   {
     "evaluation_id": "HG0344",
     "display_order": 147,
+    "variant": "synthetic_high_context",
     "abbreviation": "ZJT",
     "primary_meaning": "fielding independent pitching",
     "alternate_plausible_meanings": "feline infectious peritonitis",
@@ -3442,6 +3786,7 @@
   {
     "evaluation_id": "HG0345",
     "display_order": 113,
+    "variant": "synthetic_high_context",
     "abbreviation": "Qj",
     "primary_meaning": "antibody",
     "alternate_plausible_meanings": "abortion; Alberta",
@@ -3452,6 +3797,7 @@
   {
     "evaluation_id": "HG0346",
     "display_order": 173,
+    "variant": "synthetic_high_context",
     "abbreviation": "GYDU",
     "primary_meaning": "for what it's worth",
     "alternate_plausible_meanings": "finished work in warehouse; field water-injection well",
@@ -3462,6 +3808,7 @@
   {
     "evaluation_id": "HG0347",
     "display_order": 128,
+    "variant": "synthetic_high_context",
     "abbreviation": "YXV",
     "primary_meaning": "site reliability engineering",
     "alternate_plausible_meanings": "surface-renewable energy; serious reportable event",
@@ -3472,6 +3819,7 @@
   {
     "evaluation_id": "HG0348",
     "display_order": 192,
+    "variant": "real_high_context",
     "abbreviation": "TS",
     "primary_meaning": "TypeScript",
     "alternate_plausible_meanings": "technical specification; timestamp; Tourette syndrome",
@@ -3482,6 +3830,7 @@
   {
     "evaluation_id": "HG0349",
     "display_order": 69,
+    "variant": "real_low_context",
     "abbreviation": "PSA",
     "primary_meaning": "public service announcement",
     "alternate_plausible_meanings": "prostate-specific antigen; pressure swing adsorption",
@@ -3492,6 +3841,7 @@
   {
     "evaluation_id": "HG0350",
     "display_order": 81,
+    "variant": "real_high_context",
     "abbreviation": "HTTPS",
     "primary_meaning": "Hypertext Transfer Protocol Secure",
     "alternate_plausible_meanings": "high-efficiency thermal protection system; health privacy service",
@@ -3502,6 +3852,7 @@
   {
     "evaluation_id": "HG0351",
     "display_order": 68,
+    "variant": "real_high_context",
     "abbreviation": "ETL",
     "primary_meaning": "extract, transform, and load",
     "alternate_plausible_meanings": "estimated time left; electronic toll lane",
@@ -3512,6 +3863,7 @@
   {
     "evaluation_id": "HG0352",
     "display_order": 338,
+    "variant": "real_high_context",
     "abbreviation": "IDK",
     "primary_meaning": "I don't know",
     "alternate_plausible_meanings": "integrated development kit; identity key",
@@ -3522,6 +3874,7 @@
   {
     "evaluation_id": "HG0353",
     "display_order": 224,
+    "variant": "synthetic_high_context",
     "abbreviation": "EEB",
     "primary_meaning": "my face when",
     "alternate_plausible_meanings": "municipal fresh water; maximum forward weight",
@@ -3532,6 +3885,7 @@
   {
     "evaluation_id": "HG0354",
     "display_order": 275,
+    "variant": "real_high_context",
     "abbreviation": "CSF",
     "primary_meaning": "cerebrospinal fluid",
     "alternate_plausible_meanings": "critical success factor; colony-stimulating factor",
@@ -3542,6 +3896,7 @@
   {
     "evaluation_id": "HG0355",
     "display_order": 201,
+    "variant": "synthetic_high_context",
     "abbreviation": "YqJ",
     "primary_meaning": "month over month",
     "alternate_plausible_meanings": "multiples of the median; message-oriented middleware",
@@ -3552,6 +3907,7 @@
   {
     "evaluation_id": "HG0356",
     "display_order": 89,
+    "variant": "synthetic_high_context",
     "abbreviation": "RQGZ",
     "primary_meaning": "not safe for work",
     "alternate_plausible_meanings": "network service framework; nonstandard field wiring",
@@ -3562,6 +3918,7 @@
   {
     "evaluation_id": "HG0357",
     "display_order": 328,
+    "variant": "real_high_context",
     "abbreviation": "HTTPS",
     "primary_meaning": "Hypertext Transfer Protocol Secure",
     "alternate_plausible_meanings": "high-efficiency thermal protection system; health privacy service",
@@ -3572,6 +3929,7 @@
   {
     "evaluation_id": "HG0358",
     "display_order": 45,
+    "variant": "real_low_context",
     "abbreviation": "FWIW",
     "primary_meaning": "for what it's worth",
     "alternate_plausible_meanings": "finished work in warehouse; field water-injection well",
@@ -3582,6 +3940,7 @@
   {
     "evaluation_id": "HG0359",
     "display_order": 99,
+    "variant": "real_high_context",
     "abbreviation": "DevOps",
     "primary_meaning": "development and operations",
     "alternate_plausible_meanings": "device operations; developmental options",
@@ -3592,6 +3951,7 @@
   {
     "evaluation_id": "HG0360",
     "display_order": 326,
+    "variant": "real_high_context",
     "abbreviation": "PO",
     "primary_meaning": "purchase order",
     "alternate_plausible_meanings": "petty officer; post office; probation officer",

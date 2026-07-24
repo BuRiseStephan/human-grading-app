@@ -10,13 +10,21 @@ import fs from "node:fs";
 
 const c = createClient({ url: process.env.TURSO_DATABASE_URL, authToken: process.env.TURSO_AUTH_TOKEN });
 
-const before = (await c.execute("SELECT COUNT(*) n FROM gradings")).rows[0].n;
-console.log("old gradings before wipe:", Number(before));
-
+// Drop the old-schema grading tables so the app recreates them with the current
+// (V3) columns. Safe because this is a full reset with no grading to preserve.
 await c.batch(
   [
-    "DELETE FROM gradings",
-    "DELETE FROM grader_status",
+    "DROP TABLE IF EXISTS gradings",
+    "DROP TABLE IF EXISTS grader_status",
+    `CREATE TABLE gradings (
+       evaluation_id TEXT NOT NULL, grader TEXT NOT NULL CHECK (grader IN ('A','B')),
+       accuracy_score INTEGER CHECK (accuracy_score IN (0,1,2)),
+       clarification_score INTEGER CHECK (clarification_score IN (0,1,2)),
+       hallucination_score INTEGER CHECK (hallucination_score IN (0,1,2)),
+       notes TEXT NOT NULL DEFAULT '', created_at TEXT NOT NULL, updated_at TEXT NOT NULL,
+       PRIMARY KEY (evaluation_id, grader))`,
+    `CREATE TABLE grader_status (
+       grader TEXT PRIMARY KEY CHECK (grader IN ('A','B')), started_at TEXT, completed_at TEXT)`,
     "CREATE TABLE IF NOT EXISTS key_blob (csv TEXT NOT NULL)",
     "DELETE FROM key_blob",
   ],

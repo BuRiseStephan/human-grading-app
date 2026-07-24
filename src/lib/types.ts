@@ -6,13 +6,28 @@ export function isGrader(value: unknown): value is Grader {
   return value === "A" || value === "B";
 }
 
+export const VARIANTS = [
+  "real_low_context",
+  "real_high_context",
+  "synthetic_high_context",
+] as const;
+export type Variant = (typeof VARIANTS)[number];
+
+/** Human-readable condition label shown to graders. */
+export const VARIANT_LABELS: Record<string, string> = {
+  real_low_context: "Real abbreviation · low context",
+  real_high_context: "Real abbreviation · high context",
+  synthetic_high_context: "Synthetic sequence · high context",
+};
+
 /**
- * Exactly the fields a grader is allowed to see. Mirrors build_sample.py.
- * Both graders grade every item, in one shared randomized order.
+ * Exactly the fields a grader sees. The condition (variant) IS shown in V3
+ * because the scoring rules depend on it. Model identity stays hidden.
  */
 export interface BlindedItem {
   evaluation_id: string;
   display_order: number;
+  variant: string;
   abbreviation: string;
   primary_meaning: string;
   alternate_plausible_meanings: string;
@@ -24,14 +39,12 @@ export interface BlindedItem {
 export interface Grading {
   evaluation_id: string;
   grader: Grader;
-  /** 1-4, or null for a full-form control that contains no abbreviation. */
-  abbreviation_accuracy_score: number | null;
-  final_answer_accuracy_score: number | null;
-  clarification_appropriate: number | null;
-  asked_for_clarification: number | null;
-  unsupported_assumption: number | null;
-  overconfident_wrong: number | null;
-  hallucinated_detail: number | null;
+  /** 0-2, scored on every item. */
+  accuracy_score: number | null;
+  /** 0-2, only on real_low_context items. */
+  clarification_score: number | null;
+  /** 0-2, only on synthetic_high_context items. */
+  hallucination_score: number | null;
   notes: string;
   updated_at: string;
 }
@@ -42,22 +55,23 @@ export interface GraderStatus {
   completed_at: string | null;
 }
 
-/** A grading counts as done only when every required field has a value. */
-export const REQUIRED_FIELDS = [
-  "final_answer_accuracy_score",
-  "clarification_appropriate",
-  "asked_for_clarification",
-  "unsupported_assumption",
-  "overconfident_wrong",
-  "hallucinated_detail",
-] as const;
-
 export const FIELD_DOMAINS: Record<string, number[]> = {
-  abbreviation_accuracy_score: [1, 2, 3, 4],
-  final_answer_accuracy_score: [1, 2, 3, 4],
-  clarification_appropriate: [0, 1],
-  asked_for_clarification: [0, 1],
-  unsupported_assumption: [0, 1, 2],
-  overconfident_wrong: [0, 1],
-  hallucinated_detail: [0, 1],
+  accuracy_score: [0, 1, 2],
+  clarification_score: [0, 1, 2],
+  hallucination_score: [0, 1, 2],
 };
+
+export type GradingField = "accuracy_score" | "clarification_score" | "hallucination_score";
+
+/**
+ * Which score fields an item requires, given its condition. Accuracy always;
+ * clarification only for real_low_context; hallucination only for
+ * synthetic_high_context. Shared by the form (which fields to show) and the
+ * server (when an item counts as complete).
+ */
+export function requiredFields(variant: string): GradingField[] {
+  const fields: GradingField[] = ["accuracy_score"];
+  if (variant === "real_low_context") fields.push("clarification_score");
+  if (variant === "synthetic_high_context") fields.push("hallucination_score");
+  return fields;
+}
