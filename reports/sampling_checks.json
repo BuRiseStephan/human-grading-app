@@ -1,9 +1,9 @@
 {
   "seed": 20260719,
-  "source": "/private/tmp/claude-501/-Users-stephansozkes-HumanGradingAppRISEPracticumDataScience/d87de3d7-73f5-476e-a95f-f24a4b26740b/scratchpad/v3_clean.csv",
+  "source": "/private/tmp/claude-501/-Users-stephansozkes-HumanGradingAppRISEPracticumDataScience/d87de3d7-73f5-476e-a95f-f24a4b26740b/scratchpad/v5_clean.csv",
   "population": {
-    "total_rows": 3545,
-    "eligible": 3545,
+    "total_rows": 3600,
+    "eligible": 3600,
     "excluded": 0
   },
   "checks": [
@@ -63,12 +63,6 @@
     },
     {
       "check": "No missing prompt",
-      "expected": "0",
-      "actual": "0",
-      "passed": true
-    },
-    {
-      "check": "No missing expected_interpretation_or_behavior",
       "expected": "0",
       "actual": "0",
       "passed": true

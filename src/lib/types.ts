@@ -32,7 +32,6 @@ export interface BlindedItem {
   primary_meaning: string;
   alternate_plausible_meanings: string;
   prompt: string;
-  expected_interpretation_or_behavior: string;
   model_response: string;
 }
 

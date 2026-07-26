@@ -45,7 +45,6 @@ GRADER_VISIBLE_FIELDS = [
     "primary_meaning",
     "alternate_plausible_meanings",
     "prompt",
-    "expected_interpretation_or_behavior",
     "model_response",
 ]
 
@@ -94,8 +93,9 @@ def load_frame(source: Path) -> tuple[pd.DataFrame, dict]:
     df = load_source(source)
     total_rows = len(df)
 
-    required = ["run_id", "model_response", *STRATUM_COLS, "prompt",
-                "expected_interpretation_or_behavior"]
+    # expected_interpretation_or_behavior is no longer shown to graders and is
+    # absent for some conditions in newer data, so it is not required here.
+    required = ["run_id", "model_response", *STRATUM_COLS, "prompt"]
     missing_cols = [c for c in required if c not in df.columns]
     if missing_cols:
         raise SystemExit(
@@ -209,7 +209,7 @@ def run_checks(sample: pd.DataFrame, strata: pd.DataFrame) -> list[dict]:
         check("Per domain", per * n_models * n_variants,
               int(sample.groupby("domain").size().iloc[0]))
 
-    for field in ["prompt", "expected_interpretation_or_behavior", "model_response"]:
+    for field in ["prompt", "model_response"]:
         check(f"No missing {field}", 0, int((~nonblank(sample[field])).sum()))
 
     check("Both graders grade every response", 2 * n, 2 * n)

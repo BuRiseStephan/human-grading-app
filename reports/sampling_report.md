@@ -1,7 +1,7 @@
 # Human-Grading Sample — Report
 
-Generated: 2026-07-24T17:14:55+00:00
-Source: `/private/tmp/claude-501/-Users-stephansozkes-HumanGradingAppRISEPracticumDataScience/d87de3d7-73f5-476e-a95f-f24a4b26740b/scratchpad/v3_clean.csv` (read-only)
+Generated: 2026-07-26T02:04:04+00:00
+Source: `/private/tmp/claude-501/-Users-stephansozkes-HumanGradingAppRISEPracticumDataScience/d87de3d7-73f5-476e-a95f-f24a4b26740b/scratchpad/v5_clean.csv` (read-only)
 Seed: `20260719`  ·  Per-stratum: 10% of each stratum
 
 ## Design
@@ -12,10 +12,10 @@ Both graders independently grade the **same 360** responses in one shared random
 
 | Quantity | Value |
 | --- | --- |
-| Rows in source | 3,545 |
-| Eligible (sampling frame) | 3,545 |
+| Rows in source | 3,600 |
+| Eligible (sampling frame) | 3,600 |
 | Selected | 360 |
-| Selected as % of eligible | 10.16% |
+| Selected as % of eligible | 10.00% |
 | Models × variants × domains | 4 × 3 × 5 = 60 strata |
 
 ## Marginal counts
@@ -51,14 +51,14 @@ Both graders independently grade the **same 360** responses in one shared random
 
 | Model | Variant | Domain | Eligible pool | Selected |
 | --- | --- | --- | --- | --- |
-| qwen3_14b | real_high_context | General language/slang | 59 | 6 |
+| qwen3_14b | real_high_context | General language/slang | 60 | 6 |
 | qwen3_14b | real_high_context | Law/business | 60 | 6 |
 | qwen3_14b | real_high_context | Medicine | 60 | 6 |
 | qwen3_14b | real_high_context | Software/technology | 60 | 6 |
 | qwen3_14b | real_high_context | Sports | 60 | 6 |
 | qwen3_14b | real_low_context | General language/slang | 60 | 6 |
-| qwen3_14b | real_low_context | Law/business | 59 | 6 |
-| qwen3_14b | real_low_context | Medicine | 57 | 6 |
+| qwen3_14b | real_low_context | Law/business | 60 | 6 |
+| qwen3_14b | real_low_context | Medicine | 60 | 6 |
 | qwen3_14b | real_low_context | Software/technology | 60 | 6 |
 | qwen3_14b | real_low_context | Sports | 60 | 6 |
 | qwen3_14b | synthetic_high_context | General language/slang | 60 | 6 |
@@ -71,31 +71,31 @@ Both graders independently grade the **same 360** responses in one shared random
 | qwen3_32b | real_high_context | Medicine | 60 | 6 |
 | qwen3_32b | real_high_context | Software/technology | 60 | 6 |
 | qwen3_32b | real_high_context | Sports | 60 | 6 |
-| qwen3_32b | real_low_context | General language/slang | 59 | 6 |
+| qwen3_32b | real_low_context | General language/slang | 60 | 6 |
 | qwen3_32b | real_low_context | Law/business | 60 | 6 |
-| qwen3_32b | real_low_context | Medicine | 58 | 6 |
+| qwen3_32b | real_low_context | Medicine | 60 | 6 |
 | qwen3_32b | real_low_context | Software/technology | 60 | 6 |
-| qwen3_32b | real_low_context | Sports | 59 | 6 |
-| qwen3_32b | synthetic_high_context | General language/slang | 59 | 6 |
-| qwen3_32b | synthetic_high_context | Law/business | 59 | 6 |
-| qwen3_32b | synthetic_high_context | Medicine | 59 | 6 |
+| qwen3_32b | real_low_context | Sports | 60 | 6 |
+| qwen3_32b | synthetic_high_context | General language/slang | 60 | 6 |
+| qwen3_32b | synthetic_high_context | Law/business | 60 | 6 |
+| qwen3_32b | synthetic_high_context | Medicine | 60 | 6 |
 | qwen3_32b | synthetic_high_context | Software/technology | 60 | 6 |
-| qwen3_32b | synthetic_high_context | Sports | 57 | 6 |
-| qwen3_4b | real_high_context | General language/slang | 59 | 6 |
-| qwen3_4b | real_high_context | Law/business | 58 | 6 |
+| qwen3_32b | synthetic_high_context | Sports | 60 | 6 |
+| qwen3_4b | real_high_context | General language/slang | 60 | 6 |
+| qwen3_4b | real_high_context | Law/business | 60 | 6 |
 | qwen3_4b | real_high_context | Medicine | 60 | 6 |
 | qwen3_4b | real_high_context | Software/technology | 60 | 6 |
-| qwen3_4b | real_high_context | Sports | 59 | 6 |
-| qwen3_4b | real_low_context | General language/slang | 59 | 6 |
+| qwen3_4b | real_high_context | Sports | 60 | 6 |
+| qwen3_4b | real_low_context | General language/slang | 60 | 6 |
 | qwen3_4b | real_low_context | Law/business | 60 | 6 |
-| qwen3_4b | real_low_context | Medicine | 57 | 6 |
+| qwen3_4b | real_low_context | Medicine | 60 | 6 |
 | qwen3_4b | real_low_context | Software/technology | 60 | 6 |
 | qwen3_4b | real_low_context | Sports | 60 | 6 |
-| qwen3_4b | synthetic_high_context | General language/slang | 57 | 6 |
-| qwen3_4b | synthetic_high_context | Law/business | 58 | 6 |
-| qwen3_4b | synthetic_high_context | Medicine | 48 | 6 |
+| qwen3_4b | synthetic_high_context | General language/slang | 60 | 6 |
+| qwen3_4b | synthetic_high_context | Law/business | 60 | 6 |
+| qwen3_4b | synthetic_high_context | Medicine | 60 | 6 |
 | qwen3_4b | synthetic_high_context | Software/technology | 60 | 6 |
-| qwen3_4b | synthetic_high_context | Sports | 45 | 6 |
+| qwen3_4b | synthetic_high_context | Sports | 60 | 6 |
 | qwen3_8b | real_high_context | General language/slang | 60 | 6 |
 | qwen3_8b | real_high_context | Law/business | 60 | 6 |
 | qwen3_8b | real_high_context | Medicine | 60 | 6 |
@@ -128,7 +128,6 @@ Both graders independently grade the **same 360** responses in one shared random
 | Per variant | 120 | 120 | PASS |
 | Per domain | 72 | 72 | PASS |
 | No missing prompt | 0 | 0 | PASS |
-| No missing expected_interpretation_or_behavior | 0 | 0 | PASS |
 | No missing model_response | 0 | 0 | PASS |
 | Both graders grade every response | 720 | 720 | PASS |
 | Shared display order is a permutation 1..N | True | True | PASS |
@@ -144,7 +143,6 @@ Both graders independently grade the **same 360** responses in one shared random
 - `primary_meaning`
 - `alternate_plausible_meanings`
 - `prompt`
-- `expected_interpretation_or_behavior`
 - `model_response`
 
 Model identity, variant, domain, run_id and all metadata are in the confidential key only. Both graders share one randomized order derived from the seed. The source file is opened read-only and not modified.
