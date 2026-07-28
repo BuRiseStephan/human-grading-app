@@ -10,17 +10,23 @@ Handles the v3 quirks:
     python3 scripts/prepare_v3.py --results ~/Desktop/results.jsonl --out <clean.csv>
 """
 from __future__ import annotations
-import argparse, csv, json
+import argparse, csv, json, os
 from collections import defaultdict
 from pathlib import Path
 
 DOMAIN_FIX = {"Finance/business": "Software/technology"}
 
 # Abbreviation sets excluded from the grading system (removed by the authors).
-EXCLUDE_SET_IDS = {
+# Overridable via EXCLUDE_SETS env (comma-separated; empty string = exclude none).
+_DEFAULT_EXCLUDE = {
     "SET_62", "SET_64", "SET_65", "SET_66", "SET_92",
     "SET_119", "SET_159", "SET_179", "SET_210",
 }
+EXCLUDE_SET_IDS = (
+    {s.strip() for s in os.environ["EXCLUDE_SETS"].split(",") if s.strip()}
+    if "EXCLUDE_SETS" in os.environ
+    else _DEFAULT_EXCLUDE
+)
 
 COLUMNS = [
     "run_id", "model_key", "variant", "domain", "abbreviation",
