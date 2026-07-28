@@ -2,8 +2,8 @@
   "seed": 20260719,
   "source": "/private/tmp/claude-501/-Users-stephansozkes-HumanGradingAppRISEPracticumDataScience/d87de3d7-73f5-476e-a95f-f24a4b26740b/scratchpad/v5_clean.csv",
   "population": {
-    "total_rows": 3600,
-    "eligible": 3600,
+    "total_rows": 3492,
+    "eligible": 3492,
     "excluded": 0
   },
   "checks": [

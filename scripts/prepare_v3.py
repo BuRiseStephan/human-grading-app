@@ -16,6 +16,12 @@ from pathlib import Path
 
 DOMAIN_FIX = {"Finance/business": "Software/technology"}
 
+# Abbreviation sets excluded from the grading system (removed by the authors).
+EXCLUDE_SET_IDS = {
+    "SET_62", "SET_64", "SET_65", "SET_66", "SET_92",
+    "SET_119", "SET_159", "SET_179", "SET_210",
+}
+
 COLUMNS = [
     "run_id", "model_key", "variant", "domain", "abbreviation",
     "primary_meaning", "alternate_plausible_meanings", "prompt",
@@ -39,8 +45,11 @@ def main() -> None:
         by_run[r["run_id"]].append(r)
     canon = [sorted(v, key=lambda r: r.get("completed_at_utc") or "")[-1] for v in by_run.values()]
 
-    rows, dropped_empty, relabeled = [], 0, 0
+    rows, dropped_empty, relabeled, dropped_excluded = [], 0, 0, 0
     for r in canon:
+        if r.get("set_id") in EXCLUDE_SET_IDS:
+            dropped_excluded += 1
+            continue
         m = r.get("dataset_metadata") or {}
         response = (r.get("completion") or "").strip()
         if not response:
@@ -75,6 +84,7 @@ def main() -> None:
         w.writerows(rows)
 
     print(f"canonical runs: {len(canon)}  ->  eligible rows: {len(rows)}")
+    print(f"  dropped excluded sets ({len(EXCLUDE_SET_IDS)}): {dropped_excluded}")
     print(f"  dropped empty completions: {dropped_empty}")
     print(f"  relabeled Finance/business -> Software/technology: {relabeled}")
     print(f"  wrote {args.out}")

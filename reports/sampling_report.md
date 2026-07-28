@@ -1,6 +1,6 @@
 # Human-Grading Sample — Report
 
-Generated: 2026-07-26T02:04:04+00:00
+Generated: 2026-07-28T13:45:37+00:00
 Source: `/private/tmp/claude-501/-Users-stephansozkes-HumanGradingAppRISEPracticumDataScience/d87de3d7-73f5-476e-a95f-f24a4b26740b/scratchpad/v5_clean.csv` (read-only)
 Seed: `20260719`  ·  Per-stratum: 10% of each stratum
 
@@ -12,10 +12,10 @@ Both graders independently grade the **same 360** responses in one shared random
 
 | Quantity | Value |
 | --- | --- |
-| Rows in source | 3,600 |
-| Eligible (sampling frame) | 3,600 |
+| Rows in source | 3,492 |
+| Eligible (sampling frame) | 3,492 |
 | Selected | 360 |
-| Selected as % of eligible | 10.00% |
+| Selected as % of eligible | 10.31% |
 | Models × variants × domains | 4 × 3 × 5 = 60 strata |
 
 ## Marginal counts
@@ -52,65 +52,65 @@ Both graders independently grade the **same 360** responses in one shared random
 | Model | Variant | Domain | Eligible pool | Selected |
 | --- | --- | --- | --- | --- |
 | qwen3_14b | real_high_context | General language/slang | 60 | 6 |
-| qwen3_14b | real_high_context | Law/business | 60 | 6 |
-| qwen3_14b | real_high_context | Medicine | 60 | 6 |
-| qwen3_14b | real_high_context | Software/technology | 60 | 6 |
-| qwen3_14b | real_high_context | Sports | 60 | 6 |
+| qwen3_14b | real_high_context | Law/business | 58 | 6 |
+| qwen3_14b | real_high_context | Medicine | 56 | 6 |
+| qwen3_14b | real_high_context | Software/technology | 58 | 6 |
+| qwen3_14b | real_high_context | Sports | 59 | 6 |
 | qwen3_14b | real_low_context | General language/slang | 60 | 6 |
-| qwen3_14b | real_low_context | Law/business | 60 | 6 |
-| qwen3_14b | real_low_context | Medicine | 60 | 6 |
-| qwen3_14b | real_low_context | Software/technology | 60 | 6 |
-| qwen3_14b | real_low_context | Sports | 60 | 6 |
+| qwen3_14b | real_low_context | Law/business | 58 | 6 |
+| qwen3_14b | real_low_context | Medicine | 56 | 6 |
+| qwen3_14b | real_low_context | Software/technology | 58 | 6 |
+| qwen3_14b | real_low_context | Sports | 59 | 6 |
 | qwen3_14b | synthetic_high_context | General language/slang | 60 | 6 |
-| qwen3_14b | synthetic_high_context | Law/business | 60 | 6 |
-| qwen3_14b | synthetic_high_context | Medicine | 60 | 6 |
-| qwen3_14b | synthetic_high_context | Software/technology | 60 | 6 |
-| qwen3_14b | synthetic_high_context | Sports | 60 | 6 |
+| qwen3_14b | synthetic_high_context | Law/business | 58 | 6 |
+| qwen3_14b | synthetic_high_context | Medicine | 56 | 6 |
+| qwen3_14b | synthetic_high_context | Software/technology | 58 | 6 |
+| qwen3_14b | synthetic_high_context | Sports | 59 | 6 |
 | qwen3_32b | real_high_context | General language/slang | 60 | 6 |
-| qwen3_32b | real_high_context | Law/business | 60 | 6 |
-| qwen3_32b | real_high_context | Medicine | 60 | 6 |
-| qwen3_32b | real_high_context | Software/technology | 60 | 6 |
-| qwen3_32b | real_high_context | Sports | 60 | 6 |
+| qwen3_32b | real_high_context | Law/business | 58 | 6 |
+| qwen3_32b | real_high_context | Medicine | 56 | 6 |
+| qwen3_32b | real_high_context | Software/technology | 58 | 6 |
+| qwen3_32b | real_high_context | Sports | 59 | 6 |
 | qwen3_32b | real_low_context | General language/slang | 60 | 6 |
-| qwen3_32b | real_low_context | Law/business | 60 | 6 |
-| qwen3_32b | real_low_context | Medicine | 60 | 6 |
-| qwen3_32b | real_low_context | Software/technology | 60 | 6 |
-| qwen3_32b | real_low_context | Sports | 60 | 6 |
+| qwen3_32b | real_low_context | Law/business | 58 | 6 |
+| qwen3_32b | real_low_context | Medicine | 56 | 6 |
+| qwen3_32b | real_low_context | Software/technology | 58 | 6 |
+| qwen3_32b | real_low_context | Sports | 59 | 6 |
 | qwen3_32b | synthetic_high_context | General language/slang | 60 | 6 |
-| qwen3_32b | synthetic_high_context | Law/business | 60 | 6 |
-| qwen3_32b | synthetic_high_context | Medicine | 60 | 6 |
-| qwen3_32b | synthetic_high_context | Software/technology | 60 | 6 |
-| qwen3_32b | synthetic_high_context | Sports | 60 | 6 |
+| qwen3_32b | synthetic_high_context | Law/business | 58 | 6 |
+| qwen3_32b | synthetic_high_context | Medicine | 56 | 6 |
+| qwen3_32b | synthetic_high_context | Software/technology | 58 | 6 |
+| qwen3_32b | synthetic_high_context | Sports | 59 | 6 |
 | qwen3_4b | real_high_context | General language/slang | 60 | 6 |
-| qwen3_4b | real_high_context | Law/business | 60 | 6 |
-| qwen3_4b | real_high_context | Medicine | 60 | 6 |
-| qwen3_4b | real_high_context | Software/technology | 60 | 6 |
-| qwen3_4b | real_high_context | Sports | 60 | 6 |
+| qwen3_4b | real_high_context | Law/business | 58 | 6 |
+| qwen3_4b | real_high_context | Medicine | 56 | 6 |
+| qwen3_4b | real_high_context | Software/technology | 58 | 6 |
+| qwen3_4b | real_high_context | Sports | 59 | 6 |
 | qwen3_4b | real_low_context | General language/slang | 60 | 6 |
-| qwen3_4b | real_low_context | Law/business | 60 | 6 |
-| qwen3_4b | real_low_context | Medicine | 60 | 6 |
-| qwen3_4b | real_low_context | Software/technology | 60 | 6 |
-| qwen3_4b | real_low_context | Sports | 60 | 6 |
+| qwen3_4b | real_low_context | Law/business | 58 | 6 |
+| qwen3_4b | real_low_context | Medicine | 56 | 6 |
+| qwen3_4b | real_low_context | Software/technology | 58 | 6 |
+| qwen3_4b | real_low_context | Sports | 59 | 6 |
 | qwen3_4b | synthetic_high_context | General language/slang | 60 | 6 |
-| qwen3_4b | synthetic_high_context | Law/business | 60 | 6 |
-| qwen3_4b | synthetic_high_context | Medicine | 60 | 6 |
-| qwen3_4b | synthetic_high_context | Software/technology | 60 | 6 |
-| qwen3_4b | synthetic_high_context | Sports | 60 | 6 |
+| qwen3_4b | synthetic_high_context | Law/business | 58 | 6 |
+| qwen3_4b | synthetic_high_context | Medicine | 56 | 6 |
+| qwen3_4b | synthetic_high_context | Software/technology | 58 | 6 |
+| qwen3_4b | synthetic_high_context | Sports | 59 | 6 |
 | qwen3_8b | real_high_context | General language/slang | 60 | 6 |
-| qwen3_8b | real_high_context | Law/business | 60 | 6 |
-| qwen3_8b | real_high_context | Medicine | 60 | 6 |
-| qwen3_8b | real_high_context | Software/technology | 60 | 6 |
-| qwen3_8b | real_high_context | Sports | 60 | 6 |
+| qwen3_8b | real_high_context | Law/business | 58 | 6 |
+| qwen3_8b | real_high_context | Medicine | 56 | 6 |
+| qwen3_8b | real_high_context | Software/technology | 58 | 6 |
+| qwen3_8b | real_high_context | Sports | 59 | 6 |
 | qwen3_8b | real_low_context | General language/slang | 60 | 6 |
-| qwen3_8b | real_low_context | Law/business | 60 | 6 |
-| qwen3_8b | real_low_context | Medicine | 60 | 6 |
-| qwen3_8b | real_low_context | Software/technology | 60 | 6 |
-| qwen3_8b | real_low_context | Sports | 60 | 6 |
+| qwen3_8b | real_low_context | Law/business | 58 | 6 |
+| qwen3_8b | real_low_context | Medicine | 56 | 6 |
+| qwen3_8b | real_low_context | Software/technology | 58 | 6 |
+| qwen3_8b | real_low_context | Sports | 59 | 6 |
 | qwen3_8b | synthetic_high_context | General language/slang | 60 | 6 |
-| qwen3_8b | synthetic_high_context | Law/business | 60 | 6 |
-| qwen3_8b | synthetic_high_context | Medicine | 60 | 6 |
-| qwen3_8b | synthetic_high_context | Software/technology | 60 | 6 |
-| qwen3_8b | synthetic_high_context | Sports | 60 | 6 |
+| qwen3_8b | synthetic_high_context | Law/business | 58 | 6 |
+| qwen3_8b | synthetic_high_context | Medicine | 56 | 6 |
+| qwen3_8b | synthetic_high_context | Software/technology | 58 | 6 |
+| qwen3_8b | synthetic_high_context | Sports | 59 | 6 |
 
 ## Validation checks
 
