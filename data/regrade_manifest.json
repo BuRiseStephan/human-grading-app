@@ -1,0 +1,899 @@
+[
+  {
+    "evaluation_id": "HG0055",
+    "display_order": 1,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0183",
+    "display_order": 2,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0337",
+    "display_order": 3,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0127",
+    "display_order": 4,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0233",
+    "display_order": 5,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0304",
+    "display_order": 6,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0339",
+    "display_order": 7,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0007",
+    "display_order": 8,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0293",
+    "display_order": 9,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0101",
+    "display_order": 10,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0222",
+    "display_order": 11,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0275",
+    "display_order": 12,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0206",
+    "display_order": 13,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0224",
+    "display_order": 14,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0064",
+    "display_order": 15,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0316",
+    "display_order": 16,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0301",
+    "display_order": 17,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0043",
+    "display_order": 18,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0089",
+    "display_order": 19,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0107",
+    "display_order": 20,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0099",
+    "display_order": 21,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0117",
+    "display_order": 22,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0081",
+    "display_order": 23,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0312",
+    "display_order": 24,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0288",
+    "display_order": 25,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0105",
+    "display_order": 26,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0250",
+    "display_order": 27,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0349",
+    "display_order": 28,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0042",
+    "display_order": 29,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0205",
+    "display_order": 30,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0338",
+    "display_order": 31,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0223",
+    "display_order": 32,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0254",
+    "display_order": 33,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0356",
+    "display_order": 34,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0074",
+    "display_order": 35,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0130",
+    "display_order": 36,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0142",
+    "display_order": 37,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0203",
+    "display_order": 38,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0052",
+    "display_order": 39,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0177",
+    "display_order": 40,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0166",
+    "display_order": 41,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0058",
+    "display_order": 42,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0049",
+    "display_order": 43,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0322",
+    "display_order": 44,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0086",
+    "display_order": 45,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0317",
+    "display_order": 46,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0134",
+    "display_order": 47,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0168",
+    "display_order": 48,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0347",
+    "display_order": 49,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0170",
+    "display_order": 50,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0342",
+    "display_order": 51,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0232",
+    "display_order": 52,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0065",
+    "display_order": 53,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0226",
+    "display_order": 54,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0181",
+    "display_order": 55,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0344",
+    "display_order": 56,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0025",
+    "display_order": 57,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0292",
+    "display_order": 58,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0027",
+    "display_order": 59,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0268",
+    "display_order": 60,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0255",
+    "display_order": 61,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0331",
+    "display_order": 62,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0259",
+    "display_order": 63,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0028",
+    "display_order": 64,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0173",
+    "display_order": 65,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0346",
+    "display_order": 66,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0244",
+    "display_order": 67,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0008",
+    "display_order": 68,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0034",
+    "display_order": 69,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0175",
+    "display_order": 70,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0211",
+    "display_order": 71,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0294",
+    "display_order": 72,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0164",
+    "display_order": 73,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0194",
+    "display_order": 74,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0066",
+    "display_order": 75,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0119",
+    "display_order": 76,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0076",
+    "display_order": 77,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0079",
+    "display_order": 78,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0061",
+    "display_order": 79,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0162",
+    "display_order": 80,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0115",
+    "display_order": 81,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0098",
+    "display_order": 82,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0169",
+    "display_order": 83,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0172",
+    "display_order": 84,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0306",
+    "display_order": 85,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0047",
+    "display_order": 86,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0289",
+    "display_order": 87,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0132",
+    "display_order": 88,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0143",
+    "display_order": 89,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0248",
+    "display_order": 90,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0230",
+    "display_order": 91,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0217",
+    "display_order": 92,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0220",
+    "display_order": 93,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0148",
+    "display_order": 94,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0208",
+    "display_order": 95,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0281",
+    "display_order": 96,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0004",
+    "display_order": 97,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0159",
+    "display_order": 98,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0026",
+    "display_order": 99,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0091",
+    "display_order": 100,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0041",
+    "display_order": 101,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0283",
+    "display_order": 102,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0332",
+    "display_order": 103,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0269",
+    "display_order": 104,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0279",
+    "display_order": 105,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0072",
+    "display_order": 106,
+    "dimensions": [
+      "accuracy_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0031",
+    "display_order": 107,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0239",
+    "display_order": 108,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0253",
+    "display_order": 109,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0037",
+    "display_order": 110,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0340",
+    "display_order": 111,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0238",
+    "display_order": 112,
+    "dimensions": [
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0129",
+    "display_order": 113,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0048",
+    "display_order": 114,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0282",
+    "display_order": 115,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0046",
+    "display_order": 116,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0234",
+    "display_order": 117,
+    "dimensions": [
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0180",
+    "display_order": 118,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0153",
+    "display_order": 119,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0324",
+    "display_order": 120,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0308",
+    "display_order": 121,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0102",
+    "display_order": 122,
+    "dimensions": [
+      "accuracy_score",
+      "hallucination_score"
+    ]
+  },
+  {
+    "evaluation_id": "HG0039",
+    "display_order": 123,
+    "dimensions": [
+      "accuracy_score",
+      "clarification_score"
+    ]
+  }
+]

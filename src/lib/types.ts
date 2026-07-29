@@ -62,6 +62,11 @@ export const FIELD_DOMAINS: Record<string, number[]> = {
 
 export type GradingField = "accuracy_score" | "clarification_score" | "hallucination_score";
 
+/** A disputed item to re-grade, with only the dimensions the raters disagreed on. */
+export interface RegradeItem extends BlindedItem {
+  dimensions: GradingField[];
+}
+
 /**
  * Which score fields an item requires, given its condition. Accuracy always;
  * clarification only for real_low_context; hallucination only for

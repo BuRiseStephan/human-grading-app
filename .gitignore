@@ -10,6 +10,7 @@ out/
 data/*
 !data/blinded_items.json
 !data/human_grading_rubric.txt
+!data/regrade_manifest.json
 
 # Exported merges contain model identity joined to scores.
 exports/

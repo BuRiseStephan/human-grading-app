@@ -6,6 +6,7 @@ import fs from "node:fs";
 
 import { FIELD_DOMAINS, requiredFields, type Grader, type GraderStatus, type Grading } from "./types";
 import { variantByEvaluation } from "./items";
+import { regradeDimensionsByEval } from "./regrade";
 
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), "data");
 const DB_PATH = process.env.GRADING_DB_PATH || path.join(DATA_DIR, "grading.db");
@@ -43,6 +44,19 @@ export async function getClient(): Promise<Client> {
            grader       TEXT PRIMARY KEY CHECK (grader IN ('A','B')),
            started_at   TEXT,
            completed_at TEXT
+         )`,
+        // Adjudication round: re-grades of the disputed items, kept SEPARATE from
+        // the original gradings so nothing is overwritten.
+        `CREATE TABLE IF NOT EXISTS regradings (
+           evaluation_id       TEXT NOT NULL,
+           grader              TEXT NOT NULL CHECK (grader IN ('A','B')),
+           accuracy_score      INTEGER CHECK (accuracy_score IN (0,1,2)),
+           clarification_score INTEGER CHECK (clarification_score IN (0,1,2)),
+           hallucination_score INTEGER CHECK (hallucination_score IN (0,1,2)),
+           notes               TEXT NOT NULL DEFAULT '',
+           created_at          TEXT NOT NULL,
+           updated_at          TEXT NOT NULL,
+           PRIMARY KEY (evaluation_id, grader)
          )`,
       ],
       "write"
@@ -241,4 +255,61 @@ export async function markComplete(grader: Grader, expectedTotal: number): Promi
           ON CONFLICT(grader) DO UPDATE SET completed_at = excluded.completed_at`,
     args: [grader, now, now],
   });
+}
+
+// --- adjudication round (regradings) -------------------------------------
+
+export async function getRegradings(grader: Grader): Promise<Grading[]> {
+  const c = await getClient();
+  const r = await c.execute({
+    sql: "SELECT * FROM regradings WHERE grader = ? ORDER BY evaluation_id",
+    args: [grader],
+  });
+  return r.rows.map(rowToGrading);
+}
+
+export async function countRegradeCompleted(grader: Grader): Promise<number> {
+  // A re-grade is complete when every disputed dimension for that item is filled.
+  const dims = regradeDimensionsByEval();
+  const rows = await getRegradings(grader);
+  return rows.filter((g) => {
+    const need = dims.get(g.evaluation_id) ?? [];
+    return need.length > 0 && need.every((f) => g[f] !== null && g[f] !== undefined);
+  }).length;
+}
+
+export async function saveRegrading(
+  grader: Grader,
+  evaluationId: string,
+  payload: Record<string, unknown>
+): Promise<Grading> {
+  const args = [
+    evaluationId,
+    grader,
+    coerceScore("accuracy_score", payload.accuracy_score),
+    coerceScore("clarification_score", payload.clarification_score),
+    coerceScore("hallucination_score", payload.hallucination_score),
+    typeof payload.notes === "string" ? payload.notes : "",
+    new Date().toISOString(),
+    new Date().toISOString(),
+  ];
+  const c = await getClient();
+  await c.execute({
+    sql: `INSERT INTO regradings (
+            evaluation_id, grader, accuracy_score, clarification_score, hallucination_score,
+            notes, created_at, updated_at
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+          ON CONFLICT(evaluation_id, grader) DO UPDATE SET
+            accuracy_score      = excluded.accuracy_score,
+            clarification_score = excluded.clarification_score,
+            hallucination_score = excluded.hallucination_score,
+            notes               = excluded.notes,
+            updated_at          = excluded.updated_at`,
+    args,
+  });
+  const r = await c.execute({
+    sql: "SELECT * FROM regradings WHERE evaluation_id = ? AND grader = ?",
+    args: [evaluationId, grader],
+  });
+  return rowToGrading(r.rows[0]);
 }

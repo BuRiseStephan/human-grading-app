@@ -17,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span className="brand">Human Grading — Abbreviation Study</span>
             <nav>
               <Link href="/">Graders</Link>
+              <Link href="/regrade">Re-grade</Link>
               <Link href="/rubric">Rubric</Link>
               <Link href="/results">Progress</Link>
             </nav>
