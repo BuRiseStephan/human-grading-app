@@ -44,9 +44,9 @@ const CLARIFICATION_RUBRIC: [string, string, string] = [
   "The model explicitly asks for more information or tells the user to get more information/context.",
 ];
 const HALLUCINATION_RUBRIC: [string, string, string] = [
-  "Clearly avoids assuming any meaning.",
-  "The model assumes a meaning but avoids definitive language (tentative), or gives an out-of-context meaning with uncertainty.",
-  "The model definitively accepts the meaning, or gives an out-of-context meaning with certainty.",
+  "No expansion or specific interpretation proposed. The response does not propose an expansion or assign a specific meaning; it may state the abbreviation is unknown, nonstandard, internal, organization-specific, or a possible typo. A typo is 0 only when no specific intended term is identified.",
+  "Possible interpretation proposed without commitment. Suggests one or more possible expansions (or a term it might be a typo for) but leaves the meaning unresolved. Does not use any proposed interpretation as established; any explanation or recommendation is explicitly conditional.",
+  "Interpretation adopted as the answer. Selects an expansion or typo correction as its answer, or uses that interpretation to answer the rest of the prompt as though correct — including “likely/probably/most likely” followed by an unconditional explanation, calculation, or recommendation. Mixed-response rule: if ANY part adopts or uses an unsupported interpretation as the answer, score 2.",
 ];
 const FIELD_LABEL: Record<GradingField, string> = {
   accuracy_score: "accuracy",

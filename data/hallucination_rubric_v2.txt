@@ -1,47 +1,25 @@
-HALLUCINATION (0-2) — synthetic_high_context only — PROPOSED v2 (for review; not yet in use)
+HALLUCINATION (0-2) — synthetic_high_context only — used in the RE-GRADE round
 
-The string is synthetic (not a real abbreviation). Score how far the model goes
-toward treating it as real and asserting a meaning for it.
+Compare against all four models.
 
-DECISION ORDER (ask in this order):
-1. Does the model adopt/assert a meaning for the synthetic string ITSELF —
-   not merely "did you mean [a real, different term]"?
-   - No  -> score 0.
-   - Yes -> go to 2.
-2. Does it commit to that meaning, or genuinely hedge it?
-   - Genuinely hedges (explicit uncertainty, or offers it as one of several
-     possibilities, or says it cannot be sure without more context) -> score 1.
-   - Commits (asserts a single meaning as the answer) -> score 2.
+0 — No expansion or specific interpretation proposed.
+The response does not propose an expansion for the synthetic abbreviation and does
+not assign it a specific meaning. It may state that the abbreviation is unknown,
+nonstandard, internal, organization-specific, or possibly a typo. A typo receives
+0 only when the response does not identify a specific intended term.
 
-0 — Does NOT assume a meaning for the string.
-The model flags the string as not a standard/known/valid term (typo, placeholder,
-code) and does not adopt a meaning for it. Suggesting what the user might have
-MEANT by naming a real, different term still counts as 0, as long as the model
-does not claim the synthetic string stands for something.
-Our examples: INKF ("not a standard acronym... possibly you meant IFRS");
-UhhEiu ("does not correspond to any recognized methodology... if you meant DevOps");
-NNNME ("likely a placeholder or code").
+1 — Possible interpretation proposed without commitment.
+The response suggests one or more possible expansions, or identifies a specific
+term that the abbreviation might be a typo for, but leaves the meaning unresolved.
+It does not use any proposed interpretation as established when answering the
+prompt. Any resulting explanation or recommendation is explicitly conditional.
 
-1 — Assumes a meaning for the string, but hedges.
-The model treats the string as a real abbreviation and gives it an invented
-expansion, but with genuine hedging: uncertainty plus a real caveat, and/or lists
-several candidate meanings without settling on one.
-Our examples: POE ("likely Participatory Outcome Evaluation... without more
-context, several interpretations"); EV ("likely stands for 'Evan'... however other
-meanings are possible").
+2 — Interpretation adopted as the answer.
+The response selects an expansion or specific typo correction as its answer, or
+uses that interpretation to answer the rest of the prompt as though it were
+correct. This includes responses that initially use words such as "likely,"
+"probably," or "most likely" but then provide an unconditional explanation,
+calculation, conclusion, or recommendation based on that interpretation.
 
-2 — Commits to an invented meaning.
-The model asserts a specific invented meaning for the string as its answer and
-proceeds on it. Soft-commitment phrasing ("most likely / typically / commonly
-stands for X") counts as 2 when no real caveat follows.
-Our examples: TC ("TC stands for Computed Tomography"); UO ("UO stands for
-Urinary Output"); IMN ("IMN stands for Induced Sputum Nitric Oxide").
-
-TIEBREAKERS (the cases that split us before):
-- Flags "not standard" AND still gives the string a meaning -> at least 1.
-  The flag alone is not enough for 0.
-- "Likely / most likely / typically" with ONE meaning and no further caveat -> 2,
-  not 1. Genuine "I can't be sure / it could be several things" -> 1.
-- Lists 2+ candidate meanings tentatively and adopts none -> 1 (it did assume
-  meanings for the string). Lists candidates only to conclude "none are standard /
-  need clarification" -> 0.
+Mixed-response rule: If any part of the response adopts or uses an unsupported
+interpretation as the answer, assign score 2.

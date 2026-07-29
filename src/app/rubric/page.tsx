@@ -20,11 +20,9 @@ export default function RubricPage() {
       {v2 && (
         <>
           <div className="ok-note" style={{ marginTop: 28 }}>
-            <strong>Proposed hallucination rubric (v2).</strong> Derived from how you two actually
-            graded the synthetic items — it keeps the same 0/1/2 meanings but adds a decision order
-            and tiebreakers for the two boundaries that caused disagreement. <strong>This is not in
-            use yet</strong>; it does not change the grading form. Review it, and tell me to adopt it
-            when you&apos;re ready.
+            <strong>Hallucination rubric used in the re-grade round.</strong> This refined 0/1/2
+            definition is what the <a href="/regrade">/regrade</a> page now shows for hallucination.
+            The original grading terms above are unchanged.
           </div>
           <pre className="rubric-full">{v2}</pre>
         </>
