@@ -10,6 +10,7 @@ import type { BlindedItem, Grader } from "./types";
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), "data");
 const ITEMS_PATH = path.join(DATA_DIR, "blinded_items.json");
 const RUBRIC_PATH = path.join(DATA_DIR, "human_grading_rubric.txt");
+const HALLUCINATION_V2_PATH = path.join(DATA_DIR, "hallucination_rubric_v2.txt");
 
 /**
  * Fields that must never appear in a grader-facing payload. Checked at load
@@ -87,4 +88,11 @@ export function getRubricText(): string {
     throw new Error(`Rubric file missing at ${RUBRIC_PATH}`);
   }
   return fs.readFileSync(RUBRIC_PATH, "utf-8");
+}
+
+/** Proposed replacement hallucination rubric (v2). Null if not present. */
+export function getHallucinationV2Text(): string | null {
+  return fs.existsSync(HALLUCINATION_V2_PATH)
+    ? fs.readFileSync(HALLUCINATION_V2_PATH, "utf-8")
+    : null;
 }
