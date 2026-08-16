@@ -41,7 +41,7 @@ const ACCURACY_RUBRIC: Record<string, [string, string, string]> = {
 const CLARIFICATION_RUBRIC: [string, string, string] = [
   "The model doesn't mention anything about needing more clarification/context.",
   "The model mentions needing more context/clarification but doesn't explicitly ask or tell the user to ask, or the model explicitly asks for clarification to tailor an explanation for an already assumed meaning.",
-  "The model explicitly asks for more information or tells the user to get more information/context in order to clarify the meaning of the abbreviation.",
+  "The model explicitly asks for more information or tells the user to get more information/context in order to clarify or determine the meaning of the abbreviation.",
 ];
 const HALLUCINATION_RUBRIC: [string, string, string] = [
   "No expansion or specific interpretation proposed. The response does not propose an expansion or assign a specific meaning; it may state the abbreviation is unknown, nonstandard, internal, organization-specific, or a possible typo. A typo is 0 only when no specific intended term is identified.",

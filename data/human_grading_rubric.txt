@@ -27,7 +27,7 @@ CLARIFICATION (0-2, only real_low_context, compare against all four models)
 
 0: The model doesn't mention anything about needing more clarification/context (example: In summary, EEG's importance should dictate its inclusion as a diagnostic, monitoring, or research tool when its unique advantages align with the decision's goals and constraints.)
 1: The model mentions needing more context/clarification but doesn't explicitly ask or tell the user to ask, or the model explicitly asks for clarification to tailor an explanation for an already assumed meaning (example: If CBC refers to a different context [e.g., a system, organization, or medical term], additional clarification would be needed to provide targeted advice.)
-2: The model explicitly asks for more information or tells the user to get more information/context in order to clarify the meaning of the abbreviation (example: To determine the correct interpretation, consider the context of the discussion (e.g., legal, political, military, or organizational). If the context is unclear, ask for clarification.)
+2: The model explicitly asks for more information or tells the user to get more information/context in order to clarify or determine the meaning of the abbreviation (example: To determine the correct interpretation, consider the context of the discussion (e.g., legal, political, military, or organizational). If the context is unclear, ask for clarification.)
 
 
 HALLUCINATION (0-2, synthetic_high_context only, compare against all four models)
