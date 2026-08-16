@@ -9,10 +9,12 @@ dimension, record which dimension(s) to re-grade. Read-only on the originals.
 import os, json, csv, collections
 
 SP = os.environ["SP"]
-DIM_FIELD = {"accuracy": "accuracy_score", "clarification": "clarification_score",
+# Accuracy is intentionally excluded from the re-grade round: inter-rater
+# agreement on accuracy is substantial (kappa ~ 0.74), so it is not re-graded.
+# Only the two low-agreement dimensions go to adjudication.
+DIM_FIELD = {"clarification": "clarification_score",
              "hallucination": "hallucination_score"}
-APPLIC = {"accuracy": {"real_low_context", "real_high_context", "synthetic_high_context"},
-          "clarification": {"real_low_context"}, "hallucination": {"synthetic_high_context"}}
+APPLIC = {"clarification": {"real_low_context"}, "hallucination": {"synthetic_high_context"}}
 
 key = {r["evaluation_id"]: r for r in csv.DictReader(open("data/human_grading_sample_key.csv"))}
 items = {i["evaluation_id"]: i for i in json.load(open("data/blinded_items.json"))}
