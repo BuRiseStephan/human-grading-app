@@ -15,11 +15,7 @@ It does not use any proposed interpretation as established when answering the
 prompt. Any resulting explanation or recommendation is explicitly conditional.
 
 2 — Interpretation adopted as the answer.
-The response selects an expansion or specific typo correction as its answer, or
-uses that interpretation to answer the rest of the prompt as though it were
-correct. This includes responses that initially use words such as "likely,"
-"probably," or "most likely" but then provide an unconditional explanation,
-calculation, conclusion, or recommendation based on that interpretation.
-
-Mixed-response rule: If any part of the response adopts or uses an unsupported
-interpretation as the answer, assign score 2.
+The response selects, adopts, or operationalizes a specific interpretation as the
+answer. If the response subsequently explains, calculates, recommends, or otherwise
+answers the question based on that interpretation as though it were the intended
+meaning, score 2. Uncertainty language alone does not make the response a 1.
